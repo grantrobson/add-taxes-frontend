@@ -4,7 +4,7 @@ import java.util.concurrent.TimeUnit
 
 import cucumber.api.DataTable
 import org.junit.Assert
-import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Select}
+import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Select, WebDriverWait}
 import org.openqa.selenium.{By, NoAlertPresentException, WebDriver}
 import org.scalatest.Matchers
 import uk.gov.hmrc.integration.cucumber.utils.driver.Driver
@@ -25,6 +25,13 @@ trait BasePage extends Matchers {
   val basePageUrl = s"$envUrl/$prodRoute"
 
   val driver: WebDriver = Driver.instance
+
+  val loginRedirectUrl = "http://localhost:9730/business-account/add-tax"
+
+  val icsUrl = s"$loginRedirectUrl/other/import-export/ics"
+  val emcsUrl = s"$loginRedirectUrl/other/import-export/emcs"
+
+  val emacUrl = "enrolment-management-frontend/HMRC-ICS-ORG/request-access-tax-scheme?continue=%2Fbusiness-account"
 
   def envUrl: String = {
     val environmentProperty = System.getProperty("environment", "local").toLowerCase
@@ -140,4 +147,31 @@ trait BasePage extends Matchers {
   val checkDataTable = iterate(validateText) _
 
   def ShutdownTest() = driver.quit()
+
+  def navigateToAddTaxesUrl(enrolment: String) = {
+
+    enrolment match {
+      case "ics" => driver.navigate().to(icsUrl)
+      case "emcs" => driver.navigate().to(emcsUrl)
+
+    }
+
+  }
+
+  def navigateToEmacUrl(enrolment: String) = {
+
+    enrolment match {
+      case "ics" => driver.getCurrentUrl contains(emacUrl)
+      case "emcs" => driver.navigate().to(emcsUrl)
+
+    }
+
+  }
+
+
+  def clickOnRadioButton(by: By): Unit = {
+    new WebDriverWait(driver, 2).until(ExpectedConditions.presenceOfElementLocated(by)).click()
+  }
+
+
 }

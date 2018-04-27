@@ -7,6 +7,6 @@ resolvers ++= Seq(
   "hmrc-releases" at hmrcRepoHost + "/content/repositories/hmrc-releases",
   "typesafe-releases" at hmrcRepoHost + "/content/repositories/typesafe-releases")
 
-addSbtPlugin("com.dadrox" % "sbt-test-reports" % "0.1")
+addSbtPlugin("com.dadrox"  % "sbt-test-reports" % "0.1")
 
-addSbtPlugin("uk.gov.hmrc" % "hmrc-resolvers" % "0.4.0")
+addSbtPlugin("uk.gov.hmrc" % "hmrc-resolvers"   % "0.4.0")
