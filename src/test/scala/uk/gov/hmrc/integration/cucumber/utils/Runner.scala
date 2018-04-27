@@ -9,7 +9,7 @@ import org.junit.runner.RunWith
   features = Array("src/test/resources/features"),
   glue = Array("uk.gov.hmrc.integration.cucumber.stepdefs"),
   plugin = Array ("pretty", "html:target/cucumber", "json:target/cucumber.json"),
-  tags = Array("@Example, @Shutdown")
+  tags = Array("@beacd, @Shutdown")
 )
 class Runner {
 }
