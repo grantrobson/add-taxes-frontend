@@ -1,4 +1,4 @@
-name := "parcels-journey-tests"
+name := "add-taxes-acceptance-tests"
 
 version := "0.1.0"
 
