@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit
 import cucumber.api.DataTable
 import org.junit.Assert
 import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Select, WebDriverWait}
-import org.openqa.selenium.{By, NoAlertPresentException, WebDriver}
+import org.openqa.selenium.{By, NoAlertPresentException, WebDriver, WebElement}
 import org.scalatest.Matchers
 import uk.gov.hmrc.integration.cucumber.utils.driver.Driver
 
@@ -48,7 +48,10 @@ trait BasePage extends Matchers {
     .withTimeout(20, TimeUnit.SECONDS)
     .pollingEvery(250, TimeUnit.MILLISECONDS)
 
-  def waitForPageToBeLoaded(id: String) = fluentWait.until(ExpectedConditions.presenceOfElementLocated(By.id(id)))
+  def waitForElement(id: String): WebElement = waitForElement(By.id(id))
+  def waitForElement(by: By): WebElement = fluentWait.until(ExpectedConditions.presenceOfElementLocated(by))
+
+  def waitForPageToChange = fluentWait.until(ExpectedConditions.stalenessOf(find(By.cssSelector("html"))))
 
   def secondsWait(secs: Int) = Thread.sleep(secs.*(1000))
 
@@ -118,7 +121,7 @@ trait BasePage extends Matchers {
 
   def validateText(id: String, value: String) = getTextById(id) shouldBe value
 
-  def   clickContinue() = clickById("continue")
+  def clickContinue() = clickById("continue")
 
   def findH1() = findByCSS("h1")
 
