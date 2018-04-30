@@ -31,7 +31,7 @@ trait BasePage extends Matchers {
   val icsUrl = s"$loginRedirectUrl/other/import-export/ics"
   val emcsUrl = s"$loginRedirectUrl/other/import-export/emcs"
 
-  val emacUrl = "enrolment-management-frontend/HMRC-ICS-ORG/request-access-tax-scheme?continue=%2Fbusiness-account"
+  val emacUrl = "enrolment-management-frontend/ENROLMENT_TYPE/request-access-tax-scheme?continue=%2Fbusiness-account"
 
   def envUrl: String = {
     val environmentProperty = System.getProperty("environment", "local").toLowerCase
@@ -118,7 +118,7 @@ trait BasePage extends Matchers {
 
   def validateText(id: String, value: String) = getTextById(id) shouldBe value
 
-  def clickContinue() = clickById("continue")
+  def   clickContinue() = clickById("continue")
 
   def findH1() = findByCSS("h1")
 
@@ -160,9 +160,11 @@ trait BasePage extends Matchers {
 
   def navigateToEmacUrl(enrolment: String) = {
 
+    val currentUrl = driver.getCurrentUrl
     enrolment match {
-      case "ics" => driver.getCurrentUrl contains(emacUrl)
-      case "emcs" => driver.navigate().to(emcsUrl)
+      case "ics" =>  currentUrl should  include (emacUrl.replace("ENROLMENT_TYPE", "HMRC-ICS-ORG"))
+      case "emcs" => currentUrl should  include (emacUrl.replace("ENROLMENT_TYPE", "HMRC-EMCS-ORG"))
+      case _ => fail()
 
     }
 
