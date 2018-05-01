@@ -30,6 +30,7 @@ trait BasePage extends Matchers {
 
   val icsUrl = s"$loginRedirectUrl/other/import-export/ics"
   val emcsUrl = s"$loginRedirectUrl/other/import-export/emcs"
+  val ddesUrl = s"$loginRedirectUrl/other/import-export/ddes"
 
   val emacUrl = "enrolment-management-frontend/ENROLMENT_TYPE/request-access-tax-scheme?continue=%2Fbusiness-account"
 
@@ -158,6 +159,7 @@ trait BasePage extends Matchers {
     enrolment match {
       case "ics" => driver.navigate().to(icsUrl)
       case "emcs" => driver.navigate().to(emcsUrl)
+      case "ddes" => driver.navigate().to(ddesUrl)
 
     }
 
@@ -169,6 +171,7 @@ trait BasePage extends Matchers {
     enrolment match {
       case "ics" =>  currentUrl should  include (emacUrl.replace("ENROLMENT_TYPE", "HMRC-ICS-ORG"))
       case "emcs" => currentUrl should  include (emacUrl.replace("ENROLMENT_TYPE", "HMRC-EMCS-ORG"))
+      case "ddes" => currentUrl should  include (emacUrl.replace("ENROLMENT_TYPE", "HMCE-DDES"))
       case _ => fail()
 
     }
