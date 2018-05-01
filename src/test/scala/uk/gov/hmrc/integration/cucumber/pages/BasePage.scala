@@ -44,11 +44,13 @@ trait BasePage extends Matchers {
 
   def goToPage() = driver.navigate().to(basePageUrl + url)
 
-  val fluentWait: FluentWait[WebDriver] = new FluentWait[WebDriver](driver)
+  def fluentWait: FluentWait[WebDriver] = new FluentWait[WebDriver](driver)
     .withTimeout(20, TimeUnit.SECONDS)
     .pollingEvery(250, TimeUnit.MILLISECONDS)
+    .ignoring(classOf[org.openqa.selenium.NoSuchElementException])
 
   def waitForElement(id: String): WebElement = waitForElement(By.id(id))
+
   def waitForElement(by: By): WebElement = fluentWait.until(ExpectedConditions.presenceOfElementLocated(by))
 
   def waitForPageToChange = fluentWait.until(ExpectedConditions.stalenessOf(find(By.cssSelector("html"))))
