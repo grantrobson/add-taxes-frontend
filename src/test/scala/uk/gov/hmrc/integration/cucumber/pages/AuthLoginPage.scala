@@ -31,11 +31,13 @@ object AuthLoginPage extends BasePage {
   }
 
   def clickOnSubmit(): Unit = {
-    driver.findElement(By.id("inputForm")).submit()
+    waitForElement("inputForm").submit()
+    waitForPageToChange
   }
 
   def clickOnContinue(): Unit = {
-    driver.findElement(By.id("continue-button")).submit()
+    waitForElement("continue-button").submit()
+    waitForPageToChange
   }
 
 

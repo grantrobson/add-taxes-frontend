@@ -44,9 +44,9 @@ class BaseStepDef extends ScalaDsl with EN {
       }
     }
 
-     And("""^I click continue$"""){() =>
-        driver.findElement(By.className("button")).click()
-      }
+    And("""^I click continue$"""){ () =>
+      waitForElement(By.className("button")).click()
+    }
 
     Then("""^I should be redirected to (.*) GovUk page$""") { (url: String) =>
       url match {
