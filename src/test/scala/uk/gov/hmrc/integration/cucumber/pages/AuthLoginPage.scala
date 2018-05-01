@@ -35,11 +35,5 @@ object AuthLoginPage extends BasePage {
     waitForPageToChange
   }
 
-  def clickOnContinue(): Unit = {
-    waitForElement("continue-button").submit()
-    waitForPageToChange
-  }
-
-
 
 }

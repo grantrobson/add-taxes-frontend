@@ -178,10 +178,12 @@ trait BasePage extends Matchers {
 
   }
 
-
-  def clickOnRadioButton(by: By): Unit = {
-    new WebDriverWait(driver, 2).until(ExpectedConditions.presenceOfElementLocated(by)).click()
+  def clickOnContinue(): Unit = {
+    waitForElement("continue-button").submit()
+    waitForPageToChange
   }
+
+
 
 
 }
