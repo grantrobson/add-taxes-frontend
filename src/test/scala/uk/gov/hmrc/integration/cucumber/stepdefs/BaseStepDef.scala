@@ -41,6 +41,7 @@ class BaseStepDef extends ScalaDsl with EN {
       registerNumber match {
         case "EORI" => driver.getCurrentUrl should include ("/other/import-export/ics/register")
         case "SEED" => driver.getCurrentUrl should include ("/other/import-export/emcs/register")
+        case "DAN" => driver.getCurrentUrl should include ("/other/import-export/ddes/register")
       }
     }
 
@@ -52,6 +53,8 @@ class BaseStepDef extends ScalaDsl with EN {
       url match {
         case "EORI" =>  driver.getCurrentUrl shouldBe "https://www.gov.uk/eori#how-to-get-an-eori-number"
         case "SEED" => driver.getCurrentUrl shouldBe "https://www.gov.uk/guidance/excise-movement-and-control-system-how-to-register-and-use#register-and-enrol"
+        case "DAN" => driver.getCurrentUrl shouldBe "https://www.gov.uk/government/publications/notice-101-deferring-duty-vat-and-other-charges" +
+                                                    "/notice-101-deferring-duty-vat-and-other-charges#deferment-approval"
       }
     }
 
