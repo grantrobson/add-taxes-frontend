@@ -1,7 +1,7 @@
 @beacd
-Feature: Enrolment for Import Control System(ICS)
+Feature: Enrolment for New Computerised Transit System(NCTS)
 
-  Scenario: User goes to emac for ICS enrolment if they have EORI number
+  Scenario: User goes to emac for NCTS enrolment if they have EORI number
     Given I login as an Organisation with NO enrolments
     Then I will be on the Add taxes page
     When I navigate to ncts enrolments page
@@ -9,7 +9,7 @@ Feature: Enrolment for Import Control System(ICS)
     Then I will be redirected to emac ncts enrolments page
 
 
-  Scenario: User goes to emac for ICS enrolment if they have EORI number
+  Scenario: User goes to emac for NCTS enrolment if they have EORI number
     Given I login as an Organisation with NO enrolments
     Then I will be on the Add taxes page
     When I navigate to ncts enrolments page
