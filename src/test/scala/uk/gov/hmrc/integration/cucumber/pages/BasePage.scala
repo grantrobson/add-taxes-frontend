@@ -29,10 +29,11 @@ trait BasePage extends Matchers {
 
   val loginRedirectUrl = "http://localhost:9730/business-account/add-tax"
 
-  val icsUrl = s"$loginRedirectUrl/other/import-export/ics"
+  val icsUrl =  s"$loginRedirectUrl/other/import-export/ics"
   val emcsUrl = s"$loginRedirectUrl/other/import-export/emcs"
   val ddesUrl = s"$loginRedirectUrl/other/import-export/ddes"
   val nctsUrl = s"$loginRedirectUrl/other/import-export/ncts"
+  val ebtiUrl = s"$loginRedirectUrl/other/import-export/ebti"
 
   val emacUrl = "enrolment-management-frontend/ENROLMENT_TYPE/request-access-tax-scheme?continue=%2Fbusiness-account"
 
@@ -157,25 +158,25 @@ trait BasePage extends Matchers {
   def ShutdownTest() = driver.quit()
 
   def navigateToAddTaxesUrl(enrolment: String) = {
-
     enrolment match {
-      case "ics" => driver.navigate().to(icsUrl)
+      case "ics"  => driver.navigate().to(icsUrl)
       case "emcs" => driver.navigate().to(emcsUrl)
       case "ddes" => driver.navigate().to(ddesUrl)
       case "ncts" => driver.navigate().to(nctsUrl)
+      case "ebti" => driver.navigate().to(ebtiUrl)
 
     }
 
   }
 
   def navigateToEmacUrl(enrolment: String) = {
-
     val currentUrl = driver.getCurrentUrl
     enrolment match {
-      case "ics" =>  currentUrl should  include (emacUrl.replace("ENROLMENT_TYPE", "HMRC-ICS-ORG"))
+      case "ics"  => currentUrl should  include (emacUrl.replace("ENROLMENT_TYPE", "HMRC-ICS-ORG"))
       case "emcs" => currentUrl should  include (emacUrl.replace("ENROLMENT_TYPE", "HMRC-EMCS-ORG"))
       case "ddes" => currentUrl should  include (emacUrl.replace("ENROLMENT_TYPE", "HMCE-DDES"))
       case "ncts" => currentUrl should  include (emacUrl.replace("ENROLMENT_TYPE", "HMRC-NCTS-ORG"))
+      case "ebti" => currentUrl should  include (emacUrl.replace("ENROLMENT_TYPE", "HMCE-EBTI-ORG"))
       case _ => fail()
 
     }
