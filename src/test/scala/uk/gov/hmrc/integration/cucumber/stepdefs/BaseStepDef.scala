@@ -39,7 +39,7 @@ class BaseStepDef extends ScalaDsl with EN {
 
     Then("""^I will be redirected to register (.*) page$""") { (registerNumber: String) =>
       registerNumber match {
-        case "EORI" => driver.getCurrentUrl should include ("/other/import-export/ics/register")
+        case "EORI" => checkPageHeading("Get an EORI number first")
         case "SEED" => driver.getCurrentUrl should include ("/other/import-export/emcs/register")
         case "DAN" => driver.getCurrentUrl should include ("/other/import-export/ddes/register")
       }
@@ -59,10 +59,10 @@ class BaseStepDef extends ScalaDsl with EN {
     }
 
     And("""^I click (Yes|No) button and continue$""") { (id: String) =>
-        id match {
+      id match {
           case "Yes"  => clickYes
           case "No"  => clickNo
-        }
+      }
 
       clickOnContinue()
     }
