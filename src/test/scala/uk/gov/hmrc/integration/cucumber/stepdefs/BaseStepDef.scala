@@ -39,7 +39,7 @@ class BaseStepDef extends ScalaDsl with EN {
 
     Then("""^I will be redirected to register (.*) page$""") { (registerNumber: String) =>
       registerNumber match {
-        case "EORI" => driver.getCurrentUrl should include ("/other/import-export/ics/register")
+        case "EORI" => checkPageHeading("Get an EORI number first")
         case "SEED" => driver.getCurrentUrl should include ("/other/import-export/emcs/register")
         case "DAN" => driver.getCurrentUrl should include ("/other/import-export/ddes/register")
       }
@@ -51,11 +51,19 @@ class BaseStepDef extends ScalaDsl with EN {
 
     Then("""^I should be redirected to (.*) GovUk page$""") { (url: String) =>
       url match {
-        case "EORI" =>  driver.getCurrentUrl shouldBe "https://www.gov.uk/eori#how-to-get-an-eori-number"
+        case "EORI" => driver.getCurrentUrl shouldBe "https://www.gov.uk/eori#how-to-get-an-eori-number"
         case "SEED" => driver.getCurrentUrl shouldBe "https://www.gov.uk/guidance/excise-movement-and-control-system-how-to-register-and-use#register-and-enrol"
         case "DAN" => driver.getCurrentUrl shouldBe "https://www.gov.uk/government/publications/notice-101-deferring-duty-vat-and-other-charges" +
-                                                    "/notice-101-deferring-duty-vat-and-other-charges#deferment-approval"
+          "/notice-101-deferring-duty-vat-and-other-charges#deferment-approval"
       }
     }
 
-  }
+    And("""^I click (Yes|No) button and continue$""") { (id: String) =>
+      id match {
+          case "Yes"  => clickYes
+          case "No"  => clickNo
+      }
+
+      clickOnContinue()
+    }
+}
