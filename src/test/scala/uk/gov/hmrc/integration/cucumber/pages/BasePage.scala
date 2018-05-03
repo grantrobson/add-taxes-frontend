@@ -28,13 +28,7 @@ trait BasePage extends Matchers {
   val driver: WebDriver = Driver.instance
 
   val loginRedirectUrl = "http://localhost:9730/business-account/add-tax"
-
-  val icsUrl =  s"$loginRedirectUrl/other/import-export/ics"
-  val emcsUrl = s"$loginRedirectUrl/other/import-export/emcs"
-  val ddesUrl = s"$loginRedirectUrl/other/import-export/ddes"
-  val nctsUrl = s"$loginRedirectUrl/other/import-export/ncts"
-  val ebtiUrl = s"$loginRedirectUrl/other/import-export/ebti"
-
+  val addTaxesUrl = s"$loginRedirectUrl/other/import-export/"
   val emacUrl = "enrolment-management-frontend/ENROLMENT_TYPE/request-access-tax-scheme?continue=%2Fbusiness-account"
 
   def envUrl: String = {
@@ -157,17 +151,7 @@ trait BasePage extends Matchers {
 
   def ShutdownTest() = driver.quit()
 
-  def navigateToAddTaxesUrl(enrolment: String) = {
-    enrolment match {
-      case "ics"  => driver.navigate().to(icsUrl)
-      case "emcs" => driver.navigate().to(emcsUrl)
-      case "ddes" => driver.navigate().to(ddesUrl)
-      case "ncts" => driver.navigate().to(nctsUrl)
-      case "ebti" => driver.navigate().to(ebtiUrl)
-
-    }
-
-  }
+  def navigateToAddTaxesUrl(enrolment: String) = driver.navigate().to(addTaxesUrl + enrolment)
 
   def navigateToEmacUrl(enrolment: String) = {
     val currentUrl = driver.getCurrentUrl
