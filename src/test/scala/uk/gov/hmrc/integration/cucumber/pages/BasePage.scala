@@ -102,7 +102,7 @@ trait BasePage extends Matchers {
   def clickById(id: String) = findById(id).click()
   def clickByName(id: String, num: Int) = findByName(id).get(num).click()
   def clickByClass(id: String, num: Int) = findByClass(id).get(num).click()
-  def clickByCSS(css: String) = driver.findElement(By.cssSelector(css)).click()
+  def clickByCSS(css: String) = find(By.cssSelector(css)).click()
   def clickYes = clickByCSS("[value=Yes]")
   def clickNo =  clickByCSS("[value=No]")
 
