@@ -4,9 +4,11 @@ import java.util.concurrent.TimeUnit
 
 import cucumber.api.DataTable
 import org.junit.Assert
+import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Select}
 import org.openqa.selenium.{By, NoAlertPresentException, WebDriver, WebElement}
 import org.scalatest.Matchers
+import uk.gov.hmrc.integration.cucumber.pages.AuthLoginPage.waitForPageToChange
 import uk.gov.hmrc.integration.cucumber.utils.driver.Driver
 
 object BasePage extends BasePage {
@@ -163,6 +165,10 @@ trait BasePage extends Matchers {
 
   def clickOnContinue(): Unit = {
     waitForElement("continue-button").submit()
-    waitForPageToChange
+    Driver.webDriver match {
+      case _: ChromeDriver =>
+      case _ =>
+        waitForPageToChange
+    }
   }
 }
