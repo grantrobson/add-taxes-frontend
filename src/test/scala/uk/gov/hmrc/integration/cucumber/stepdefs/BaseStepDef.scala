@@ -32,8 +32,12 @@ class BaseStepDef extends ScalaDsl with EN {
       loginWithNoEnrolments(affinityGroup)
     }
 
-    When("""^I navigate to (.*) enrolments page$""") { (enrolment: String) =>
-      navigateToAddTaxesUrl(enrolment)
+    When("""^I navigate to the import export page$""") { () =>
+      navigateToAddTaxesUrl
+    }
+
+    When("""^I click on (.*) the enrolment$""") { (enrolment: String) =>
+      clickEnrollmentsLink(enrolment)
     }
 
     Then("""^I will be redirected to emac (.*) enrolments page$""") { (enrolment: String) =>

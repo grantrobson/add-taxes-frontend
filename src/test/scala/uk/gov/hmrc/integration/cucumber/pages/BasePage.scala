@@ -157,7 +157,9 @@ trait BasePage extends Matchers {
   val enterDataTable = iterate(sendKeysById) _
   val checkDataTable = iterate(validateText) _
 
-  def navigateToAddTaxesUrl(enrolment: String) = driver.navigate().to(addTaxesUrl + enrolment)
+  def navigateToAddTaxesUrl = driver.navigate().to(addTaxesUrl)
+
+  def clickEnrollmentsLink(enrolment: String) = clickByCSS(s"[value=$enrolment]")
 
   def navigateToEmacUrl(enrolment: String) = driver.getCurrentUrl should include (emacUrl.replace("ENROLMENT_TYPE", s"$enrolment"))
 
