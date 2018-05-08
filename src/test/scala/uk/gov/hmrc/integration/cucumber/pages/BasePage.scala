@@ -8,7 +8,6 @@ import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Select}
 import org.openqa.selenium.{By, NoAlertPresentException, WebDriver, WebElement}
 import org.scalatest.Matchers
-import uk.gov.hmrc.integration.cucumber.pages.AuthLoginPage.waitForPageToChange
 import uk.gov.hmrc.integration.cucumber.utils.driver.Driver
 
 object BasePage extends BasePage {
@@ -157,7 +156,7 @@ trait BasePage extends Matchers {
   val enterDataTable = iterate(sendKeysById) _
   val checkDataTable = iterate(validateText) _
 
-  def navigateToAddTaxesUrl = driver.navigate().to(addTaxesUrl)
+  def navigateToAddTaxesUrl = driver.navigate.to(addTaxesUrl)
 
   def clickEnrollmentsLink(enrolment: String) = clickByCSS(s"[value=$enrolment]")
 
