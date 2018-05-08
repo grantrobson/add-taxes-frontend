@@ -38,7 +38,6 @@ Feature: Other imports exports
       | ICS        | EORI   |
       | NCTS       | EORI   |
 
-@solo
   Scenario: User goes to emac for NES enrolment if they have EORI number
     Then I click on the NES enrolment
     And I click continue
