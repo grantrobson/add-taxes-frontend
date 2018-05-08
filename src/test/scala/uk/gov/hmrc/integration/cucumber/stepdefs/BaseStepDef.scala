@@ -36,7 +36,7 @@ class BaseStepDef extends ScalaDsl with EN {
       navigateToAddTaxesUrl
     }
 
-    When("""^I click on (.*) the enrolment$""") { (enrolment: String) =>
+    When("""^I click on the (.*) enrolment$""") { (enrolment: String) =>
       clickEnrollmentsLink(enrolment)
     }
 
