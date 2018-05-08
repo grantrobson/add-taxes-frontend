@@ -59,7 +59,8 @@ trait BasePage extends Matchers {
 
   def waitForElement(by: By): WebElement = fluentWait.until(ExpectedConditions.presenceOfElementLocated(by))
 
-  def waitForPageToChange = fluentWait.until(ExpectedConditions.stalenessOf(find(By.cssSelector("html"))))
+  def waitForPageToChange =
+    fluentWait.until(ExpectedConditions.stalenessOf(find(By.cssSelector("html"))))
 
   def deleteCookies() = driver.manage().deleteAllCookies()
 
@@ -81,12 +82,23 @@ trait BasePage extends Matchers {
 
   def getTextById(id: String) = findById(id).getText
 
-  def find(by: By) = driver.findElement(by)
-  def findById(id: String) = find(By.id(id))
-  def findByName(id: String) = driver.findElements(By.name(id))
-  def findByClass(className: String) = driver.findElements(By.className(className))
-  def findByCSS(css: String) = driver.findElement(By.cssSelector(css))
 
+  def find(by: By) = {
+    fluentWait.until(ExpectedConditions.presenceOfElementLocated(by))
+    driver.findElement(by)
+  }
+  def findById(id: String) = find(By.id(id))
+
+  def findElements(by: By) = {
+    fluentWait.until(ExpectedConditions.presenceOfElementLocated(by))
+    driver.findElements(by)
+  }
+
+  def findByName(id: String) = findElements(By.name(id))
+  def findByClass(className: String) = findElements(By.className(className))
+  def findByCSS(css: String) = find(By.cssSelector(css))
+
+  
   def clickById(id: String) = findById(id).click()
   def clickByName(id: String, num: Int) = findByName(id).get(num).click()
   def clickByClass(id: String, num: Int) = findByClass(id).get(num).click()
@@ -159,7 +171,8 @@ trait BasePage extends Matchers {
 
   def navigateToEmacUrl(enrolment: String) = driver.getCurrentUrl should include (emacUrl.replace("ENROLMENT_TYPE", s"$enrolment"))
 
-  def assertRegisterPage (registerType:String) = findH1().getText should include(registerType)
+  def assertRegisterPage (registerType:String) =
+    findH1().getText should include(registerType)
 
   def clickOnContinue(): Unit = {
     waitForElement("continue-button").submit()
