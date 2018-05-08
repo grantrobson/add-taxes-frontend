@@ -1,7 +1,6 @@
 package uk.gov.hmrc.integration.cucumber.stepdefs
 
 import cucumber.api.scala.{EN, ScalaDsl}
-import org.junit.Assert.assertTrue
 import org.openqa.selenium.By
 import uk.gov.hmrc.integration.cucumber.pages.AuthLoginPage._
 
@@ -15,8 +14,17 @@ class BaseStepDef extends ScalaDsl with EN {
       clickContinue()
     }
 
-    Then("""^the browser is shutdown$""") { () =>
-      ShutdownTest()
+    And("""^I click (Yes|No) button and continue$""") { (id: String) =>
+      id match {
+        case "Yes" => clickYes
+        case "No" => clickNo
+      }
+
+      clickOnContinue()
+    }
+
+    And("""^I click on (.*) link$""") { (id: String) =>
+      clickById(id)
     }
 
     When("""^I login as an (Organisation|Individual) with NO enrolments$""") { (affinityGroup: String) =>
@@ -24,25 +32,16 @@ class BaseStepDef extends ScalaDsl with EN {
       loginWithNoEnrolments(affinityGroup)
     }
 
-
-    When("""^I will be on the Add taxes page$""") { () =>
-      assertTrue(driver.getCurrentUrl.equals(loginRedirectUrl))
-    }
-
     When("""^I navigate to (.*) enrolments page$""") { (enrolment: String) =>
       navigateToAddTaxesUrl(enrolment)
     }
 
-    Then("""^I will be redirected to emac (.*) enrolments page$""") {(enrolment: String) =>
+    Then("""^I will be redirected to emac (.*) enrolments page$""") { (enrolment: String) =>
       navigateToEmacUrl(enrolment)
     }
 
-    Then("""^I will be redirected to register (.*) page$""") { (registerNumber: String) =>
-      registerNumber match {
-        case "EORI" => checkPageHeading("Get an EORI number first")
-        case "SEED" => driver.getCurrentUrl should include ("/other/import-export/emcs/register")
-        case "DAN" => driver.getCurrentUrl should include ("/other/import-export/ddes/register")
-      }
+    Then("""^I will be redirected to register (.*) page$""") { (registerType: String) =>
+      assertRegisterPage(registerType)
     }
 
     And("""^I click continue$"""){ () =>
@@ -56,14 +55,5 @@ class BaseStepDef extends ScalaDsl with EN {
         case "DAN" => driver.getCurrentUrl shouldBe "https://www.gov.uk/government/publications/notice-101-deferring-duty-vat-and-other-charges" +
           "/notice-101-deferring-duty-vat-and-other-charges#deferment-approval"
       }
-    }
-
-    And("""^I click (Yes|No) button and continue$""") { (id: String) =>
-      id match {
-          case "Yes"  => clickYes
-          case "No"  => clickNo
-      }
-
-      clickOnContinue()
     }
 }

@@ -6,7 +6,7 @@ import org.openqa.selenium.support.ui.Select
 
 object AuthLoginPage extends BasePage {
 
-  override val url: String = "http://localhost:9949/auth-login-stub/gg-sign-in"
+  override val url: String = basePageUrl
   override val header: String = ""
 
   def navigateToStartPage(): Unit = {
@@ -34,6 +34,4 @@ object AuthLoginPage extends BasePage {
     waitForElement("inputForm").submit()
     waitForPageToChange
   }
-
-
 }

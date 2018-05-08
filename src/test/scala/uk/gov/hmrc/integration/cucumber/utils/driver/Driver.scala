@@ -3,6 +3,7 @@ package uk.gov.hmrc.integration.cucumber.utils.driver
 import com.typesafe.scalalogging.LazyLogging
 import org.openqa.selenium.WebDriver
 import uk.gov.hmrc.integration.cucumber.utils.driver.browsers._
+import scala.util.Try
 
 object Driver extends LazyLogging with WindowControls {
 
@@ -29,5 +30,16 @@ object Driver extends LazyLogging with WindowControls {
         true
       }
     }
+  }
+
+  var webDriver: WebDriver = {
+    sys addShutdownHook {
+      Try(webDriver.quit())
+    }
+
+    val selectedDriver: WebDriver = instance
+    selectedDriver.getWindowHandle
+
+    selectedDriver
   }
 }

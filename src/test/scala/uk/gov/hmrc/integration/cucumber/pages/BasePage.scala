@@ -4,10 +4,9 @@ import java.util.concurrent.TimeUnit
 
 import cucumber.api.DataTable
 import org.junit.Assert
-import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Select, WebDriverWait}
+import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Select}
 import org.openqa.selenium.{By, NoAlertPresentException, WebDriver, WebElement}
 import org.scalatest.Matchers
-import uk.gov.hmrc.integration.cucumber.pages.AuthLoginPage.clickByCSS
 import uk.gov.hmrc.integration.cucumber.utils.driver.Driver
 
 object BasePage extends BasePage {
@@ -21,15 +20,24 @@ trait BasePage extends Matchers {
   val header: String
 
   val frontendPort = "9949"
-  val prodRoute = "auth-login-stub"
+  val prodRoute = "auth-login-stub/gg-sign-in"
 
   val basePageUrl = s"$envUrl/$prodRoute"
 
   val driver: WebDriver = Driver.instance
 
-  val loginRedirectUrl = "http://localhost:9730/business-account/add-tax"
+  val loginRedirectUrl = s"$urlDecider/business-account/add-tax"
   val addTaxesUrl = s"$loginRedirectUrl/other/import-export/"
   val emacUrl = "enrolment-management-frontend/ENROLMENT_TYPE/request-access-tax-scheme?continue=%2Fbusiness-account"
+
+  def urlDecider: String = {
+    val envProperty = System.getProperty("environment", "local").toLowerCase
+    envProperty match {
+      case "local" => "http://localhost:9730"
+      case "qa" => "https://www.qa.tax.service.gov.uk"
+      case _ =>  throw new IllegalArgumentException(s"Environment '$envProperty' not known")
+    }
+  }
 
   def envUrl: String = {
     val environmentProperty = System.getProperty("environment", "local").toLowerCase
@@ -52,8 +60,6 @@ trait BasePage extends Matchers {
   def waitForElement(by: By): WebElement = fluentWait.until(ExpectedConditions.presenceOfElementLocated(by))
 
   def waitForPageToChange = fluentWait.until(ExpectedConditions.stalenessOf(find(By.cssSelector("html"))))
-
-  def secondsWait(secs: Int) = Thread.sleep(secs.*(1000))
 
   def deleteCookies() = driver.manage().deleteAllCookies()
 
@@ -85,8 +91,8 @@ trait BasePage extends Matchers {
   def clickByName(id: String, num: Int) = findByName(id).get(num).click()
   def clickByClass(id: String, num: Int) = findByClass(id).get(num).click()
   def clickByCSS(css: String) = driver.findElement(By.cssSelector(css)).click()
-  def clickYes = clickByCSS("[id$=Yes]")
-  def clickNo =  clickByCSS("[id$=No]")
+  def clickYes = clickByCSS("[value=Yes]")
+  def clickNo =  clickByCSS("[value=No]")
 
 
   def verifyTextUsingElementId(elementId: String, expectedValue: String)= findById(elementId).getText shouldBe expectedValue
@@ -149,23 +155,11 @@ trait BasePage extends Matchers {
   val enterDataTable = iterate(sendKeysById) _
   val checkDataTable = iterate(validateText) _
 
-  def ShutdownTest() = driver.quit()
-
   def navigateToAddTaxesUrl(enrolment: String) = driver.navigate().to(addTaxesUrl + enrolment)
 
-  def navigateToEmacUrl(enrolment: String) = {
-    val currentUrl = driver.getCurrentUrl
-    enrolment match {
-      case "ics"  => currentUrl should  include (emacUrl.replace("ENROLMENT_TYPE", "HMRC-ICS-ORG"))
-      case "emcs" => currentUrl should  include (emacUrl.replace("ENROLMENT_TYPE", "HMRC-EMCS-ORG"))
-      case "ddes" => currentUrl should  include (emacUrl.replace("ENROLMENT_TYPE", "HMCE-DDES"))
-      case "ncts" => currentUrl should  include (emacUrl.replace("ENROLMENT_TYPE", "HMRC-NCTS-ORG"))
-      case "ebti" => currentUrl should  include (emacUrl.replace("ENROLMENT_TYPE", "HMCE-EBTI-ORG"))
-      case _ => fail()
+  def navigateToEmacUrl(enrolment: String) = driver.getCurrentUrl should include (emacUrl.replace("ENROLMENT_TYPE", s"$enrolment"))
 
-    }
-
-  }
+  def assertRegisterPage (registerType:String) = findH1().getText should include(registerType)
 
   def clickOnContinue(): Unit = {
     waitForElement("continue-button").submit()
