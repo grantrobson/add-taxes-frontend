@@ -32,8 +32,12 @@ class BaseStepDef extends ScalaDsl with EN {
       loginWithNoEnrolments(affinityGroup)
     }
 
-    When("""^I navigate to (.*) enrolments page$""") { (enrolment: String) =>
-      navigateToAddTaxesUrl(enrolment)
+    When("""^I navigate to the import export page$""") { () =>
+      navigateToAddTaxesUrl
+    }
+
+    When("""^I click on the (.*) enrolment$""") { (enrolment: String) =>
+      clickEnrollmentsLink(enrolment)
     }
 
     Then("""^I will be redirected to emac (.*) enrolments page$""") { (enrolment: String) =>
@@ -50,10 +54,15 @@ class BaseStepDef extends ScalaDsl with EN {
 
     Then("""^I should be redirected to (.*) GovUk page$""") { (url: String) =>
       url match {
+        case "HMCE" => driver.getCurrentUrl shouldBe "https://secure.hmce.gov.uk/ecom/is2/static/is2.html"
         case "EORI" => driver.getCurrentUrl shouldBe "https://www.gov.uk/eori#how-to-get-an-eori-number"
         case "SEED" => driver.getCurrentUrl shouldBe "https://www.gov.uk/guidance/excise-movement-and-control-system-how-to-register-and-use#register-and-enrol"
         case "DAN" => driver.getCurrentUrl shouldBe "https://www.gov.uk/government/publications/notice-101-deferring-duty-vat-and-other-charges" +
           "/notice-101-deferring-duty-vat-and-other-charges#deferment-approval"
       }
+    }
+
+    Then("""^I should be redirected to (.*) Portal page$""") { (enrolment: String) =>
+      assertPortalPage(enrolment)
     }
 }

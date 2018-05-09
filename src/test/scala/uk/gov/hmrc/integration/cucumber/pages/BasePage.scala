@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit
 
 import cucumber.api.DataTable
 import org.junit.Assert
+import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Select}
 import org.openqa.selenium.{By, NoAlertPresentException, WebDriver, WebElement}
 import org.scalatest.Matchers
@@ -167,15 +168,22 @@ trait BasePage extends Matchers {
   val enterDataTable = iterate(sendKeysById) _
   val checkDataTable = iterate(validateText) _
 
-  def navigateToAddTaxesUrl(enrolment: String) = driver.navigate().to(addTaxesUrl + enrolment)
+  def navigateToAddTaxesUrl = driver.navigate.to(addTaxesUrl)
+
+  def clickEnrollmentsLink(enrolment: String) = clickByCSS(s"[value=$enrolment]")
 
   def navigateToEmacUrl(enrolment: String) = driver.getCurrentUrl should include (emacUrl.replace("ENROLMENT_TYPE", s"$enrolment"))
 
-  def assertRegisterPage (registerType:String) =
-    findH1().getText should include(registerType)
+  def assertRegisterPage(registerType:String) = findH1().getText should include(registerType)
+
+  def assertPortalPage(enrolment: String) = driver.getCurrentUrl should include(s"localhost:8080/portal/$enrolment")
 
   def clickOnContinue(): Unit = {
     waitForElement("continue-button").submit()
-    waitForPageToChange
+    Driver.webDriver match {
+      case _: ChromeDriver =>
+      case _ =>
+        waitForPageToChange
+    }
   }
 }
