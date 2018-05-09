@@ -83,7 +83,7 @@ Feature: Other imports exports
     When I click on the ISD enrolment
     And I click continue
     Then I should be redirected to HMCE GovUk page
-@solo
+
   Scenario: User goes to Portal when they select NOVA from import export page
     Given I login as an Organisation with NO enrolments
     And I navigate to the import export page
