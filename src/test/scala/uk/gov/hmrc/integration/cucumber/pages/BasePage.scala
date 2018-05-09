@@ -162,7 +162,9 @@ trait BasePage extends Matchers {
 
   def navigateToEmacUrl(enrolment: String) = driver.getCurrentUrl should include (emacUrl.replace("ENROLMENT_TYPE", s"$enrolment"))
 
-  def assertRegisterPage (registerType:String) = findH1().getText should include(registerType)
+  def assertRegisterPage(registerType:String) = findH1().getText should include(registerType)
+
+  def assertPortalPage(enrolment: String) = driver.getCurrentUrl should include(s"localhost:8080/portal/$enrolment")
 
   def clickOnContinue(): Unit = {
     waitForElement("continue-button").submit()
