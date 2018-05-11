@@ -23,10 +23,6 @@ class BaseStepDef extends ScalaDsl with EN {
       clickById(id)
     }
 
-    When("""^I navigate to the (.*) page$""") { (enrolment: String) =>
-      Nav.navigateToAddTaxesUrl(enrolment)
-    }
-
     When("""^I click on the (.*) enrolment$""") { (enrolment: String) =>
       clickEnrolmentsLink(enrolment)
     }
@@ -41,6 +37,10 @@ class BaseStepDef extends ScalaDsl with EN {
 
     And("""^I click continue$"""){ () =>
       clickContinue()
+    }
+
+    And("""^I click submit"""){ () =>
+      clickSubmit()
     }
 
     Then("""^I should be redirected to (.*) GovUk page$""") { (url: String) =>

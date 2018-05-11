@@ -49,6 +49,8 @@ object Input extends BasePage {
 
   def clickContinue() = waitForElement(By.className("button")).click()
 
+  def clickSubmit() = waitForElement(By.className("button")).submit()
+
   def dropdownSelect(dropDownId: String, selection: String) = {
     new Select(findById(dropDownId)).selectByVisibleText(selection)
   }
