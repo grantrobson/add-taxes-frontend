@@ -29,5 +29,4 @@ object Find extends BasePage {
   def findByCSS(css: String) = find(By.cssSelector(css))
 
   def findH1() = findByCSS("h1")
-
 }

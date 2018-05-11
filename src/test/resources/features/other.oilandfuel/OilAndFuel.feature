@@ -27,5 +27,5 @@ Feature: Other oil and fuel
 
     Examples:
     |enrolment                 | type         | page |
-    |rebatedOilsEnquiryService | Rebated Oils | OIL  |
-    |tiedOilsEnquiryService    | Tied Oils    | OIL  |
+    |rebatedOilsEnquiryService | Rebated Oils | oil  |
+    |tiedOilsEnquiryService    | Tied Oils    | oil  |

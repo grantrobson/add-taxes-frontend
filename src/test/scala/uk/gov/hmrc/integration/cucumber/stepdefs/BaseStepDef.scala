@@ -1,6 +1,7 @@
 package uk.gov.hmrc.integration.cucumber.stepdefs
 
 import cucumber.api.scala.{EN, ScalaDsl}
+import uk.gov.hmrc.integration.cucumber.utils.methods.Check.{be, driver}
 import uk.gov.hmrc.integration.cucumber.utils.methods.{Check, Nav}
 import uk.gov.hmrc.integration.cucumber.utils.methods.Input._
 
@@ -53,5 +54,9 @@ class BaseStepDef extends ScalaDsl with EN {
 
     Then("""^I should be redirected to the (.*) page$""") { (enrolment: String) =>
       Check.checkUrlEnd(enrolment)
+    }
+
+    Then("""^I will be redirected to HMCE page$""") { () =>
+      driver.getCurrentUrl should be("https://secure.hmce.gov.uk/ecom/is2/static/is2.html")
     }
 }
