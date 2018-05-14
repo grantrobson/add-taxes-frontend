@@ -11,6 +11,7 @@ Feature: Other Gambling and Gaming
     | guidance     | enrolment|
     | HMRC-GTS-GBD | gbd      |
     | HMRC-GTS-RGD | rgd      |
+    | HMRC-GTS-PBD | pbd      |
 
   Scenario Outline: User answers no and goes to single sign on
     Given I login as an Organisation with NO enrolments
@@ -24,4 +25,5 @@ Feature: Other Gambling and Gaming
     | header              | url                | enrolment|
     | Gambling Tax System | /gts-registration  | gbd      |
     | Gambling Tax System | /gts-registration  | rgd      |
+    | Gambling Tax System | /gts-registration  | pbd      |
 
