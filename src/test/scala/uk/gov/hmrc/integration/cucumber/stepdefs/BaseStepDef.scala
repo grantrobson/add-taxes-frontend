@@ -15,7 +15,7 @@ class BaseStepDef extends ScalaDsl with EN {
         case "No" => clickNo
       }
 
-      clickContinue()
+      clickOnContinue()
     }
 
     And("""^I click on (.*) link$""") { (id: String) =>

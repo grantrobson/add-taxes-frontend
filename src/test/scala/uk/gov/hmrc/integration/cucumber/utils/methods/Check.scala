@@ -6,7 +6,7 @@ import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.ExpectedConditions
 import uk.gov.hmrc.integration.cucumber.pages.BasePage
 import uk.gov.hmrc.integration.cucumber.utils.methods.Find._
-import uk.gov.hmrc.integration.cucumber.utils.methods.Input._
+import uk.gov.hmrc.integration.cucumber.utils.methods.Input.{driver, include, _}
 import uk.gov.hmrc.integration.cucumber.utils.methods.Wait.fluentWait
 
 object Check extends BasePage {
@@ -17,6 +17,9 @@ object Check extends BasePage {
 
   def checkUrlEnd(enrolment: String) = driver.getCurrentUrl endsWith(s"s$enrolment")
 
+  def assertPdfFile(pdf: String) = {
+    driver.getTitle should include(pdf)
+  }
   def assertEmacUrl(enrolment: String) = driver.getCurrentUrl should include (emacUrl.replace("ENROLMENT_TYPE", s"$enrolment"))
   def assertRegisterPage(registerType:String) = findH1().getText should include(registerType)
   def assertPortalPage(enrolment: String) = driver.getCurrentUrl should include(s"localhost:8080/portal/$enrolment")

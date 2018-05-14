@@ -24,8 +24,7 @@ class EndPointsStepDef extends ScalaDsl with EN {
   }
 
   Then("""^I will be redirected to (.*) pdf$""") { (form: String) =>
-    driver.getCurrentUrl should startWith("https://assets.publishing.service.gov.uk")
-    driver.getCurrentUrl should include(form)
+    Check.assertPdfFile(form)
   }
 
   Then("""^I will be redirected to emac (.*) enrolments page$""") { (enrolment: String) =>
