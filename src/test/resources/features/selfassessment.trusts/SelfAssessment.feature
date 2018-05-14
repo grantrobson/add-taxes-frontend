@@ -1,4 +1,4 @@
-@beacd @solo
+@beacd
 Feature: Enrol trust through Self Assessment journey
 
   Scenario: User answers Yes - the trust is already registered
