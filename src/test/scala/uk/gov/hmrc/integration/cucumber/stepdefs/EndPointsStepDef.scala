@@ -35,4 +35,8 @@ class EndPointsStepDef extends ScalaDsl with EN {
     Check.assertRegisterPage(registerType)
   }
 
+  Then("""^I will be redirected to (.*) single sign on$""") { (url: String) =>
+    Check.assertSingleSignOn(url)
+  }
+
 }
