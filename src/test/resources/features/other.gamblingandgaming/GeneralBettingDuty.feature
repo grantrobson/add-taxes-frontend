@@ -1,5 +1,4 @@
 @beacd
-
 Feature: Other Gambling and Gaming
 
   Scenario Outline:

@@ -19,9 +19,6 @@ trait BasePage extends Matchers {
   val basePageUrl = s"$envUrl/$prodRoute"
   val driver: WebDriver = Driver.instance
   val loginRedirectUrl = s"$urlDecider/business-account/add-tax"
-  val addTaxesOtherUrl = s"$loginRedirectUrl/other/"
-  val addTaxesEmployerUrl = s"$loginRedirectUrl/employer/"
-  val emacUrl = "enrolment-management-frontend/ENROLMENT_TYPE/request-access-tax-scheme?continue=%2Fbusiness-account"
 
   private def urlDecider: String = {
     val envProperty = System.getProperty("environment", "local").toLowerCase

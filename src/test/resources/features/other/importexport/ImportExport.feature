@@ -1,5 +1,4 @@
 @beacd
-
 Feature: Other imports exports
 
   Scenario: User goes to emac for NES enrolment if they have EORI number
@@ -45,7 +44,7 @@ Feature: Other imports exports
     And I navigate to the import-export other page
     When I click on the ISD enrolment
     And I click continue
-    Then I should be redirected to HMCE GovUk page
+    Then I will be redirected to HMCE page
 
   Scenario: User goes to Portal when they select NOVA from import export page
     Given I login as an Organisation with NO enrolments
@@ -79,12 +78,12 @@ Feature: Other imports exports
     And I click No button and continue
     Then I will be redirected to register <number> page
     And I click continue
-    Then I should be redirected to <number> GovUk page
+    Then I should be redirected to <govPage> GovUk page
 
     Examples:
-      | enrolment  | number |
-      | DDES       | DAN    |
-      | eBTI       | EORI   |
-      | EMCS       | SEED   |
-      | ICS        | EORI   |
-      | NCTS       | EORI   |
+      | enrolment  | number | govPage         |
+      | DDES       | DAN    | VAT             |
+      | eBTI       | EORI   | EORI            |
+      | EMCS       | SEED   | Excise Movement |
+      | ICS        | EORI   | EORI            |
+      | NCTS       | EORI   | EORI            |

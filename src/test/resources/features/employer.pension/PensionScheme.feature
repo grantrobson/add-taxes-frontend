@@ -1,5 +1,4 @@
 @beacd
-
 Feature: Pension Schemes
 
   Scenario Outline: Users who have enrollment numbers

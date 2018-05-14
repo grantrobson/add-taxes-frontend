@@ -1,7 +1,6 @@
 package uk.gov.hmrc.integration.cucumber.stepdefs
 
 import cucumber.api.scala.{EN, ScalaDsl}
-import uk.gov.hmrc.integration.cucumber.utils.methods.{Check, Nav}
 import uk.gov.hmrc.integration.cucumber.utils.methods.Input._
 
 class BaseStepDef extends ScalaDsl with EN {
@@ -27,31 +26,11 @@ class BaseStepDef extends ScalaDsl with EN {
       clickEnrolmentsLink(enrolment)
     }
 
-    Then("""^I will be redirected to emac (.*) enrolments page$""") { (enrolment: String) =>
-      Check.assertEmacUrl(enrolment)
-    }
-
-    Then("""^I will be redirected to register (.*) page$""") { (registerType: String) =>
-      Check.assertRegisterPage(registerType)
-    }
-
     And("""^I click continue$"""){ () =>
       clickContinue()
     }
 
     And("""^I click submit"""){ () =>
       clickSubmit()
-    }
-
-    Then("""^I should be redirected to (.*) GovUk page$""") { (url: String) =>
-      Check.assertGovUk(url)
-    }
-
-    Then("""^I should be redirected to (.*) Portal page$""") { (enrolment: String) =>
-      Check.assertPortalPage(enrolment)
-    }
-
-    Then("""^I should be redirected to the (.*) page$""") { (enrolment: String) =>
-      Check.checkUrlEnd(enrolment)
     }
 }
