@@ -1,6 +1,5 @@
 package uk.gov.hmrc.integration.cucumber.utils.methods
 
-
 import org.openqa.selenium.By
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.support.ui.Select
@@ -14,13 +13,28 @@ object Input extends BasePage {
   val url = ""
   val header = ""
 
-  def clickById(id: String) = findById(id).click()
-  def clickByName(id: String, num: Int) = findByName(id).get(num).click()
   def clickByClass(id: String, num: Int) = findByClass(id).get(num).click()
   def clickByCSS(css: String) = find(By.cssSelector(css)).click()
-  def clickYes = clickByCSS("[value=yes], [value=Yes]")
+  def clickById(id: String) = findById(id).click()
+  def clickByName(id: String, num: Int) = findByName(id).get(num).click()
+  def clickContinue() = waitForElement(By.className("button")).click()
+  def clickEnrolmentsLink(enrolment: String) = clickByCSS(s"[value=$enrolment]")
   def clickNo =  clickByCSS("[value=no], [value=No]")
+  def clickYes = clickByCSS("[value=yes], [value=Yes]")
+  def clickSubmit() = waitForElement(By.className("button")).submit()
 
+  def clickOnContinue(): Unit = {
+    waitForElement("continue-button").submit()
+    Driver.webDriver match {
+      case _: ChromeDriver =>
+      case _ =>
+        waitForPageToChange
+    }
+  }
+
+  def dropdownSelect(dropDownId: String, selection: String) = {
+    new Select(findById(dropDownId)).selectByVisibleText(selection)
+  }
 
   def sendKeysById(id: String, value: String) = {
     findById(id).clear()
@@ -46,25 +60,4 @@ object Input extends BasePage {
     clickById(pageField + "PageErrMsg")
     findById(bodyField).isSelected
   }
-
-  def clickContinue() = waitForElement(By.className("button")).click()
-
-  def clickSubmit() = waitForElement(By.className("button")).submit()
-
-  def dropdownSelect(dropDownId: String, selection: String) = {
-    new Select(findById(dropDownId)).selectByVisibleText(selection)
-  }
-
-
-  def clickOnContinue(): Unit = {
-    waitForElement("continue-button").submit()
-    Driver.webDriver match {
-      case _: ChromeDriver =>
-      case _ =>
-        waitForPageToChange
-    }
-  }
-
-  def clickEnrolmentsLink(enrolment: String) = clickByCSS(s"[value=$enrolment]")
-
 }
