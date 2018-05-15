@@ -1,4 +1,4 @@
-@beacd @solo
+@beacd
 Feature: Other Gambling and Gaming
 
   Scenario Outline: User answers yes and goes to Emac pages
