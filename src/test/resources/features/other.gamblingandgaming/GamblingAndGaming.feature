@@ -1,4 +1,4 @@
-@beacd
+@beacd @solo
 Feature: Other Gambling and Gaming
 
   Scenario Outline: User answers yes and goes to Emac pages
@@ -12,6 +12,7 @@ Feature: Other Gambling and Gaming
     | HMRC-GTS-GBD | gbd      |
     | HMRC-GTS-RGD | rgd      |
     | HMRC-GTS-PBD | pbd      |
+    | HMRC-MGD-ORG | mgd      |
 
   Scenario Outline: User answers no and goes to single sign on
     Given I login as an Organisation with NO enrolments
@@ -26,4 +27,5 @@ Feature: Other Gambling and Gaming
     | Gambling Tax System | /gts-registration  | gbd      |
     | Gambling Tax System | /gts-registration  | rgd      |
     | Gambling Tax System | /gts-registration  | pbd      |
+    | Machine Games Duty  | /gts-registration  | mgd      |
 

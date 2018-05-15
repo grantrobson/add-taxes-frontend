@@ -18,7 +18,6 @@ object Wait extends BasePage {
     .ignoring(classOf[org.openqa.selenium.NoSuchElementException])
 
   def waitForElement(id: String): WebElement = waitForElement(By.id(id))
-
   def waitForElement(by: By): WebElement = fluentWait.until(ExpectedConditions.presenceOfElementLocated(by))
 
   def waitForPageToChange =
