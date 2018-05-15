@@ -27,7 +27,7 @@ object Check extends BasePage {
     driver.getCurrentUrl should startWith("https://www.gov.uk")
     findH1().getText should include(enrolment)
   }
-  def assertSingleSignOn(url: String) = findById("continue").getAttribute("href") endsWith(url)
+  def assertSingleSignOn(url: String) = findById("continue").getAttribute("href") should endWith(url)
 
   def checkErrorMessage(field: String, msg: String) = verifyTextUsingElementId(field + "-error-summary", msg)
 
