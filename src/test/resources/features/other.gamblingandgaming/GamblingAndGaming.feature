@@ -12,7 +12,6 @@ Feature: Other Gambling and Gaming
     | HMRC-GTS-GBD | gbd      |
     | HMRC-GTS-RGD | rgd      |
     | HMRC-GTS-PBD | pbd      |
-    | HMRC-MGD-ORG | mgd      |
 
   Scenario Outline: User answers no and goes to single sign on
     Given I login as an Organisation with NO enrolments
@@ -23,8 +22,8 @@ Feature: Other Gambling and Gaming
     And I click continue
 
     Examples:
-    | header             | url                  | enrolment|
-    | Gambling Tax System| /gts-registration    | gbd      |
-    | Gambling Tax System| /gts-registration    | rgd      |
-    | Gambling Tax System| /gts-registration    | pbd      |
-    | Machine Games Duty | /mgd/type-of-business| mgd      |
+    | header              | url                | enrolment|
+    | Gambling Tax System | /gts-registration  | gbd      |
+    | Gambling Tax System | /gts-registration  | rgd      |
+    | Gambling Tax System | /gts-registration  | pbd      |
+
