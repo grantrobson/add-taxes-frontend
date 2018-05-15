@@ -1,4 +1,4 @@
-@beacd
+@beacd @solo
 Feature: Other Gambling and Gaming
 
   Scenario Outline: User answers yes and goes to Emac pages
@@ -19,13 +19,13 @@ Feature: Other Gambling and Gaming
     And I navigate to the gambling/<enrolment> other page
     And I click No button and continue
     Then I will be redirected to register <header> page
-    Then I will be redirected to /gts-registration single sign on
+    Then I will be redirected to <url> single sign on
     And I click continue
 
     Examples:
-    | header              | enrolment|
-    | Gambling Tax System | gbd      |
-    | Gambling Tax System | rgd      |
-    | Gambling Tax System | pbd      |
-    | Machine Games Duty  | mgd      |
+    | header             | url                  | enrolment|
+    | Gambling Tax System| /gts-registration    | gbd      |
+    | Gambling Tax System| /gts-registration    | rgd      |
+    | Gambling Tax System| /gts-registration    | pbd      |
+    | Machine Games Duty | /mgd/type-of-business| mgd      |
 

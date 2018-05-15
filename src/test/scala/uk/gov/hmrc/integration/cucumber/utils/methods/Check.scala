@@ -27,7 +27,7 @@ object Check extends BasePage {
   }
   def assertPortalPage(enrolment: String) = driver.getCurrentUrl should include(s"localhost:8080/portal/$enrolment")
   def assertRegisterPage(registerType:String) = findH1().getText should include(registerType)
-  def assertSingleSignOn(url: String) = findById("continue").getAttribute("href") endsWith(url)
+  def assertSingleSignOn(url: String) = findById("continue").getAttribute("href") should endWith(url)
 
   def checkErrorMessage(field: String, msg: String) = verifyTextUsingElementId(field + "-error-summary", msg)
 
