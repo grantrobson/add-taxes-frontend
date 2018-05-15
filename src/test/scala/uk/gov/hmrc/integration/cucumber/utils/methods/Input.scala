@@ -1,6 +1,5 @@
 package uk.gov.hmrc.integration.cucumber.utils.methods
 
-
 import org.openqa.selenium.By
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.support.ui.Select
