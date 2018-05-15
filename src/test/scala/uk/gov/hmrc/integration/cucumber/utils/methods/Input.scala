@@ -52,7 +52,6 @@ object Input extends BasePage {
     findByName(id).get(index).sendKeys(value)
   }
 
-
   def validateErrorSummaryLinksToError(field: String) = {
     clickById(field + "PageErrMsg")
     findById(field).isSelected

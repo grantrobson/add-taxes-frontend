@@ -28,4 +28,3 @@ Feature: Other Gambling and Gaming
     | Gambling Tax System| /gts-registration    | rgd      |
     | Gambling Tax System| /gts-registration    | pbd      |
     | Machine Games Duty | /mgd/type-of-business| mgd      |
-
