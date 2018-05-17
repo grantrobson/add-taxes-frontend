@@ -18,7 +18,7 @@ class NavStepDef extends ScalaDsl with EN {
     Nav.navigateToAddTaxesEmployerUrl(enrolment)
   }
 
-  When("""^I navigate to the (.*) self assessment page$""") { (enrolment: String) =>
-    Nav.navigateToAddTaxesSAUrl(enrolment)
+  When("""^I navigate to the self assessment page$""") { ()  =>
+    Nav.navigateToAddTaxesSAUrl
   }
 }

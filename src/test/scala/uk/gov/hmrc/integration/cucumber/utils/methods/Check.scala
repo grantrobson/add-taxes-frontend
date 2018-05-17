@@ -15,33 +15,36 @@ object Check extends BasePage {
   val header = ""
   val emacUrl = "enrolment-management-frontend/ENROLMENT_TYPE/request-access-tax-scheme?continue=%2Fbusiness-account"
 
-  def checkUrlEnd(enrolment: String) = driver.getCurrentUrl endsWith(s"s$enrolment")
-
-  def assertPdfFile(pdf: String) = {
-    driver.getTitle should include(pdf)
-  }
   def assertEmacUrl(enrolment: String) = driver.getCurrentUrl should include (emacUrl.replace("ENROLMENT_TYPE", s"$enrolment"))
-  def assertRegisterPage(registerType:String) = findH1().getText should include(registerType)
-  def assertPortalPage(enrolment: String) = driver.getCurrentUrl should include(s"localhost:8080/portal/$enrolment")
+
   def assertGovUk(enrolment: String) = {
     driver.getCurrentUrl should startWith("https://www.gov.uk")
     findH1().getText should include(enrolment)
   }
+
+  def assertPdfFile(pdf: String) = {
+    driver.getTitle should include(pdf)
+  }
+
+  def assertPortalPage(enrolment: String) = driver.getCurrentUrl should include(s"localhost:8080/portal/$enrolment")
+  def assertRegisterPage(registerType:String) = findH1().getText should include(registerType)
   def assertSingleSignOn(url: String) = findById("continue").getAttribute("href") should endWith(url)
 
   def checkErrorMessage(field: String, msg: String) = verifyTextUsingElementId(field + "-error-summary", msg)
-
-  def verifyTextUsingElementId(elementId: String, expectedValue: String)= findById(elementId).getText shouldBe expectedValue
-  def verifyInputUsingElementId(elementId: String, expectedValue: String)= findById(elementId).getAttribute("value") shouldBe expectedValue
-  def verifyHyperlink(linkText: String) = findByCSS("a[title*=\"" + linkText + "\"]")
-  def verifyHyperlinkTarget(id: String, target: String) = Assert.assertEquals(findById(id).getAttribute("href"), basePageUrl+"/"+target)
+  def checkUrlEnd(enrolment: String) = driver.getCurrentUrl should endWith(s"$enrolment")
 
   def checkPageHeading(text: String) = {
     fluentWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("h1")))
     findH1().getText shouldBe text
   }
 
+  def isElementVisible(id: String): Boolean = findById(id).isDisplayed
   def validateText(id: String, value: String) = getTextById(id) shouldBe value
+  def verifyTextUsingElementId(elementId: String, expectedValue: String)= findById(elementId).getText shouldBe expectedValue
+  def verifyInputUsingElementId(elementId: String, expectedValue: String)= findById(elementId).getAttribute("value") shouldBe expectedValue
+  def verifyHyperlink(linkText: String) = findByCSS("a[title*=\"" + linkText + "\"]")
+  def verifyHyperlinkTarget(id: String, target: String) = Assert.assertEquals(findById(id).getAttribute("href"), basePageUrl+"/"+target)
+
   val enterDataTable = iterate(sendKeysById) _
   val checkDataTable = iterate(validateText) _
 
@@ -54,7 +57,5 @@ object Check extends BasePage {
       f(loc, data)
     }
   }
-
-  def isElementVisible(id: String): Boolean = findById(id).isDisplayed
 
 }
