@@ -7,7 +7,7 @@ Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
     And I click Yes button and continue
     And I click Yes button and continue
     Then I will be redirected to register VAT MOSS page
-    Then I will be redirected to sso-sign-out single sign on
+    Then I will be redirected to /sso-sign-out?continueUrl=%2Fbusiness-account single sign on
 
   Scenario: Chosen Mini One Stop Shop (MOSS) VAT option - Yes No - Register
     Given I login as an Organisation with NO enrolments
@@ -32,7 +32,7 @@ Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
     And I click No button and continue
     Then I will be redirected to register Register for VAT page
     When I click on not-now link
-    Then I should be redirected to the /business-account/ page
+    Then I should be redirected to the /business-account page
 
   Scenario Outline: Chosen Mini One Stop Shop (MOSS) VAT option - Yes No - Not Now
     Given I login as an Organisation with NO enrolments
@@ -41,7 +41,7 @@ Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
     And I click <Choice2> button and continue
     Then I will be redirected to register <Title> page
     When I click on not-now link
-    Then I should be redirected to the /business-account/ page
+    Then I should be redirected to the /business-account page
 
     Examples:
       |Choice1   | Choice2   | Title         |
