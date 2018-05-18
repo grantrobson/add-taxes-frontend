@@ -23,8 +23,8 @@ Feature: Other Gambling and Gaming
     And I click continue
 
     Examples:
-    | header               | url                          | enrolment|
-    | Gambling Tax System  | /gts-registration            | gbd      |
-    | Gambling Tax System  | /gts-registration            | rgd      |
-    | Gambling Tax System  | /gts-registration            | pbd      |
-    | Machine Games Duty   | mgd/type-of-business?lang=eng| mgd      |
+    | header               | url                  | enrolment|
+    | Gambling Tax System  | /gts-registration    | gbd      |
+    | Gambling Tax System  | /gts-registration    | rgd      |
+    | Gambling Tax System  | /gts-registration    | pbd      |
+    | Machine Games Duty   | mgd/type-of-business | mgd      |
