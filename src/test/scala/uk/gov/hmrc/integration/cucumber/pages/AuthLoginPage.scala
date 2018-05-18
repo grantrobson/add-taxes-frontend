@@ -1,7 +1,7 @@
 package uk.gov.hmrc.integration.cucumber.pages
 
 import org.openqa.selenium.By
-import org.openqa.selenium.chrome.ChromeDriver
+import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.support.ui.Select
 import uk.gov.hmrc.integration.cucumber.utils.driver.Driver
 import uk.gov.hmrc.integration.cucumber.utils.methods.Nav
@@ -37,9 +37,9 @@ object AuthLoginPage extends BasePage {
   private def clickOnSubmit(): Unit = {
     waitForElement("inputForm").submit()
     Driver.webDriver match {
-      case _: ChromeDriver =>
-      case _ =>
+      case _: FirefoxDriver =>
         waitForPageToChange
+      case _  =>
     }
   }
 }

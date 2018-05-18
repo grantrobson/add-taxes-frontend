@@ -1,7 +1,10 @@
 package uk.gov.hmrc.integration.cucumber.utils.methods
 
 
-import org.openqa.selenium.By
+import java.awt.Robot
+import java.awt.event.KeyEvent
+
+import org.openqa.selenium.{By, Keys}
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.support.ui.Select
 import uk.gov.hmrc.integration.cucumber.pages.BasePage
