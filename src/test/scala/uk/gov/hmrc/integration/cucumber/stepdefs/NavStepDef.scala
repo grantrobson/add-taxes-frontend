@@ -21,4 +21,8 @@ class NavStepDef extends ScalaDsl with EN {
   When("""^I navigate to the self assessment page$""") { ()  =>
     Nav.navigateToAddTaxesSAUrl
   }
+
+  When("""^I navigate back to the previous page$""") { () =>
+    Nav.back()
+  }
 }
