@@ -23,7 +23,7 @@ Feature: Other oil and fuel
     And I click No button and continue
     Then I will be redirected to register <type> page
     When I click continue
-    Then I should be redirected to <page> GovUk page
+    Then I should be redirected to <page> Gov page
 
     Examples:
     |enrolment                 | type         | page |

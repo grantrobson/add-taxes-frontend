@@ -17,8 +17,8 @@ object Check extends BasePage {
 
   def assertEmacUrl(enrolment: String) = driver.getCurrentUrl should include (emacUrl.replace("ENROLMENT_TYPE", s"$enrolment"))
 
-  def assertGovUk(enrolment: String) = {
-    driver.getCurrentUrl should startWith("https://www.gov.uk")
+  def assertGov(enrolment: String) = {
+    driver.getCurrentUrl should startWith("https://www.gov")
     findH1().getText should include(enrolment)
   }
 

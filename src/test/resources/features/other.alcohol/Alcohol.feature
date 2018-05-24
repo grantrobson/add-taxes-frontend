@@ -13,7 +13,7 @@
       And I click No button and continue
       Then I will be redirected to register excise warehousekeeper page
       And I click continue
-      Then I should be redirected to EX61 GovUk page
+      Then I should be redirected to EX61 Gov page
 
     Scenario: Make sure Alcohol Wholesaler Registration Scheme (AWRS) is directed to their service
       Given I login as an Organisation with NO enrolments

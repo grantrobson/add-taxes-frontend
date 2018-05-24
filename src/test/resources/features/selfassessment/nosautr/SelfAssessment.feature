@@ -17,7 +17,7 @@ Feature: Enrol trust through Self Assessment journey
     When I click No button and continue
     Then I will be redirected to register trust page
     When I click continue
-    Then I should be redirected to Trusts GovUk page
+    Then I should be redirected to Trusts Gov page
 
   Scenario: User answers No - decides to add later
     Given I login as an Organisation with NO enrolments

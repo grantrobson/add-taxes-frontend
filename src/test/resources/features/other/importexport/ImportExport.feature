@@ -27,7 +27,7 @@ Feature: Other imports exports
     And I click No button and continue
     Then I click Yes button and continue
     And I click continue
-    Then I should be redirected to EORI GovUk page
+    Then I should be redirected to EORI Gov page
 
   Scenario: User goes to Get an EORI number if they do not have an EORI and they do not have a CHIEF role
     Given I login as an Organisation with NO enrolments
@@ -37,7 +37,7 @@ Feature: Other imports exports
     And I click No button and continue
     Then I click No button and continue
     And I click on eori-request-form link
-    Then I should be redirected to EORI GovUk page
+    Then I should be redirected to EORI Gov page
 
   Scenario: User goes to Gov.uk when they select Intrastat from import-export page
     Given I login as an Organisation with NO enrolments
@@ -78,7 +78,7 @@ Feature: Other imports exports
     And I click No button and continue
     Then I will be redirected to register <number> page
     And I click continue
-    Then I should be redirected to <govPage> GovUk page
+    Then I should be redirected to <govPage> Gov page
 
     Examples:
       | enrolment  | number | govPage         |

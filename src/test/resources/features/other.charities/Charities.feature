@@ -12,4 +12,4 @@ Feature: Redirect enrolment of Charities - for Gift Aid repayment claims to EMAC
     And I navigate to the charities other page
     And I click No button and continue
     And I click continue
-    Then I should be redirected to Get recognition from HMRC for your charity GovUk page
+    Then I should be redirected to Get recognition from HMRC for your charity Gov page
