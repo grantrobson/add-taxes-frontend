@@ -7,8 +7,8 @@ import uk.gov.hmrc.integration.cucumber.utils.methods.Input._
 class EndPointsStepDef extends ScalaDsl with EN {
 
 
-  Then("""^I should be redirected to (.*) GovUk page$""") { (url: String) =>
-    Check.assertGovUk(url)
+  Then("""^I should be redirected to (.*) Gov page$""") { (url: String) =>
+    Check.assertGov(url)
   }
 
   Then("""^I should be redirected to (.*) Portal page$""") { (enrolment: String) =>
