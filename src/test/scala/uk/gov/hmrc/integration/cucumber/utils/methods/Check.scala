@@ -22,7 +22,11 @@ object Check extends BasePage {
     findH1().getText should include(enrolment)
   }
 
-  def assertPdfFile(pdf: String) = driver.getTitle should include(pdf)
+  def assertPdfFile(url: String) = {
+    driver.getCurrentUrl should endWith("pdf")
+    driver.getCurrentUrl should include(url)
+  }
+
   def assertPortalPage(enrolment: String) = driver.getCurrentUrl should include(s"localhost:8080/portal/$enrolment")
   def assertRegisterPage(registerType:String) = findH1().getText should include(registerType)
   def assertSingleSignOn(url: String) = findById("continue").getAttribute("href") should endWith(url)

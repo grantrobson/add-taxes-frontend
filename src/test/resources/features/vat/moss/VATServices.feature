@@ -74,3 +74,15 @@ Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
       |Choice1   | Choice2   | Title         |
       |Yes       | Yes       | VAT MOSS      |
       |Yes       | No        | VAT first     |
+
+  Scenario: Redirect enrolment for VAT MOSS outside the EU to EMAC - Yes
+    Given I login as an Organisation with NO enrolments
+    When I navigate to the moss/non-eu VAT page
+    And I click Yes button and continue
+    Then I will be redirected to emac HMRC-MOSSNU-ORG enrolments page
+
+  Scenario: Redirect enrolment for VAT MOSS outside the EU to EMAC - No
+    Given I login as an Organisation with NO enrolments
+    When I navigate to the moss/non-eu VAT page
+    And I click No button and continue
+    Then I should be redirected to moss-registration/org/introduction Portal page

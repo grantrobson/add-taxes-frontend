@@ -23,8 +23,8 @@ class EndPointsStepDef extends ScalaDsl with EN {
     driver.getCurrentUrl should be("http://localhost:8080/hmce/ecom/is2/static/is2.html")
   }
 
-  Then("""^I will be redirected to (.*) pdf$""") { (form: String) =>
-    Check.assertPdfFile(form)
+  Then("""^I will be redirected to (.*) pdf$""") { (url: String) =>
+    Check.assertPdfFile(url)
   }
 
   Then("""^I will be redirected to emac (.*) enrolments page$""") { (enrolment: String) =>
