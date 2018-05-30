@@ -1,8 +1,7 @@
 @beacd
 Feature: Try to enrol for Employment related securities (ERS) when do not have PAYE for employers
 
-  @solo
-  Scenario Outline: Something
+  Scenario Outline: Yes, Yes, Not Now & Yes, No, Not Now journeys
     Given I login as an Organisation with NO enrolments
     And I navigate to the ers employer page
     And I click Yes button and continue
@@ -16,31 +15,14 @@ Feature: Try to enrol for Employment related securities (ERS) when do not have P
       | Yes     | Use your PAYE for employers account |
       | No      | Add PAYE for employers first        |
 
-
-
-
-
-
   Scenario: Yes, Yes, Sign In
     Given I login as an Organisation with NO enrolments
     And I navigate to the ers employer page
     And I click Yes button and continue
     And I click Yes button and continue
     Then I will be redirected to register Use your PAYE for employers account page
-    And I click submit
+    And I click continue
     Then I should be redirected to the ?continue=/business-account page
-
-    #Outline 1?
-  Scenario: Yes, Yes, Not Now
-    Given I login as an Organisation with NO enrolments
-    And I navigate to the ers employer page
-    And I click Yes button and continue
-    And I click Yes button and continue
-    Then I will be redirected to register Use your PAYE for employers account page
-    When I click on not-now link
-    Then I should be redirected to the /business-account page
-
-
 
   Scenario: Yes, No, Register
     Given I login as an Organisation with NO enrolments
@@ -48,88 +30,16 @@ Feature: Try to enrol for Employment related securities (ERS) when do not have P
     And I click Yes button and continue
     And I click No button and continue
     Then I will be redirected to register Add PAYE for employers first page
-    And I click submit
+    And I click continue
     Then I will be redirected to emac IR-PAYE enrolments page
-
-    #Outline 1?
-  Scenario: Yes, No, Not Now
-    Given I login as an Organisation with NO enrolments
-    And I navigate to the ers employer page
-    And I click Yes button and continue
-    And I click No button and continue
-    Then I will be redirected to register Add PAYE for employers first page
-    When I click on not-now link
-    Then I should be redirected to the /business-account page
-
-
 
   Scenario: No, Register
     Given I login as an Organisation with NO enrolments
     And I navigate to the ers employer page
     And I click No button and continue
     Then I will be redirected to register Register for PAYE page
-    And I click submit
-    Then I should be redirected to /business-registration/introduction?lang=eng Portal page
-
-  Scenario: No, Not Now
-    Given I login as an Organisation with NO enrolments
-    And I navigate to the ers employer page
-    And I click No button and continue
-    Then I will be redirected to register Register for PAYE page
-    When I click on not-now link
-    Then I should be redirected to the /business-account page
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#Original
-  Scenario: Yes, Yes, Sign In
-    Given I login as an Organisation with NO enrolments
-    And I navigate to the ers/epaye/other-account employer page
-    Then I will be redirected to register Use your PAYE for employers account page
-    And I click submit
-    Then I should be redirected to the ?continue=/business-account page
-
-  Scenario: Yes, Yes, Not Now
-    Given I login as an Organisation with NO enrolments
-    And I navigate to the ers/epaye/other-account employer page
-    Then I will be redirected to register Use your PAYE for employers account page
-    When I click on not-now link
-    Then I should be redirected to the /business-account page
-
-  Scenario: Yes, No, Register
-    Given I login as an Organisation with NO enrolments
-    And I navigate to the ers/epaye employer page
-    And I click No button and continue
-    Then I will be redirected to register Add PAYE for employers first page
-    And I click submit
-    Then I will be redirected to emac IR-PAYE enrolments page
-
-  Scenario: Yes, No, Not Now
-    Given I login as an Organisation with NO enrolments
-    And I navigate to the ers/epaye employer page
-    And I click No button and continue
-    Then I will be redirected to register Add PAYE for employers first page
-    When I click on not-now link
-    Then I should be redirected to the /business-account page
-
-  Scenario: No, Register
-    Given I login as an Organisation with NO enrolments
-    And I navigate to the ers employer page
-    And I click No button and continue
-    Then I will be redirected to register Register for PAYE page
-    And I click submit
-    Then I should be redirected to /business-registration/introduction?lang=eng Portal page
+    And I click continue
+    Then I should be redirected to business-registration/introduction?lang=eng Portal page
 
   Scenario: No, Not Now
     Given I login as an Organisation with NO enrolments
