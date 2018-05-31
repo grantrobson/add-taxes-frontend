@@ -23,6 +23,19 @@ object AuthLoginPage extends BasePage {
     clickOnSubmit()
   }
 
+  def loginWithPreset(affinityGroup: String, preset: String): Unit = {
+    enterRedirectUrl()
+    selectAffinityGroup(affinityGroup)
+    addPresets(preset)
+    clickOnSubmit()
+  }
+
+  private def addPresets(preset: String): Unit = {
+    val selectPreset: Select = new Select(driver.findElement(By.name("presets-dropdown")))
+    selectPreset.selectByVisibleText(preset)
+    waitForElement("add-preset").click()
+  }
+
   private def enterRedirectUrl() {
     val redirectUrlField = By.name("redirectionUrl")
     driver.findElement(redirectUrlField).clear()
