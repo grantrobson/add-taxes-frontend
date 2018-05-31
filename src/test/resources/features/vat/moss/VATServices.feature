@@ -86,8 +86,10 @@ Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
     When I navigate to the moss/non-eu VAT page
     And I click No button and continue
     Then I should be redirected to moss-registration/org/introduction Portal page
-
+ 
   Scenario: Change VAT MOSS page within BTA to new assets template
     Given I login as an Organisation with NO enrolments
-    When I navigate to the moss/eu VAT page
+    When I navigate to the moss VAT page
+    And I click on the EU enrolment
+    And I click continue
     Then I will be redirected to register Register in your home country page
