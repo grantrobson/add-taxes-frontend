@@ -6,6 +6,10 @@ import uk.gov.hmrc.integration.cucumber.utils.methods.Nav
 
 class NavStepDef extends ScalaDsl with EN {
 
+  When("""^I navigate to the (.*) add-tax page$""") { (enrolment: String) =>
+    Nav.navigateToAddTaxesUrl(enrolment)
+  }
+
   When("""^I navigate to the (.*) VAT page$""") { (enrolment: String) =>
     Nav.navigateToAddTaxesVATUrl(enrolment)
   }
