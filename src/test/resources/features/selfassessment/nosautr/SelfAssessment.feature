@@ -63,3 +63,46 @@ Feature: Enrol trust through Self Assessment journey
     Then I click on the Sa enrolment
     And I click continue
     Then I should be redirected to business-registration/introduction?lang=eng Portal page
+
+  Scenario Outline: Redirect users who have enrolled with SA or CT to the correct i-Form, No Yes already registered and have UTR
+    Given I login as an Organisation with <Preset> preset
+    When I navigate to the self assessment page
+    Then I click on the Partnership enrolment
+    And I click continue
+    And I click No button and continue
+    Then I will be redirected to register partnership page
+    And I click Yes button and continue
+    Then I will be redirected to emac IR-SA-PART-ORG enrolments page
+
+    Examples:
+      | Preset |
+      | SA     |
+      | CT     |
+
+  Scenario Outline: Redirect users who have enrolled with SA or CT to the correct i-Form, Yes add partner to existing partnership
+    Given I login as an Organisation with <Preset> preset
+    When I navigate to the self assessment page
+    Then I click on the Partnership enrolment
+    And I click continue
+    And I click Yes button and continue
+    Then I should be redirected to the /forms/form/register-a-partner-or-a-partnership-for-self-assessment/start#1 page
+
+    Examples:
+      | Preset |
+      | SA     |
+      | CT     |
+
+  Scenario Outline: Redirect users who have enrolled with SA or CT to the correct i-Form, No No not registered the partnership
+    Given I login as an Organisation with <Preset> preset
+    When I navigate to the self assessment page
+    Then I click on the Partnership enrolment
+    And I click continue
+    And I click No button and continue
+    Then I will be redirected to register partnership page
+    And I click No button and continue
+    Then I should be redirected to the /forms/form/register-a-partner-or-a-partnership-for-self-assessment/start#1 page
+
+    Examples:
+      | Preset |
+      | SA     |
+      | CT     |
