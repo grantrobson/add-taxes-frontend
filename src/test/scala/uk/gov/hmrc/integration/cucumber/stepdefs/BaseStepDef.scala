@@ -25,8 +25,9 @@ class BaseStepDef extends ScalaDsl with EN {
       clickById(id)
     }
 
-    When("""^I click on the (.*) enrolment$""") { (enrolment: String) =>
+    When("""^I select (.*) and click continue$""") { (enrolment: String) =>
       clickEnrolmentsLink(enrolment)
+      clickOnContinue()
     }
 
     And("""^I click continue$"""){ () =>

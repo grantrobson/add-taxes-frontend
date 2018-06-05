@@ -4,8 +4,7 @@ Feature: Other Gambling and Gaming
   Scenario Outline: User answers yes and goes to Emac pages
     Given I login as an Organisation with NO enrolments
     When I navigate to the gambling other page
-    Then I click on the <enrolment> enrolment
-    And I click continue
+    Then I select <enrolment> and click continue
     And I click Yes button and continue
     Then I will be redirected to emac <guidance> enrolments page
 
@@ -19,8 +18,7 @@ Feature: Other Gambling and Gaming
   Scenario Outline: User answers no and goes to single sign on
     Given I login as an Organisation with NO enrolments
     When I navigate to the gambling other page
-    Then I click on the <enrolment> enrolment
-    And I click continue
+    Then I select <enrolment> and click continue
     And I click No button and continue
     Then I will be redirected to register <header> page
     Then I will be redirected to <url> single sign on
