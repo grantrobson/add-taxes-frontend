@@ -1,4 +1,4 @@
-@beacd @solo
+@beacd
 Feature: Redirect enrolment for Employment intermediaries (EI)
 
   Scenario: Yes, Yes, Sign in
