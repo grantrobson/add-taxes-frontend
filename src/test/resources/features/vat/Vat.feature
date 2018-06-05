@@ -20,7 +20,7 @@ Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
     And I click Yes button and continue
     Then I will be redirected to emac HMRC-MOSS-U-ORG enrolments page
 
-  Scenario: Chosen Mini One Stop Shop NonEU(MOSS) VAT option - Yes No - Register
+  Scenario: Chosen Mini One Stop Shop Iom(MOSS) VAT option - Yes No - Register
     Given I login as an Organisation with NO enrolments
     Then I navigate to the VAT page
     Then I select moss and click continue
