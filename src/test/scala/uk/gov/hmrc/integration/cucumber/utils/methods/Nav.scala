@@ -18,7 +18,7 @@ object Nav extends BasePage {
   def back() = driver.navigate().back()
   def goToPage() = driver.navigate().to(basePageUrl + url)
   def navigateTo(url: String) = driver.navigate().to(url)
-  def navigateToAddTaxesEmployerUrl(enrolment: String) = driver.navigate.to(addTaxesEmployerUrl + s"$enrolment")
+  def navigateToAddTaxesEmployerUrl = driver.navigate.to(addTaxesEmployerUrl)
   def navigateToAddTaxesOtherUrl(enrolment: String) = driver.navigate.to(addTaxesOtherUrl + s"$enrolment")
   def navigateToAddTaxesSAUrl = driver.navigate.to(addTaxesSAUrl)
   def navigateToAddTaxesVATUrl = driver.navigate.to(addTaxesVATUrl)
