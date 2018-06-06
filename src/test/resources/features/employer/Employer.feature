@@ -282,6 +282,7 @@ Feature: Construction Industry Team
     Then I select pension and click continue
     Then I select <enrolment> and click continue
     Then I should be redirected to <guidance> Portal page
+
     Examples:
       | enrolment       | guidance                        |
       | administrators  | service/pensions-administrators |
