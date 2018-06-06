@@ -83,3 +83,34 @@ Feature: Construction Industry Team
       | Type           | Form                                         |
       | partnership    | Register your partnership as a subcontractor |
       | limitedCompany | Register your company                        |
+
+  Scenario: New design and navigation for contractor or subcontractor page NO enrolments, not based in the UK
+    Given I login as an Organisation with NO enrolments
+    And I navigate to the cis employer page
+    And I click No button and continue
+    Then I should be redirected to Construction Industry Scheme: businesses based outside UK Gov page
+
+  Scenario: New design and navigation for contractor or subcontractor page EPAYE preset, not based in the UK
+    Given I login as an Organisation with EPAYE preset
+    And I navigate to the cis employer page
+    And I click No button and continue
+    Then I should be redirected to Construction Industry Scheme: businesses based outside UK Gov page
+
+  Scenario Outline: New design and navigation for contractor or subcontractor page NO enrolments, based in the UK, Contractor or Subcontractor
+    Given I login as an Organisation with NO enrolments
+    And I navigate to the cis employer page
+    And I click Yes button and continue
+    Then I select <Choice> and click continue
+    Then I should be redirected to the <Page> page
+
+    Examples:
+      | Choice        | Page                                                    |
+      | Contractor    | /business-account/add-tax/employer/cis/uk/contractor    |
+      | Subcontractor | /business-account/add-tax/employer/cis/uk/subcontractor |
+
+  Scenario: New design and navigation for contractor or subcontractor page EPAYE preset, based in the UK, Contractor
+    Given I login as an Organisation with EPAYE preset
+    And I navigate to the cis employer page
+    And I click Yes button and continue
+    Then I select Contractor and click continue
+    Then I should be redirected to service/construction-ind-scheme?action=enrol&step=enterdetails&lang=eng Portal page
