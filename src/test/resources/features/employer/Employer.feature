@@ -141,7 +141,7 @@ Feature: Construction Industry Team
     Then I select cis and click continue
     And I click Yes button and continue
     Then I select Contractor and click continue
-    Then I should be redirected to service/construction-ind-scheme?action=enrol&step=enterdetails&lang=eng Portal page
+    Then I will be redirected to emac HMRC-CIS-ORG enrolments page
 
   Scenario: New design nav for PAYE for employers with no enrolments
     Given I login as an Organisation with NO enrolments
