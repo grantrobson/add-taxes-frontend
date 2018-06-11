@@ -56,6 +56,12 @@ Feature: Enrol trust through Self Assessment journey
     When I navigate to the self assessment page
     Then I select Sa and click continue
     Then I should be redirected to business-registration/introduction?lang=eng Portal page
+@solo
+  Scenario: User logs in as an individual and adds trust
+    Given I login as an Individual with NO enrolments
+    When I navigate to the self assessment page
+    And I select Trust and click continue
+    Then I should be redirected to the trust/new-account page
 
   Scenario Outline: Redirect users who have enrolled with SA or CT to the correct i-Form, No Yes already registered and have UTR
     Given I login as an Organisation with <Preset> preset
