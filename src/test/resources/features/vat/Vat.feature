@@ -60,36 +60,6 @@ Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
     And I click continue
     And I should be redirected to Registering for VAT Gov page
 
-  Scenario Outline: Chosen Mini One Stop Shop (MOSS) VAT option - No - Not now
-    Given I login as an Organisation with NO enrolments
-    Then I navigate to the VAT page
-    Then I select moss and click continue
-    Then I select <Country> and click continue
-    And I click No button and continue
-    Then I will be redirected to register Register for VAT page
-    When I click on not-now link
-    Then I should be redirected to the /business-account page
-
-    Examples:
-    |Country |
-    |UK      |
-    |Iom     |
-
-  Scenario Outline: Chosen Mini One Stop Shop (MOSS) VAT option - Yes No - Not Now
-    Given I login as an Organisation with NO enrolments
-    Then I navigate to the VAT page
-    Then I select moss and click continue
-    Then I select UK and click continue
-    And I click <Choice1> button and continue
-    And I click <Choice2> button and continue
-    Then I will be redirected to register <Title> page
-    When I click on not-now link
-    Then I should be redirected to the /business-account page
-
-    Examples:
-      |Choice1   | Choice2   | Title         |
-      |Yes       | Yes       | VAT MOSS      |
-      |Yes       | No        | VAT first     |
 
   Scenario: Redirect enrolment for VAT MOSS outside the EU to EMAC - Yes
     Given I login as an Organisation with NO enrolments
@@ -106,13 +76,44 @@ Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
     Then I select NonEu and click continue
     And I click No button and continue
     Then I should be redirected to moss-registration/org/introduction Portal page
- 
+
   Scenario: Change VAT MOSS page within BTA to new assets template
     Given I login as an Organisation with NO enrolments
     Then I navigate to the VAT page
     Then I select moss and click continue
     Then I select EU and click continue
     Then I will be redirected to register Register in your home country page
+
+  Scenario Outline: Chosen Mini One Stop Shop (MOSS) VAT option - No - Not now
+    Given I login as an Organisation with NO enrolments
+    Then I navigate to the VAT page
+    Then I select moss and click continue
+    Then I select <Country> and click continue
+    And I click No button and continue
+    Then I will be redirected to register Register for VAT page
+    When I click on not-now link
+    Then I should be redirected to the /business-account page
+
+    Examples:
+      |Country |
+      |UK      |
+      |Iom     |
+
+  Scenario Outline: Chosen Mini One Stop Shop (MOSS) VAT option - Yes No - Not Now
+    Given I login as an Organisation with NO enrolments
+    Then I navigate to the VAT page
+    Then I select moss and click continue
+    Then I select UK and click continue
+    And I click <Choice1> button and continue
+    And I click <Choice2> button and continue
+    Then I will be redirected to register <Title> page
+    When I click on not-now link
+    Then I should be redirected to the /business-account page
+
+    Examples:
+      |Choice1   | Choice2   | Title         |
+      |Yes       | Yes       | VAT MOSS      |
+      |Yes       | No        | VAT first     |
 
   Scenario Outline: Choose VAT / Notification of Vehicle Arrivals
     Given I login as an Organisation with NO enrolments

@@ -57,6 +57,12 @@ Feature: Enrol trust through Self Assessment journey
     Then I select Sa and click continue
     Then I should be redirected to business-registration/introduction?lang=eng Portal page
 
+  Scenario: User logs in as an individual and adds trust
+    Given I login as an Individual with NO enrolments
+    When I navigate to the self assessment page
+    And I select Trust and click continue
+    Then I should be redirected to the trust/new-account page
+
   Scenario Outline: User that is not an organisation goes to set up new partnership page
     Given I login as an <Login> with NO enrolments
     When I navigate to the self assessment page
