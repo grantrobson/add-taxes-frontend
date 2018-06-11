@@ -149,3 +149,39 @@ Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
       |Enrolment |
       |ecsales   |
       |eurefunds |
+
+  Scenario Outline: Do not ask users with VAT enrolment "Is the business registered for VAT?"
+    Given I login as an Organisation with VAT preset
+    Then I navigate to the VAT page
+    Then I select <Enrolment> and click continue
+    And I click Yes button and continue
+    Then I will be redirected to emac <Code> enrolments page
+
+    Examples:
+      |Enrolment | Code            |
+      |ecsales   | HMCE-ECSL-ORG   |
+      |eurefunds | HMRC-EU-REF-ORG |
+      |rcsl      | HMCE-VATRSL-ORG |
+
+  Scenario Outline: VAT MOSS journeys
+    Given I login as an <Login> with NO enrolments
+    Then I navigate to the VAT page
+    Then I select moss and click continue
+    Then I should be redirected to the <Page> page
+
+    Examples:
+      |Login        | Page                                          |
+      |Individual   | /business-account/add-tax/vat/moss/newaccount |
+      |Organisation | /business-account/add-tax/vat/moss            |
+      |Agent        | /business-account/add-tax/vat/moss            |
+
+  Scenario Outline: User NOT an Individual with VAT preset
+    Given I login as an <Login> with VAT preset
+    Then I navigate to the VAT page
+    Then I select moss and click continue
+    Then I should be redirected to the /business-account/add-tax/vat/moss/non-eu page
+
+    Examples:
+      |Login        |
+      |Organisation |
+      |Agent        |

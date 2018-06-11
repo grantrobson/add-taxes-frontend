@@ -63,6 +63,17 @@ Feature: Enrol trust through Self Assessment journey
     And I select Trust and click continue
     Then I should be redirected to the trust/new-account page
 
+  Scenario Outline: User that is not an organisation goes to set up new partnership page
+    Given I login as an <Login> with NO enrolments
+    When I navigate to the self assessment page
+    Then I select Partnership and click continue
+    And I should be redirected to the self-assessment/partnership/new-account page
+
+    Examples:
+      |Login     |
+      |Individual|
+      |Agent     |
+
   Scenario Outline: Redirect users who have enrolled with SA or CT to the correct i-Form, No Yes already registered and have UTR
     Given I login as an Organisation with <Preset> preset
     When I navigate to the self assessment page
