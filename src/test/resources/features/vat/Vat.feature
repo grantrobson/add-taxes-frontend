@@ -149,6 +149,7 @@ Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
       |Enrolment |
       |ecsales   |
       |eurefunds |
+      |rcsl      |
 
   Scenario Outline: Do not ask users with VAT enrolment "Is the business registered for VAT?"
     Given I login as an Organisation with VAT preset
