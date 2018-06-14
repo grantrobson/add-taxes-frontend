@@ -155,7 +155,6 @@ Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
     Given I login as an Organisation with VAT preset
     Then I navigate to the VAT page
     Then I select <Enrolment> and click continue
-    And I click Yes button and continue
     Then I will be redirected to emac <Code> enrolments page
 
     Examples:
