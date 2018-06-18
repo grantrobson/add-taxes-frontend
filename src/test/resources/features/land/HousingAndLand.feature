@@ -14,3 +14,15 @@ Feature: Update Stamp Duty Land Tax screens in the new template
     Then I should be redirected to the /business-account/add-tax/other/land/stamp-duty/paper-forms page
     And I click continue
     Then I should be redirected to Stamp Duty Land Tax: paper returns Gov page
+
+  Scenario Outline: Directing ATED and Land and Buildings Tax Scotland to their own services
+      Given I login as an Organisation with NO enrolments
+      Then I navigate to the land other page
+      And I select <Landtax> and click continue
+      Then I should be redirected to the <Page> page
+
+      Examples:
+      | Landtax | Page |
+      | ATED    | ated/home?callerId=bta               |
+      | LBT     | land-buildings-transaction-tax/forms |
+
