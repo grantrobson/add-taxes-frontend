@@ -26,7 +26,7 @@ Feature: Other Gambling and Gaming
 
     Examples:
     | header               | url                          | enrolment|
-    | Gambling Tax System  | /gts-registration            | GBD      |
+    | General Betting Duty | /gts-registration            | GBD      |
     | Gambling Tax System  | /gts-registration            | RGD      |
     | Gambling Tax System  | /gts-registration            | PBD      |
     | Machine Games Duty   | mgd/type-of-business?lang=eng| MGD      |
