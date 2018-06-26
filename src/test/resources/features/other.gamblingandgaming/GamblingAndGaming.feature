@@ -28,5 +28,5 @@ Feature: Other Gambling and Gaming
     | header               | url                          | enrolment|
     | General Betting Duty | /gts-registration            | GBD      |
     | Gambling Tax System  | /gts-registration            | RGD      |
-    | Gambling Tax System  | /gts-registration            | PBD      |
+    | Pool Betting Duty    | /gts-registration            | PBD      |
     | Machine Games Duty   | mgd/type-of-business?lang=eng| MGD      |
