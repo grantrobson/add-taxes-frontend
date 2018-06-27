@@ -10,8 +10,8 @@ class NavStepDef extends ScalaDsl with EN {
     Nav.navigateToAddTaxesVATUrl
   }
 
-  When("""^I navigate to the (.*) other page$""") { (enrolment: String) =>
-    Nav.navigateToAddTaxesOtherUrl(enrolment)
+  When("""^I navigate to the other page$""") { () =>
+    Nav.navigateToAddTaxesOtherUrl
   }
 
   When("""^I navigate to the employer page$""") { () =>
