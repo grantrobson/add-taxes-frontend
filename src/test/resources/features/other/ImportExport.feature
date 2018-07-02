@@ -69,7 +69,7 @@ Feature: Other imports exports
       | EMCS      | HMRC-EMCS-ORG|
       | ICS       | HMRC-ICS-ORG |
       | eBTI      | HMCE-EBTI-ORG|
-      | NCTS      | HMRC-NCTS-ORG|
+      | NCTS      | HMCE-NCTS-ORG|
 
   Scenario Outline: Users who dont have enrolment number
     Given I login as an Organisation with NO enrolments
