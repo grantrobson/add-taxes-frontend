@@ -1,6 +1,18 @@
 @beacd
 Feature: Construction Industry Team
 
+  Scenario: Yes I do need to stop acting as a pension scheme administrator
+    Given I login as an Organisation with active HMRC-PSA-ORG enrolments
+    And I navigate to the http://localhost:9730/business-account/psa/how-to-stop-psa URL
+    And I click Yes button and continue
+    Then I should be redirected to Online service for scheme administrators and practitioners Gov page
+
+  Scenario: No, I need to stop using the online service Pension scheme administrator
+    Given I login as an Organisation with active HMRC-PSA-ORG enrolments
+    And I navigate to the http://localhost:9730/business-account/psa/how-to-stop-psa URL
+    And I click No button and continue
+    Then I will be redirected to emac HMRC-PSA-ORG Deenrol page
+
   Scenario: Yes, My business stopped employing people
     Given I login as an Organisation with EPAYE preset
     And I navigate to the http://localhost:9730/business-account/epaye/how-to-stop-paye URL
