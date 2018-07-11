@@ -18,7 +18,7 @@ Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
     Then I select Iom and click continue
     And I click Yes button and continue
     And I click Yes button and continue
-    Then I will be redirected to emac HMRC-MOSS-U-ORG enrolments page
+    Then I will be redirected to emac HMRC-MOSS-U-ORG Enrol page
 
   Scenario: Chosen Mini One Stop Shop Iom(MOSS) VAT option - Yes No - Register
     Given I login as an Organisation with NO enrolments
@@ -38,7 +38,7 @@ Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
     And I click No button and continue
     Then I will be redirected to register VAT first page
     And I click continue
-    Then I will be redirected to emac HMCE-VATDEC-ORG enrolments page
+    Then I will be redirected to emac HMCE-VATDEC-ORG Enrol page
 
   Scenario: Chosen Mini One Stop Shop (MOSS) VAT option - No - Register
     Given I login as an Organisation with NO enrolments
@@ -67,7 +67,7 @@ Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
     Then I select moss and click continue
     Then I select NonEu and click continue
     And I click Yes button and continue
-    Then I will be redirected to emac HMRC-MOSSNU-ORG enrolments page
+    Then I will be redirected to emac HMRC-MOSSNU-ORG Enrol page
 
   Scenario: Redirect enrolment for VAT MOSS outside the EU to EMAC - No
     Given I login as an Organisation with NO enrolments
@@ -131,7 +131,7 @@ Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
     Then I navigate to the VAT page
     Then I select <Enrolment> and click continue
     And I click Yes button and continue
-    Then I will be redirected to emac <Code> enrolments page
+    Then I will be redirected to emac <Code> Enrol page
 
     Examples:
       |Enrolment | Code            |
@@ -155,7 +155,7 @@ Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
     Given I login as an Organisation with VAT preset
     Then I navigate to the VAT page
     Then I select <Enrolment> and click continue
-    Then I will be redirected to emac <Code> enrolments page
+    Then I will be redirected to emac <Code> Enrol page
 
     Examples:
       |Enrolment | Code            |

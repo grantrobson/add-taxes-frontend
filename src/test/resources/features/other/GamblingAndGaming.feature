@@ -7,7 +7,7 @@ Feature: Other Gambling and Gaming
     Then I select gamblingAndGaming and click continue
     Then I select <enrolment> and click continue
     And I click Yes button and continue
-    Then I will be redirected to emac <guidance> enrolments page
+    Then I will be redirected to emac <guidance> Enrol page
 
     Examples:
     | guidance     | enrolment|

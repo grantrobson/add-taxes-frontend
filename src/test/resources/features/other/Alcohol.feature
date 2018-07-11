@@ -7,7 +7,7 @@
       Then I select alcoholAndTobaccoWholesalingAndWarehousing and click continue
       Then I select atwd and click continue
       And I click Yes button and continue
-      Then I will be redirected to emac HMCE-ATWD-ORG enrolments page
+      Then I will be redirected to emac HMCE-ATWD-ORG Enrol page
 
     Scenario: User answers no and goes to single sign on
       Given I login as an Organisation with NO enrolments

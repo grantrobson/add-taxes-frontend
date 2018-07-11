@@ -1,12 +1,25 @@
 @beacd
 Feature: Enrol trust through Self Assessment journey
 
+# BEACD-159 tests
+#  Scenario: Yes, I have stopped self-employment
+#    Given I login as an Organisation with active IR-SA enrolments
+#    And I navigate to the http://localhost:9730/business-account/self-assessment/how-to-stop-sa URL
+#    And I click Yes button and continue
+#    Then I should be redirected to the self-assessment/stop-self-employment page
+#
+#  Scenario: No, I need to stop using the Self Assessment online service
+#    Given I login as an Organisation with active IR-SA enrolments
+#    And I navigate to the http://localhost:9730/business-account/self-assessment/how-to-stop-sa URL
+#    And I click No button and continue
+#    Then I will be redirected to emac IR-SA Deenrol page
+
   Scenario: User answers Yes - the trust is already registered
     Given I login as an Organisation with NO enrolments
     When I navigate to the self assessment page
     Then I select Trust and click continue
     When I click Yes button and continue
-    Then I will be redirected to emac IR-SA-TRUST-ORG enrolments page
+    Then I will be redirected to emac IR-SA-TRUST-ORG Enrol page
 
   Scenario: User answers No - the trust is not already registered
     Given I login as an Organisation with NO enrolments
@@ -40,7 +53,7 @@ Feature: Enrol trust through Self Assessment journey
     And I click No button and continue
     Then I will be redirected to register partnership page
     When I click Yes button and continue
-    Then I will be redirected to emac IR-SA-PART-ORG enrolments page
+    Then I will be redirected to emac IR-SA-PART-ORG Enrol page
 @firefox
   Scenario: User answers No - add a partner to partnership
     Given I login as an Organisation with NO enrolments
@@ -81,7 +94,7 @@ Feature: Enrol trust through Self Assessment journey
     And I click No button and continue
     Then I will be redirected to register partnership page
     And I click Yes button and continue
-    Then I will be redirected to emac IR-SA-PART-ORG enrolments page
+    Then I will be redirected to emac IR-SA-PART-ORG Enrol page
 
     Examples:
       | Preset |

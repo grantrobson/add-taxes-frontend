@@ -1,6 +1,30 @@
 @beacd
 Feature: Construction Industry Team
 
+  Scenario: Yes, My business stopped employing people
+    Given I login as an Organisation with EPAYE preset
+    And I navigate to the http://localhost:9730/business-account/epaye/how-to-stop-paye URL
+    And I click Yes button and continue
+    Then I should be redirected to the /epaye/remove page
+
+  Scenario: No, I need to stop using the PAYE for Employers online service
+    Given I login as an Organisation with EPAYE preset
+    And I navigate to the http://localhost:9730/business-account/epaye/how-to-stop-paye URL
+    And I click No button and continue
+    Then I will be redirected to emac IR-PAYE Deenrol page
+
+  Scenario: Yes, I have stopped trading as a contractor or subcontractor
+    Given I login as an Organisation with active HMRC-CIS-ORG enrolments
+    And I navigate to the http://localhost:9730/business-account/cis/how-to-stop-cis URL
+    And I click Yes button and continue
+    Then I should be redirected to the /cis/remove page
+
+  Scenario: I have not stopped trading as a contractor or subcontractor so No, I need to stop using the online service
+    Given I login as an Organisation with active HMRC-CIS-ORG enrolments
+    And I navigate to the http://localhost:9730/business-account/cis/how-to-stop-cis URL
+    And I click No button and continue
+    Then I will be redirected to emac HMRC-CIS-ORG Deenrol page
+
   Scenario: Users adding CIS not registered
     Given I login as an Organisation with NO enrolments
     And I navigate to the employer page
@@ -42,7 +66,7 @@ Feature: Construction Industry Team
     And I click Yes button and continue
     And I click Yes button and continue
     When I click on add-to-this-account link
-    Then I will be redirected to emac HMRC-CIS-ORG enrolments page
+    Then I will be redirected to emac HMRC-CIS-ORG Enrol page
 
   Scenario: Sole Trader subcontractor NO enrolments, more than £30,000 turnover, click the 'check if you qualify for gross payments' link
     Given I login as an Organisation with NO enrolments
@@ -71,7 +95,7 @@ Feature: Construction Industry Team
     Then I select cis and click continue
     And I click Yes button and continue
     Then I select Contractor and click continue
-    Then I will be redirected to emac HMRC-CIS-ORG enrolments page
+    Then I will be redirected to emac HMRC-CIS-ORG Enrol page
 
   Scenario: New design nav for PAYE for employers with no enrolments
     Given I login as an Organisation with NO enrolments
@@ -103,7 +127,7 @@ Feature: Construction Industry Team
     And I click No button and continue
     Then I will be redirected to register Add PAYE for employers first page
     And I click continue
-    Then I will be redirected to emac IR-PAYE enrolments page
+    Then I will be redirected to emac IR-PAYE Enrol page
 
   Scenario: No, Register
     Given I login as an Organisation with NO enrolments

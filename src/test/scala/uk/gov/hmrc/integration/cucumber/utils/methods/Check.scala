@@ -13,9 +13,15 @@ object Check extends BasePage {
 
   val url = ""
   val header = ""
-  val emacUrl = "enrolment-management-frontend/ENROLMENT_TYPE/request-access-tax-scheme?continue=%2Fbusiness-account"
+  val emacEnrolUrl   = "enrolment-management-frontend/ENROLMENT_TYPE/request-access-tax-scheme?continue=%2Fbusiness-account"
+  val emacDeenrolUrl = "enrolment-management-frontend/ENROLMENT_TYPE/remove-access-tax-scheme?continue=%2Fbusiness-account"
 
-  def assertEmacUrl(enrolment: String) = driver.getCurrentUrl should include (emacUrl.replace("ENROLMENT_TYPE", s"$enrolment"))
+  def assertEmacUrl(enrolment: String, status: String) = {
+    status match {
+      case "Enrol" => driver.getCurrentUrl should include(emacEnrolUrl.replace("ENROLMENT_TYPE", s"$enrolment"))
+      case "Deenrol" => driver.getCurrentUrl should include(emacDeenrolUrl.replace("ENROLMENT_TYPE", s"$enrolment"))
+    }
+  }
 
   def assertGov(enrolment: String) = {
     driver.getCurrentUrl should startWith("https://www.gov")

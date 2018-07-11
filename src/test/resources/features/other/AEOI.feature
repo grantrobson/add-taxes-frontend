@@ -6,7 +6,7 @@ Feature: Redirect enrolment Automatic Exchange of Information (AEOI) to EMAC
     And I navigate to the other page
     Then I select automaticExchangeOfInformation and click continue
     And I click Yes button and continue
-    Then I will be redirected to emac HMRC-FATCA-ORG enrolments page
+    Then I will be redirected to emac HMRC-FATCA-ORG Enrol page
 
   Scenario: No - I haven't registered yet
     Given I login as an Organisation with NO enrolments

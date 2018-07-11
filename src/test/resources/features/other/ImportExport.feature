@@ -8,7 +8,7 @@ Feature: Other imports exports
     Then I select NES and click continue
     And I click Yes button and continue
     Then I click Yes button and continue
-    Then I will be redirected to emac HMCE-NES enrolments page
+    Then I will be redirected to emac HMCE-NES Enrol page
 
   Scenario: User goes to CHIEF register for NES if they don't have CHIEF role
     Given I login as an Organisation with NO enrolments
@@ -60,7 +60,7 @@ Feature: Other imports exports
     Then I select importsExports and click continue
     Then I select <enrolment> and click continue
     And I click Yes button and continue
-    Then I will be redirected to emac <guidance> enrolments page
+    Then I will be redirected to emac <guidance> Enrol page
 
     Examples:
       | enrolment | guidance     |

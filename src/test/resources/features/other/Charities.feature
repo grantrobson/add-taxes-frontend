@@ -6,7 +6,7 @@ Feature: Redirect enrolment of Charities - for Gift Aid repayment claims to EMAC
     And I navigate to the other page
     Then I select charities and click continue
     And I click Yes button and continue
-    Then I will be redirected to emac HMRC-CHAR-ORG enrolments page
+    Then I will be redirected to emac HMRC-CHAR-ORG Enrol page
 
   Scenario: No - we haven't got an HMRC charities reference yet
     Given I login as an Organisation with NO enrolments

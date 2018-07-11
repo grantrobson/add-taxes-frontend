@@ -7,7 +7,6 @@ import uk.gov.hmrc.integration.cucumber.utils.driver.Driver
 import uk.gov.hmrc.integration.cucumber.utils.methods.Nav
 import uk.gov.hmrc.integration.cucumber.utils.methods.Wait._
 
-
 object AuthLoginPage extends BasePage {
 
   override val url: String = basePageUrl
@@ -34,6 +33,43 @@ object AuthLoginPage extends BasePage {
     val selectPreset: Select = new Select(driver.findElement(By.name("presets-dropdown")))
     selectPreset.selectByVisibleText(preset)
     waitForElement("add-preset").click()
+  }
+
+  def loginWithEnrolmentsActive(affinityGroup: String, enrolments: String): Unit = {
+    enterRedirectUrl()
+    selectAffinityGroup(affinityGroup)
+    addEnrolmentsActive(enrolments)
+    clickOnSubmit()
+  }
+
+  private def addEnrolmentsActive(enrolments: String): Unit = {
+    val activationField = By.name("enrolment[0].name")
+    driver.findElement(activationField).clear()
+    driver.findElement(activationField).sendKeys(enrolments)
+    enrolments match {
+      case "IR-SA" => {
+        val activationField = By.name("enrolment[0].taxIdentifier[0].name")
+        driver.findElement(activationField).clear()
+        driver.findElement(activationField).sendKeys("UTR")
+      }
+      case _ =>
+    }
+  }
+
+  private def addEnrolmentsNotYetActive(enrolments: String): Unit = {
+    val activationField = By.name("enrolment[0].name")
+    driver.findElement(activationField).clear()
+    driver.findElement(activationField).sendKeys(enrolments)
+    val selectLevel: Select = new Select(driver.findElement(By.name("enrolment[0].state")))
+    selectLevel.selectByVisibleText("NotYetActivated")
+    enrolments match {
+      case "IR-SA" => {
+        val activationField = By.name("enrolment[0].taxIdentifier[0].name")
+        driver.findElement(activationField).clear()
+        driver.findElement(activationField).sendKeys("UTR")
+      }
+      case _ =>
+    }
   }
 
   private def enterRedirectUrl() {

@@ -25,4 +25,9 @@ class NavStepDef extends ScalaDsl with EN {
   When("""^I navigate back to the previous page$""") { () =>
     Nav.back()
   }
+
+  When("""^I navigate to the (.*) URL""") { (navPage: String)  =>
+    Nav.navigateTo(navPage)
+  }
+
 }

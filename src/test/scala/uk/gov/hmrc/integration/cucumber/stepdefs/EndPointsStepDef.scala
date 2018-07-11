@@ -27,8 +27,8 @@ class EndPointsStepDef extends ScalaDsl with EN {
     Check.assertPdfFile(url)
   }
 
-  Then("""^I will be redirected to emac (.*) enrolments page$""") { (enrolment: String) =>
-    Check.assertEmacUrl(enrolment)
+  Then("""^I will be redirected to emac (.*) (.*) page$""") { (enrolment: String, status: String) =>
+    Check.assertEmacUrl(enrolment, status)
   }
 
   Then("""^I will be redirected to register (.*) page$""") { (registerType: String) =>
