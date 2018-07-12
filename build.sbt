@@ -19,7 +19,7 @@ resolvers ++= Seq(
   Resolver.bintrayRepo("hmrc", "releases"))
 
 libraryDependencies ++= Seq(
-  "uk.gov.hmrc"                %% "zap-automation"           % "1.0.0",
+  "uk.gov.hmrc"                %% "zap-automation"           % "1.1.0",
   "org.seleniumhq.selenium"     %  "selenium-chrome-driver"  % "3.9.1",
   "org.seleniumhq.selenium"     %  "selenium-support"        % "3.9.1",
   "org.seleniumhq.selenium"     %  "selenium-firefox-driver" % "3.9.1",
