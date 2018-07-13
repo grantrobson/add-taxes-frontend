@@ -1,7 +1,6 @@
 @beacd
 Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
 
-  @solo
   Scenario: Enrol for Government Information and National Health Trusts: YES to NHS trust, Gov dept or Royal house
     Given I login as an Organisation with NO enrolments
     Then I navigate to the VAT page
@@ -9,7 +8,6 @@ Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
     And I click Yes button and continue
     Then I will be redirected to emac HMRC-VAT-GIANT Enrol page
 
-  @solo
   Scenario: Enrol for Government Information and National Health Trusts: NO to NHS trust, Gov dept or Royal house
     Given I login as an Organisation with NO enrolments
     Then I navigate to the VAT page
