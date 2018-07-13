@@ -7,7 +7,7 @@ Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
     Then I navigate to the VAT page
     Then I select giant and click continue
     And I click Yes button and continue
-    Then I will be redirected to emac HMCE-VAT-GIANT Enrol page
+    Then I will be redirected to emac HMRC-VAT-GIANT Enrol page
 
   @solo
   Scenario: Enrol for Government Information and National Health Trusts: NO to NHS trust, Gov dept or Royal house
