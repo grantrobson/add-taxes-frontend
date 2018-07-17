@@ -52,6 +52,11 @@ object AuthLoginPage extends BasePage {
         driver.findElement(activationField).clear()
         driver.findElement(activationField).sendKeys("UTR")
       }
+      case "HMCE-VATDEC-ORG" => {
+        val activationField = By.name("enrolment[0].taxIdentifier[0].name")
+        driver.findElement(activationField).clear()
+        driver.findElement(activationField).sendKeys("VATRegNo")
+      }
       case _ =>
     }
   }
