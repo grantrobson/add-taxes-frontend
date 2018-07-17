@@ -14,7 +14,6 @@ object Nav extends BasePage {
   val addTaxesEmployerUrl = s"$loginRedirectUrl/employer/"
   val addTaxesSAUrl = s"$loginRedirectUrl/self-assessment/"
 
-
   def back() = driver.navigate().back()
   def goToPage() = driver.navigate().to(basePageUrl + url)
   def navigateTo(url: String) = driver.navigate().to(url)
@@ -22,5 +21,6 @@ object Nav extends BasePage {
   def navigateToAddTaxesOtherUrl = driver.navigate.to(addTaxesOtherUrl)
   def navigateToAddTaxesSAUrl = driver.navigate.to(addTaxesSAUrl)
   def navigateToAddTaxesVATUrl = driver.navigate.to(addTaxesVATUrl)
+  def navigateToHowToStop(url: String, url2: String) =  driver.navigate.to(s"http://localhost:9730/business-account/deenrol/$url/how-to-stop-$url2")
   def navTo(url: String) = navigateTo(basePageUrl + url)
 }

@@ -15,8 +15,8 @@ class AuthLoginStepDef extends ScalaDsl with EN  {
     loginWithPreset(affinityGroup, preset)
   }
 
-  When("""^I login as an (Organisation|Individual|Agent) with active (.*) enrolments$""") { (affinityGroup: String, enrolments: String) =>
+  When("""^I login as an (Organisation|Individual|Agent) with (.*) enrolled$""") { (affinityGroup: String, enrolments: String) =>
     navigateToStartPage()
-    loginWithEnrolmentsActive(affinityGroup, enrolments)
-  }
+    loginWithEnrolmentsActive (affinityGroup, enrolments)
+    }
 }

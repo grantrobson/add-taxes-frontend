@@ -30,4 +30,7 @@ class NavStepDef extends ScalaDsl with EN {
     Nav.navigateTo(navPage)
   }
 
+  When("""^I navigate to the (.*), (.*) how to stop page$""") { (url: String, url2: String) =>
+    Nav.navigateToHowToStop(url, url2)
+  }
 }
