@@ -3,6 +3,7 @@ package uk.gov.hmrc.integration.cucumber.stepdefs
 import cucumber.api.scala.{EN, ScalaDsl}
 import uk.gov.hmrc.integration.cucumber.utils.methods.Check
 import uk.gov.hmrc.integration.cucumber.utils.methods.Input._
+import uk.gov.hmrc.integration.cucumber.utils.methods.Nav.driver
 
 class EndPointsStepDef extends ScalaDsl with EN {
 
@@ -13,6 +14,11 @@ class EndPointsStepDef extends ScalaDsl with EN {
 
   Then("""^I should be redirected to (.*) Portal page$""") { (enrolment: String) =>
     Check.assertPortalPage(enrolment)
+  }
+
+  Then("""^I change the port from (.*) to (.*)$""") { (fromPort: String, toPort: String) =>
+    val url = driver.getCurrentUrl.replace(fromPort, toPort)
+    driver.navigate.to(url)
   }
 
   Then("""^I should be redirected to the (.*) page$""") { (enrolment: String) =>

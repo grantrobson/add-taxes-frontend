@@ -4,6 +4,7 @@ import org.openqa.selenium.By
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.support.ui.Select
 import uk.gov.hmrc.integration.cucumber.utils.driver.Driver
+import uk.gov.hmrc.integration.cucumber.utils.methods.Input.clickById
 import uk.gov.hmrc.integration.cucumber.utils.methods.Nav
 import uk.gov.hmrc.integration.cucumber.utils.methods.Wait._
 
@@ -43,21 +44,25 @@ object AuthLoginPage extends BasePage {
   }
 
   private def addEnrolmentsActive(enrolments: String): Unit = {
-    val activationField = By.name("enrolment[0].name")
-    driver.findElement(activationField).clear()
-    driver.findElement(activationField).sendKeys(enrolments)
-    enrolments match {
-      case "IR-SA" => {
-        val activationField = By.name("enrolment[0].taxIdentifier[0].name")
-        driver.findElement(activationField).clear()
-        driver.findElement(activationField).sendKeys("UTR")
+    enrolments.replaceAll("\\s", "").split(",").zipWithIndex.foreach { t =>
+      val (e,i) = t
+      val activationField = By.name("enrolment["+i+"].name")
+      driver.findElement(activationField).clear()
+      driver.findElement(activationField).sendKeys(e)
+      clickById("js-add-enrolment")
+      e match {
+        case "IR-SA" => {
+          val activationField = By.name("enrolment["+i+"].taxIdentifier["+i+"].name")
+          driver.findElement(activationField).clear()
+          driver.findElement(activationField).sendKeys("UTR")
+        }
+        case "HMCE-VATDEC-ORG" => {
+          val activationField = By.name("enrolment["+i+"].taxIdentifier["+i+"].name")
+          driver.findElement(activationField).clear()
+          driver.findElement(activationField).sendKeys("VATRegNo")
+        }
+        case _ =>
       }
-      case "HMCE-VATDEC-ORG" => {
-        val activationField = By.name("enrolment[0].taxIdentifier[0].name")
-        driver.findElement(activationField).clear()
-        driver.findElement(activationField).sendKeys("VATRegNo")
-      }
-      case _ =>
     }
   }
 
