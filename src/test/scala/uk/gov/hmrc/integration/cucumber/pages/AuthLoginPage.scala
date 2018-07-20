@@ -44,43 +44,33 @@ object AuthLoginPage extends BasePage {
     clickOnSubmit()
   }
 
+  private def addEnrolment(enrolment: String, id: String = "", index: Int = 0): Unit = {
+    val nameField = By.name(s"enrolment[$index].name")
+    driver.findElement(nameField).clear()
+    driver.findElement(nameField).sendKeys(enrolment)
+    val idField = By.name(s"enrolment[$index].taxIdentifier[0].name")
+    driver.findElement(idField).clear()
+    driver.findElement(idField).sendKeys(id)
+  }
+
   private def addEnrolmentsActive(enrolments: String): Unit = {
     enrolments.replaceAll("\\s", "").split(",").zipWithIndex.foreach { t =>
-      val (e,i) = t
-      val activationField = By.name("enrolment["+i+"].name")
-      driver.findElement(activationField).clear()
-      driver.findElement(activationField).sendKeys(e)
-      clickById("js-add-enrolment")
-      e match {
-        case "IR-SA" => {
-          val activationField = By.name("enrolment["+i+"].taxIdentifier["+i+"].name")
-          driver.findElement(activationField).clear()
-          driver.findElement(activationField).sendKeys("UTR")
-        }
-        case "HMCE-VATDEC-ORG" => {
-          val activationField = By.name("enrolment["+i+"].taxIdentifier["+i+"].name")
-          driver.findElement(activationField).clear()
-          driver.findElement(activationField).sendKeys("VATRegNo")
-        }
-        case _ =>
+      val (enrolment, index) = t
+      val id = enrolment match {
+        case "IR-SA" => "UTR"
+        case "HMCE-VATDEC-ORG" => "VATRegNo"
+        case _ => ""
       }
+      addEnrolment(enrolment, id, index)
+      clickById("js-add-enrolment")
     }
   }
 
   private def addEnrolmentsNotYetActive(enrolments: String): Unit = {
-    val activationField = By.name("enrolment[0].name")
-    driver.findElement(activationField).clear()
-    driver.findElement(activationField).sendKeys(enrolments)
+    addEnrolmentsNotYetActive(enrolments)
+
     val selectLevel: Select = new Select(driver.findElement(By.name("enrolment[0].state")))
     selectLevel.selectByVisibleText("NotYetActivated")
-    enrolments match {
-      case "IR-SA" => {
-        val activationField = By.name("enrolment[0].taxIdentifier[0].name")
-        driver.findElement(activationField).clear()
-        driver.findElement(activationField).sendKeys("UTR")
-      }
-      case _ =>
-    }
   }
 
   private def enterRedirectUrl(url: String) {

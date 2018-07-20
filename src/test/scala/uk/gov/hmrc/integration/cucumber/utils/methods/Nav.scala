@@ -13,26 +13,20 @@ object Nav extends BasePage {
   val addTaxesOtherUrl = s"$loginRedirectUrl/other/"
   val addTaxesEmployerUrl = s"$loginRedirectUrl/employer/"
   val addTaxesSAUrl = s"$loginRedirectUrl/self-assessment/"
-  val btaPort: String = "http://localhost:9020"
-  val addTaxesPort: String = "http://localhost:9730"
+  val host = "http://localhost:"
+  val btaPort: String = "9020"
+  val addTaxesPort: String = "9730"
 
 
   def back() = driver.navigate().back()
   def goToPage() = driver.navigate().to(basePageUrl + url)
 
-  def navigateTo(service:String, url: String) = {
-    service match {
-      case "BTA" => {
-        val suffix = changePort(service, url)
-        driver.navigate().to(btaPort + suffix)
-      }
-      case "AT" => {
-        val suffix = changePort(service, url)
-        changePort(service, url)
-        driver.navigate().to(addTaxesPort + suffix)
-      }
-      case _ =>
+  def navigateTo(service: String, url: String) = {
+    val port = service match {
+      case "BTA" => btaPort
+      case "AT" => addTaxesPort
     }
+    driver.navigate().to(host + port + stripHostPort(url))
   }
 
   def navigateToAddTaxesEmployerUrl = driver.navigate.to(addTaxesEmployerUrl)
@@ -42,10 +36,5 @@ object Nav extends BasePage {
   def navigateToHowToStop(url: String, url2: String) =  driver.navigate.to(s"http://localhost:9730/business-account/deenrol/$url/how-to-stop-$url2")
   def navTo() = driver.navigate.to(basePageUrl)
 
-  private def changePort(service: String, url: String) =
-    service match {
-      case "AT" => url.stripPrefix(btaPort)
-      case "BTA"  => url.stripPrefix(addTaxesPort)
-
-    }
+  private def stripHostPort(url: String): String = url.stripPrefix(host).replaceAll(s"(^\\d{4})", "")
 }
