@@ -9,6 +9,19 @@ Feature: how to stop journeys for enrolments that come in to add taxes
     And I click continue
     Then I will be redirected to emac IR-CT Deenrol page
 
+  Scenario: SA journey with CT and SA enrolled - goes to Gov.uk
+    Given I login as an Organisation with IR-SA, IR-CT enrolled
+    When I navigate to the self-assessment, sa how to stop page
+    And I click Yes button and continue
+    And I click on need-to-submit-return link
+    Then I should be redirected to Check if you need to fill in a Self Assessment tax return Gov page
+
+  Scenario: SA journey with CT and SA enrolled - goes to EACD
+    Given I login as an Organisation with IR-SA, IR-CT enrolled
+    When I navigate to the self-assessment, sa how to stop page
+    And I click No button and continue
+    Then I will be redirected to emac IR-SA Deenrol page
+
   Scenario Outline: Enrolment - Yes / No - Goes to page
     Given I login as an Organisation with <enrolment> enrolled
     When I navigate to the <url1>, <url2> how to stop page
