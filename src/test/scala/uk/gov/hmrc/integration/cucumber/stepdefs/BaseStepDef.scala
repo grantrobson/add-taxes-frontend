@@ -43,4 +43,10 @@ class BaseStepDef extends ScalaDsl with EN {
       robot.keyPress(KeyEvent.VK_F12)
       robot.keyRelease(KeyEvent.VK_F12)
     }
+
+    And("""^I enter (.*) in the (.*) element and click submit"""){ (value: String, id: String) =>
+      sendKeysById(id, value)
+      clickSubmit()
+    }
+
 }

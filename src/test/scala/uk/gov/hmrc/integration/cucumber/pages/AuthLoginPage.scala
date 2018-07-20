@@ -4,6 +4,7 @@ import org.openqa.selenium.By
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.support.ui.Select
 import uk.gov.hmrc.integration.cucumber.utils.driver.Driver
+import uk.gov.hmrc.integration.cucumber.utils.methods.Input.clickById
 import uk.gov.hmrc.integration.cucumber.utils.methods.Nav
 import uk.gov.hmrc.integration.cucumber.utils.methods.Wait._
 
@@ -11,19 +12,20 @@ object AuthLoginPage extends BasePage {
 
   override val url: String = basePageUrl
   override val header: String = ""
+  val btaUrl: String = "http://localhost:9020"
 
   def navigateToStartPage(): Unit = {
-    Nav.navigateTo(url)
+    Nav.navTo()
   }
 
   def loginWithNoEnrolments(affinityGroup: String): Unit = {
-    enterRedirectUrl()
+    enterRedirectUrl(url)
     selectAffinityGroup(affinityGroup)
     clickOnSubmit()
   }
 
   def loginWithPreset(affinityGroup: String, preset: String): Unit = {
-    enterRedirectUrl()
+    enterRedirectUrl(url)
     selectAffinityGroup(affinityGroup)
     addPresets(preset)
     clickOnSubmit()
@@ -36,51 +38,45 @@ object AuthLoginPage extends BasePage {
   }
 
   def loginWithEnrolmentsActive(affinityGroup: String, enrolments: String): Unit = {
-    enterRedirectUrl()
+    enterRedirectUrl(btaUrl)
     selectAffinityGroup(affinityGroup)
     addEnrolmentsActive(enrolments)
     clickOnSubmit()
   }
 
+  private def addEnrolment(enrolment: String, id: String = "", index: Int = 0): Unit = {
+    val nameField = By.name(s"enrolment[$index].name")
+    driver.findElement(nameField).clear()
+    driver.findElement(nameField).sendKeys(enrolment)
+    val idField = By.name(s"enrolment[$index].taxIdentifier[0].name")
+    driver.findElement(idField).clear()
+    driver.findElement(idField).sendKeys(id)
+  }
+
   private def addEnrolmentsActive(enrolments: String): Unit = {
-    val activationField = By.name("enrolment[0].name")
-    driver.findElement(activationField).clear()
-    driver.findElement(activationField).sendKeys(enrolments)
-    enrolments match {
-      case "IR-SA" => {
-        val activationField = By.name("enrolment[0].taxIdentifier[0].name")
-        driver.findElement(activationField).clear()
-        driver.findElement(activationField).sendKeys("UTR")
+    enrolments.replaceAll("\\s", "").split(",").zipWithIndex.foreach { t =>
+      val (enrolment, index) = t
+      val id = enrolment match {
+        case "IR-SA" => "UTR"
+        case "HMCE-VATDEC-ORG" => "VATRegNo"
+        case _ => ""
       }
-      case "HMCE-VATDEC-ORG" => {
-        val activationField = By.name("enrolment[0].taxIdentifier[0].name")
-        driver.findElement(activationField).clear()
-        driver.findElement(activationField).sendKeys("VATRegNo")
-      }
-      case _ =>
+      addEnrolment(enrolment, id, index)
+      clickById("js-add-enrolment")
     }
   }
 
   private def addEnrolmentsNotYetActive(enrolments: String): Unit = {
-    val activationField = By.name("enrolment[0].name")
-    driver.findElement(activationField).clear()
-    driver.findElement(activationField).sendKeys(enrolments)
+    addEnrolmentsNotYetActive(enrolments)
+
     val selectLevel: Select = new Select(driver.findElement(By.name("enrolment[0].state")))
     selectLevel.selectByVisibleText("NotYetActivated")
-    enrolments match {
-      case "IR-SA" => {
-        val activationField = By.name("enrolment[0].taxIdentifier[0].name")
-        driver.findElement(activationField).clear()
-        driver.findElement(activationField).sendKeys("UTR")
-      }
-      case _ =>
-    }
   }
 
-  private def enterRedirectUrl() {
+  private def enterRedirectUrl(url: String) {
     val redirectUrlField = By.name("redirectionUrl")
     driver.findElement(redirectUrlField).clear()
-    driver.findElement(redirectUrlField).sendKeys(loginRedirectUrl)
+    driver.findElement(redirectUrlField).sendKeys(url)
   }
 
   private def selectAffinityGroup(affinityGroup: String) {

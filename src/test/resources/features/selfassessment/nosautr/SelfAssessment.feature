@@ -1,6 +1,21 @@
 @beacd
 Feature: Enrol trust through Self Assessment journey
 
+  Scenario: Improve journey for users enrolling for an additional SA partnership
+    Given I login as an Organisation with IR-SA, IR-SA-TRUST-ORG, IR-SA-PART-ORG enrolled
+    And I navigate to the BTA /business-account/add-tax/self-assessment/have-sa-utr URL
+    And I click No button and continue
+    And I change to AT service
+    Then I should be redirected to the business-account/add-tax/self-assessment/partnership page
+
+  Scenario: Improve journey for users enrolling for an additional SA partnership
+    Given I login as an Organisation with IR-SA, IR-SA-TRUST-ORG, IR-SA-PART-ORG enrolled
+    And I navigate to the BTA /business-account/add-tax/self-assessment/have-sa-utr URL
+    And I click Yes button and continue
+    And I enter 1234567890 in the enter-sa-utr element and click submit
+    And I change to AT service
+    Then I should be redirected to the business-account/add-tax/self-assessment/partnership page
+
   Scenario: User answers Yes - the trust is already registered
     Given I login as an Organisation with NO enrolments
     When I navigate to the self assessment page
