@@ -2,6 +2,7 @@ package uk.gov.hmrc.integration.cucumber.stepdefs
 
 import cucumber.api.scala.{EN, ScalaDsl}
 import uk.gov.hmrc.integration.cucumber.utils.methods.Nav
+import uk.gov.hmrc.integration.cucumber.pages.AuthLoginPage.btaUrl
 
 
 class NavStepDef extends ScalaDsl with EN {
@@ -27,7 +28,7 @@ class NavStepDef extends ScalaDsl with EN {
   }
 
   When("""^I navigate to the (.*) URL""") { (navPage: String)  =>
-    Nav.navigateTo(navPage)
+    Nav.navigateTo(btaUrl + navPage)
   }
 
   When("""^I navigate to the (.*), (.*) how to stop page$""") { (url: String, url2: String) =>

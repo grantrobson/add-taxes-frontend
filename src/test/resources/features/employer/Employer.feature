@@ -1,21 +1,6 @@
 @beacd
 Feature: Construction Industry Team
 
-  Scenario: Improve journey for users enrolling for an additional SA partnership
-    Given I login as an Organisation with IR-SA, IR-SA-TRUST-ORG, IR-SA-PART-ORG enrolled
-    And I navigate to the http://localhost:9020/business-account/add-tax/self-assessment/have-sa-utr URL
-    And I click No button and continue
-    And I change the port from 9020 to 9730
-    Then I should be redirected to the business-account/add-tax/self-assessment/partnership page
-
-  Scenario: Improve journey for users enrolling for an additional SA partnership
-    Given I login as an Organisation with IR-SA, IR-SA-TRUST-ORG, IR-SA-PART-ORG enrolled
-    And I navigate to the http://localhost:9020/business-account/add-tax/self-assessment/have-sa-utr URL
-    And I click Yes button and continue
-    And I enter 1234567890 in the enter-sa-utr element and click submit
-    And I change the port from 9020 to 9730
-    Then I should be redirected to the business-account/add-tax/self-assessment/partnership page
-
   Scenario: Users adding CIS not registered
     Given I login as an Organisation with NO enrolments
     And I navigate to the employer page

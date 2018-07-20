@@ -20,7 +20,8 @@ trait BasePage extends Matchers {
   val driver: WebDriver = Driver.instance
   val loginRedirectUrl = s"$urlDecider/business-account/add-tax"
 
-  private def urlDecider: String = {
+  private def
+  urlDecider: String = {
     val envProperty = System.getProperty("environment", "local").toLowerCase
     envProperty match {
       case "local" => "http://localhost:9730"

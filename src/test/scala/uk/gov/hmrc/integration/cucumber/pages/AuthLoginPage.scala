@@ -12,19 +12,20 @@ object AuthLoginPage extends BasePage {
 
   override val url: String = basePageUrl
   override val header: String = ""
+  val btaUrl: String = "http://localhost:9020"
 
   def navigateToStartPage(): Unit = {
     Nav.navigateTo(url)
   }
 
   def loginWithNoEnrolments(affinityGroup: String): Unit = {
-    enterRedirectUrl()
+    enterRedirectUrl(url)
     selectAffinityGroup(affinityGroup)
     clickOnSubmit()
   }
 
   def loginWithPreset(affinityGroup: String, preset: String): Unit = {
-    enterRedirectUrl()
+    enterRedirectUrl(url)
     selectAffinityGroup(affinityGroup)
     addPresets(preset)
     clickOnSubmit()
@@ -37,7 +38,7 @@ object AuthLoginPage extends BasePage {
   }
 
   def loginWithEnrolmentsActive(affinityGroup: String, enrolments: String): Unit = {
-    enterRedirectUrl()
+    enterRedirectUrl(btaUrl)
     selectAffinityGroup(affinityGroup)
     addEnrolmentsActive(enrolments)
     clickOnSubmit()
@@ -82,10 +83,10 @@ object AuthLoginPage extends BasePage {
     }
   }
 
-  private def enterRedirectUrl() {
+  private def enterRedirectUrl(url: String) {
     val redirectUrlField = By.name("redirectionUrl")
     driver.findElement(redirectUrlField).clear()
-    driver.findElement(redirectUrlField).sendKeys(loginRedirectUrl)
+    driver.findElement(redirectUrlField).sendKeys(url)
   }
 
   private def selectAffinityGroup(affinityGroup: String) {
