@@ -27,8 +27,8 @@ class NavStepDef extends ScalaDsl with EN {
     Nav.back()
   }
 
-  When("""^I navigate to the (.*) URL""") { (navPage: String)  =>
-    Nav.navigateTo(btaUrl + navPage)
+  When("""^I navigate to the (BTA|AT) (.*) URL""") { (service: String, navPage: String)  =>
+    Nav.navigateTo(service, navPage)
   }
 
   When("""^I navigate to the (.*), (.*) how to stop page$""") { (url: String, url2: String) =>

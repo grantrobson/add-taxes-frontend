@@ -15,7 +15,7 @@ object AuthLoginPage extends BasePage {
   val btaUrl: String = "http://localhost:9020"
 
   def navigateToStartPage(): Unit = {
-    Nav.navigateTo(url)
+    Nav.navTo()
   }
 
   def loginWithNoEnrolments(affinityGroup: String): Unit = {
