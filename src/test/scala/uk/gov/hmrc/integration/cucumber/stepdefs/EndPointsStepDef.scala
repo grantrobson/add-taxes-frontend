@@ -26,7 +26,7 @@ class EndPointsStepDef extends ScalaDsl with EN {
   }
 
   Then("""^I will be redirected to HMCE page$""") { () =>
-    driver.getCurrentUrl should be("http://localhost:8080/hmce/ecom/is2/static/is2.html")
+    driver.getCurrentUrl should endWith("/ecom/is2/static/is2.html")
   }
 
   Then("""^I will be redirected to (.*) pdf$""") { (url: String) =>
@@ -43,6 +43,10 @@ class EndPointsStepDef extends ScalaDsl with EN {
 
   Then("""^I will be redirected to (.*) single sign on$""") { (url: String) =>
     Check.assertSingleSignOn(url)
+  }
+
+  Then("""^I will see the emac page header$""") { () =>
+    Check.assertEmacHeader
   }
 
 }
