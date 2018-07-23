@@ -57,7 +57,7 @@ object AuthLoginPage extends BasePage {
     enrolments.replaceAll("\\s", "").split(",").zipWithIndex.foreach { t =>
       val (enrolment, index) = t
       val id = enrolment match {
-        case "IR-SA" => "UTR"
+        case "IR-SA" | "IR-CT" => "UTR"
         case "HMCE-VATDEC-ORG" => "VATRegNo"
         case _ => ""
       }
