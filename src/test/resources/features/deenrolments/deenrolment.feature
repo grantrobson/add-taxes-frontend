@@ -16,9 +16,10 @@ Feature: how to stop journeys for enrolments that come in to add taxes
     Then I should be redirected to the <url3> page
 
   Examples:
-    | enrolment       | url1 | url2 | url3            | yes/no |
-    | HMRC-CIS-ORG    | cis  | cis  | /cis/remove     | Yes    |
-    | HMCE-VATDEC-ORG | vat  | vat  | /vat/deregister | Yes    |
+    | enrolment       | url1 | url2     | url3                                                       | yes/no |
+    | HMRC-CIS-ORG    | cis  | cis      | /cis/remove                                                | Yes    |
+    | HMCE-VATDEC-ORG | vat  | vat      | /vat/deregister                                            | Yes    |
+    | HMRC-MOSS-U-ORG | vat  | vat-moss | /moss-variations/org/314124132/change-reg-details?lang=eng | Yes    |
 
   Scenario Outline: No - Goes to EMAC
     Given I login as an Organisation with <preset> preset
@@ -39,12 +40,13 @@ Feature: how to stop journeys for enrolments that come in to add taxes
 
   Examples:
 
-      | enrolment       | url1     | yes/no | url2 |
-      | HMRC-CIS-ORG    | cis      | No     | cis  |
-      | HMRC-PSA-ORG    | psa      | No     | psa  |
-      | HMCE-RO         | ro       | Yes    | ro   |
-      | HMRC-GTS-GBD    | gambling | Yes    | gbd  |
-      | HMCE-VATDEC-ORG | vat      | No     | vat  |
+      | enrolment       | url1     | yes/no | url2      |
+      | HMRC-CIS-ORG    | cis      | No     | cis       |
+      | HMRC-PSA-ORG    | psa      | No     | psa       |
+      | HMCE-RO         | ro       | Yes    | ro        |
+      | HMRC-GTS-GBD    | gambling | Yes    | gbd       |
+      | HMCE-VATDEC-ORG | vat      | No     | vat       |
+      | HMRC-MOSS-U-ORG | vat      | No     | vat-moss |
 
   Scenario Outline: Yes - goes to Gov UK page
     Given I login as an Organisation with <enrolment> enrolled
