@@ -16,11 +16,10 @@ object Nav extends BasePage {
   val host = "http://localhost:"
   val btaPort: String = "9020"
   val addTaxesPort: String = "9730"
-  val prodRoute = s"$basePageUrl/auth-login-stub/gg-sign-in"
 
 
   def back() = driver.navigate().back()
-  def goToPage() = driver.navigate().to(prodRoute + url)
+  def goToPage() = driver.navigate().to(basePageUrl + url)
 
   def navigateTo(service: String, url: String) = {
     val port = service match {
@@ -35,7 +34,7 @@ object Nav extends BasePage {
   def navigateToAddTaxesSAUrl = driver.navigate.to(addTaxesSAUrl)
   def navigateToAddTaxesVATUrl = driver.navigate.to(addTaxesVATUrl)
   def navigateToHowToStop(url: String, url2: String) =  driver.navigate.to(s"http://localhost:9730/business-account/deenrol/$url/how-to-stop-$url2")
-  def navTo() = driver.navigate.to(prodRoute)
+  def navTo() = driver.navigate.to(basePageUrl)
 
   private def stripHostPort(url: String): String = url.stripPrefix(host).replaceAll(s"(^\\d{4})", "")
 }

@@ -1,7 +1,7 @@
 @beacd
 
 Feature: how to stop journeys for enrolments that come in to add taxes
-@solo
+
   Scenario: CT journey comes to unique ct how-to-stop page - stop
     Given I login as an Organisation with CT preset
     When I navigate to the ct, ct how to stop page
