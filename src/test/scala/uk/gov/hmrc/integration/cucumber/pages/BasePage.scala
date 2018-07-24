@@ -15,8 +15,7 @@ trait BasePage extends Matchers {
   val header: String
 
   val frontendPort = "9949"
-  val prodRoute = "auth-login-stub/gg-sign-in"
-  val basePageUrl = s"$envUrl/$prodRoute"
+  val basePageUrl = s"$envUrl"
   val driver: WebDriver = Driver.instance
   val loginRedirectUrl = s"$urlDecider/business-account/add-tax"
 
