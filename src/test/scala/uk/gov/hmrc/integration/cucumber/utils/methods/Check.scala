@@ -23,6 +23,8 @@ object Check extends BasePage {
     }
   }
 
+  def assertEmacHeader = findH1().getText should include("Request access to")
+
   def assertGov(enrolment: String) = {
     driver.getCurrentUrl should startWith("https://www.gov")
     findH1().getText should include(enrolment)
@@ -33,7 +35,14 @@ object Check extends BasePage {
     driver.getCurrentUrl should include(url)
   }
 
-  def assertPortalPage(enrolment: String) = driver.getCurrentUrl should include(s"localhost:8080/portal/$enrolment")
+  def assertPortalPage(enrolment: String) = {
+    val envProperty = System.getProperty("environment", "local").toLowerCase
+
+    envProperty match {
+      case "local" => driver.getCurrentUrl should include(s"localhost:8080/portal/$enrolment")
+      case "qa" => driver.getCurrentUrl should include(s"www.qa.tax.service.gov.uk/$enrolment?lang=eng")
+    }
+  }
   def assertRegisterPage(registerType:String) = findH1().getText should include(registerType)
   def assertSingleSignOn(url: String) = findById("continue").getAttribute("href") should endWith(url)
 

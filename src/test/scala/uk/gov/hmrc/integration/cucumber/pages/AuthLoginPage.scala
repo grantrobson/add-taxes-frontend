@@ -10,7 +10,7 @@ import uk.gov.hmrc.integration.cucumber.utils.methods.Wait._
 
 object AuthLoginPage extends BasePage {
 
-  override val url: String = basePageUrl
+  override val url: String = loginRedirectUrl
   override val header: String = ""
   val btaUrl: String = "http://localhost:9020"
 
@@ -57,7 +57,7 @@ object AuthLoginPage extends BasePage {
     enrolments.replaceAll("\\s", "").split(",").zipWithIndex.foreach { t =>
       val (enrolment, index) = t
       val id = enrolment match {
-        case "IR-SA" => "UTR"
+        case "IR-SA" | "IR-CT" => "UTR"
         case "HMCE-VATDEC-ORG" => "VATRegNo"
         case _ => ""
       }
@@ -74,9 +74,18 @@ object AuthLoginPage extends BasePage {
   }
 
   private def enterRedirectUrl(url: String) {
+    val envProperty = System.getProperty("environment", "local").toLowerCase
     val redirectUrlField = By.name("redirectionUrl")
-    driver.findElement(redirectUrlField).clear()
-    driver.findElement(redirectUrlField).sendKeys(url)
+
+    envProperty match {
+      case "local" =>
+        driver.findElement(redirectUrlField).clear()
+        driver.findElement(redirectUrlField).sendKeys(url)
+
+      case "qa" =>
+        driver.findElement(redirectUrlField).clear()
+        driver.findElement(redirectUrlField).sendKeys("/business-account/")
+    }
   }
 
   private def selectAffinityGroup(affinityGroup: String) {
