@@ -1,7 +1,7 @@
 @beacd
 
 Feature: how to stop journeys for enrolments that come in to add taxes
-@solo
+
   Scenario: CT journey comes to unique ct how-to-stop page - stop
     Given I login as an Organisation with CT preset
     When I navigate to the ct, ct how to stop page
@@ -29,10 +29,10 @@ Feature: how to stop journeys for enrolments that come in to add taxes
     Then I should be redirected to the <url3> page
 
   Examples:
-    | enrolment       | url1 | url2     | url3                                                       | yes/no |
-    | HMRC-CIS-ORG    | cis  | cis      | /cis/remove                                                | Yes    |
-    | HMCE-VATDEC-ORG | vat  | vat      | /vat/deregister                                            | Yes    |
-    | HMRC-MOSS-U-ORG | vat  | vat-moss | /moss-variations/org/314124132/change-reg-details?lang=eng | Yes    |
+    | enrolment       | url1 | url2     | url3                                              | yes/no |
+    | HMRC-CIS-ORG    | cis  | cis      | /cis/remove                                       | Yes    |
+    | HMCE-VATDEC-ORG | vat  | vat      | /vat/deregister                                   | Yes    |
+    | HMRC-MOSS-U-ORG | vat  | vat-moss | /moss-variations/org//change-reg-details?lang=eng | Yes    |
 
   Scenario Outline: No - Goes to EMAC
     Given I login as an Organisation with <preset> preset
