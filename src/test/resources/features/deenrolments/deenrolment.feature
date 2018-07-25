@@ -1,4 +1,4 @@
-@beacd @solo
+@beacd
 
 Feature: how to stop journeys for enrolments that come in to add taxes
 
@@ -57,7 +57,7 @@ Feature: how to stop journeys for enrolments that come in to add taxes
       | HMCE-RO         | ro       | Yes    | ro   |
       | HMRC-GTS-GBD    | gambling | Yes    | gbd  |
       | HMCE-VATDEC-ORG | vat      | No     | vat  |
-      | HMRC-GTS-PBD    | gambling | No     | pbd  |
+      | HMRC-GTS-PBD    | gambling | Yes    | pbd  |
 
   Scenario Outline: Yes - goes to Gov UK page
     Given I login as an Organisation with <enrolment> enrolled
@@ -70,7 +70,7 @@ Feature: how to stop journeys for enrolments that come in to add taxes
       | HMRC-PSA-ORG | Yes    | psa       | psa  | Online service for scheme administrators and practitioners                                                    |
       | HMCE-RO      | No     | ro        | ro   | Fuel Duty: deregister from the Dealers In Controlled Oil Scheme (HO83)                                        |
       | HMRC-GTS-GBS | No     | gambling  | gbd  | Gambling Tax Service: online service guide for General Betting Duty                                           |
-      | HMRC-GTS-PBD | Yes    | gambling  | pbd  | Gambling Tax Service: online service guide for General Betting Duty, Pool Betting Duty and Remote Gaming Duty |
+      | HMRC-GTS-PBD | No     | gambling  | pbd  | Gambling Tax Service: online service guide for General Betting Duty, Pool Betting Duty and Remote Gaming Duty |
 
   Scenario Outline: Yes, My business stopped employing people
     Given I login as an Organisation with <preset> preset
