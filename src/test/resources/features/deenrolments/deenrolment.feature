@@ -52,16 +52,17 @@ Feature: how to stop journeys for enrolments that come in to add taxes
     Then I will be redirected to emac <enrolment> Deenrol page
 
   Examples:
-      | enrolment       | url1      | yes/no | url2      |
-      | HMRC-CIS-ORG    | cis       | No     | cis       |
-      | HMRC-PSA-ORG    | psa       | No     | psa       |
-      | HMCE-RO         | ro        | Yes    | ro        |
-      | HMRC-GTS-GBD    | gambling  | Yes    | gbd       |
-      | HMCE-VATDEC-ORG | vat       | No     | vat       |
-      | HMRC-CHAR-ORG   | charities | No     | charities |
-      | HMRC-MOSS-U-ORG | vat       | No     | vat-moss  |
-      | HMRC-GTS-PBD    | gambling  | Yes    | pbd       |
-      | HMRC-GTS-RGD    | gambling  | Yes    | rgd       |
+      | enrolment       | url1      | yes/no | url2       |
+      | HMRC-CIS-ORG    | cis       | No     | cis        |
+      | HMRC-PSA-ORG    | psa       | No     | psa        |
+      | HMCE-RO         | ro        | Yes    | ro         |
+      | HMRC-GTS-GBD    | gambling  | Yes    | gbd        |
+      | HMCE-VATDEC-ORG | vat       | No     | vat        |
+      | HMRC-CHAR-ORG   | charities | No     | charities  |
+      | HMRC-MOSS-U-ORG | vat       | No     | vat-moss   |
+      | HMRC-GTS-PBD    | gambling  | Yes    | pbd        |
+      | HMRC-GTS-RGD    | gambling  | Yes    | rgd        |
+      | HMRC-MOSSNU-ORG | vat       | No     | vat-mossnu |
 
   Scenario Outline: Yes - goes to Gov UK page
     Given I login as an Organisation with <enrolment> enrolled
@@ -70,13 +71,14 @@ Feature: how to stop journeys for enrolments that come in to add taxes
     Then I should be redirected to <gov> Gov page
 
   Examples:
-      | enrolment     | yes/no | url1      | url2      | gov                                                                                                           |
-      | HMRC-PSA-ORG  | Yes    | psa       | psa       | Online service for scheme administrators and practitioners                                                    |
-      | HMCE-RO       | No     | ro        | ro        | Fuel Duty: deregister from the Dealers In Controlled Oil Scheme (HO83)                                        |
-      | HMRC-GTS-GBS  | No     | gambling  | gbd       | Gambling Tax Service: online service guide for General Betting Duty                                           |
-      | HMRC-CHAR-ORG | Yes    | charities | charities | How to close a charity                                                                                        |
-      | HMRC-GTS-PBD  | No     | gambling  | pbd       | Gambling Tax Service: online service guide for General Betting Duty, Pool Betting Duty and Remote Gaming Duty |
-      | HMRC-GTS-RGD  | No     | gambling  | rgd       | Gambling Tax Service: online service guide for General Betting Duty, Pool Betting Duty and Remote Gaming Duty |
+      | enrolment       | yes/no | url1      | url2       | gov                                                                                                           |
+      | HMRC-PSA-ORG    | Yes    | psa       | psa        | Online service for scheme administrators and practitioners                                                    |
+      | HMCE-RO         | No     | ro        | ro         | Fuel Duty: deregister from the Dealers In Controlled Oil Scheme (HO83)                                        |
+      | HMRC-GTS-GBS    | No     | gambling  | gbd        | Gambling Tax Service: online service guide for General Betting Duty                                           |
+      | HMRC-CHAR-ORG   | Yes    | charities | charities  | How to close a charity                                                                                        |
+      | HMRC-GTS-PBD    | No     | gambling  | pbd        | Gambling Tax Service: online service guide for General Betting Duty, Pool Betting Duty and Remote Gaming Duty |
+      | HMRC-GTS-RGD    | No     | gambling  | rgd        | Gambling Tax Service: online service guide for General Betting Duty, Pool Betting Duty and Remote Gaming Duty |
+      | HMRC-MOSSNU-ORG | Yes    | vat       | vat-mossnu | ????????                                                                                                      |
 
   Scenario Outline: Yes, My business stopped employing people
     Given I login as an Organisation with <preset> preset
