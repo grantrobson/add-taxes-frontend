@@ -60,6 +60,7 @@ Feature: how to stop journeys for enrolments that come in to add taxes
       | HMCE-VATDEC-ORG | vat       | No     | vat       |
       | HMRC-CHAR-ORG   | charities | No     | charities |
       | HMRC-MOSS-U-ORG | vat       | No     | vat-moss  |
+      | HMRC-MGD-ORG    | gambling  | Yes    | mgd       |
 
   Scenario Outline: Yes - goes to Gov UK page
     Given I login as an Organisation with <enrolment> enrolled
@@ -73,6 +74,7 @@ Feature: how to stop journeys for enrolments that come in to add taxes
       | HMCE-RO       | No     | ro        | ro        | Fuel Duty: deregister from the Dealers In Controlled Oil Scheme (HO83) |
       | HMRC-GTS-GBS  | No     | gambling  | gbd       | Gambling Tax Service: online service guide for General Betting Duty    |
       | HMRC-CHAR-ORG | Yes    | charities | charities | How to close a charity                                                 |
+      | HMRC-MGD-ORG | No     | gambling  | mgd       | Gambling Tax Service: online service guide for General Betting Duty    |
 
   Scenario Outline: Yes, My business stopped employing people
     Given I login as an Organisation with <preset> preset
