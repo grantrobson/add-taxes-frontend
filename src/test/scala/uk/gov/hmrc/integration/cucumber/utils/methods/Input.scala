@@ -1,10 +1,6 @@
 package uk.gov.hmrc.integration.cucumber.utils.methods
 
-
-import java.awt.Robot
-import java.awt.event.KeyEvent
-
-import org.openqa.selenium.{By, Keys}
+import org.openqa.selenium.By
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.support.ui.Select
 import uk.gov.hmrc.integration.cucumber.pages.BasePage
@@ -53,16 +49,5 @@ object Input extends BasePage {
   def sendKeysByName(id: String, value: String, index: Int = 0) = {
     findByName(id).clear()
     findByName(id).get(index).sendKeys(value)
-  }
-
-
-  def validateErrorSummaryLinksToError(field: String) = {
-    clickById(field + "PageErrMsg")
-    findById(field).isSelected
-  }
-
-  def validateErrorSummaryLinksToError(pageField: String, bodyField: String) = {
-    clickById(pageField + "PageErrMsg")
-    findById(bodyField).isSelected
   }
 }

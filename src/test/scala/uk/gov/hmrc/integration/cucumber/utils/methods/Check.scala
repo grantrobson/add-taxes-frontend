@@ -6,7 +6,7 @@ import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.ExpectedConditions
 import uk.gov.hmrc.integration.cucumber.pages.BasePage
 import uk.gov.hmrc.integration.cucumber.utils.methods.Find._
-import uk.gov.hmrc.integration.cucumber.utils.methods.Input.{driver, include, _}
+import uk.gov.hmrc.integration.cucumber.utils.methods.Input. _
 import uk.gov.hmrc.integration.cucumber.utils.methods.Wait.fluentWait
 
 object Check extends BasePage {

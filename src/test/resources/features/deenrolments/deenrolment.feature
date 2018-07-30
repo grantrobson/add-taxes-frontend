@@ -73,7 +73,7 @@ Feature: how to stop journeys for enrolments that come in to add taxes
       | enrolment     | yes/no | url1      | url2      | gov                                                                                                           |
       | HMRC-PSA-ORG  | Yes    | psa       | psa       | Online service for scheme administrators and practitioners                                                    |
       | HMCE-RO       | No     | ro        | ro        | Fuel Duty: deregister from the Dealers In Controlled Oil Scheme (HO83)                                        |
-      | HMRC-GTS-GBS  | No     | gambling  | gbd       | Gambling Tax Service: online service guide for General Betting Duty                                           |
+      | HMRC-GTS-GBD  | No     | gambling  | gbd       | Gambling Tax Service: online service guide for General Betting Duty                                           |
       | HMRC-CHAR-ORG | Yes    | charities | charities | How to close a charity                                                                                        |
       | HMRC-GTS-PBD  | No     | gambling  | pbd       | Gambling Tax Service: online service guide for General Betting Duty, Pool Betting Duty and Remote Gaming Duty |
       | HMRC-GTS-RGD  | No     | gambling  | rgd       | Gambling Tax Service: online service guide for General Betting Duty, Pool Betting Duty and Remote Gaming Duty |
