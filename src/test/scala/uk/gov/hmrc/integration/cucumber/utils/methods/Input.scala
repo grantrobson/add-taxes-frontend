@@ -32,11 +32,7 @@ object Input extends BasePage {
     }
   }
 
-  def dropdownSelect(dropDownId: String, selection: String) = {
-    new Select(findById(dropDownId)).selectByVisibleText(selection)
-  }
-
-  def sendKeysById(id: String, value: String) = {
+   def sendKeysById(id: String, value: String) = {
     findById(id).clear()
     findById(id).sendKeys(value)
   }
