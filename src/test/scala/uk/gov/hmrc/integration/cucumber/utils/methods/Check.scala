@@ -1,10 +1,8 @@
 package uk.gov.hmrc.integration.cucumber.utils.methods
 
 import org.openqa.selenium.By
-import org.openqa.selenium.support.ui.ExpectedConditions
 import uk.gov.hmrc.integration.cucumber.pages.BasePage
 import uk.gov.hmrc.integration.cucumber.utils.methods.Find._
-import uk.gov.hmrc.integration.cucumber.utils.methods.Wait.fluentWait
 
 object Check extends BasePage {
 
@@ -47,7 +45,7 @@ object Check extends BasePage {
   private def urlIncludes(assert: String) = driver.getCurrentUrl should include(assert)
 
   def checkPageHeading(text: String) = {
-    fluentWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("h1")))
+    Wait.waitForElement(By.cssSelector("h1"))
     findH1().getText shouldBe text
   }
 
