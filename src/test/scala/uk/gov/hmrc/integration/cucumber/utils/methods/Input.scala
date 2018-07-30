@@ -2,7 +2,6 @@ package uk.gov.hmrc.integration.cucumber.utils.methods
 
 import org.openqa.selenium.By
 import org.openqa.selenium.chrome.ChromeDriver
-import org.openqa.selenium.support.ui.Select
 import uk.gov.hmrc.integration.cucumber.pages.BasePage
 import uk.gov.hmrc.integration.cucumber.utils.driver.Driver
 import uk.gov.hmrc.integration.cucumber.utils.methods.Find._
@@ -16,7 +15,7 @@ object Input extends BasePage {
   def clickById(id: String) = findById(id).click()
   def clickByName(id: String, num: Int) = findByName(id).get(num).click()
   def clickByClass(id: String, num: Int) = findByClass(id).get(num).click()
-  def clickByCSS(css: String) = find(By.cssSelector(css)).click()
+  def clickByCSS(css: String) = findByCSS(css).click()
   def clickContinue() = waitForElement(By.className("button")).click()
   def clickEnrolmentsLink(enrolment: String) = clickByCSS(s"[value=$enrolment]")
   def clickNo =  clickByCSS("[value=no], [value=No]")

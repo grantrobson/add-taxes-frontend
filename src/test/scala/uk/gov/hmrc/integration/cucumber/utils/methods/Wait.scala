@@ -22,5 +22,5 @@ object Wait extends BasePage {
   def waitForElement(by: By): WebElement = fluentWait.until(ExpectedConditions.presenceOfElementLocated(by))
 
   def waitForPageToChange =
-    fluentWait.until(ExpectedConditions.stalenessOf(find(By.cssSelector("html"))))
+    fluentWait.until(ExpectedConditions.stalenessOf(findByCSS("html")))
 }

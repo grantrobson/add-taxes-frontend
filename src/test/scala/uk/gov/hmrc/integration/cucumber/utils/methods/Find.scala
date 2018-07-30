@@ -10,7 +10,7 @@ object Find extends BasePage {
   val url = ""
   val header = ""
 
-  def find(by: By): WebElement = {
+  private def find(by: By): WebElement = {
     fluentWait.until(ExpectedConditions.presenceOfElementLocated(by))
     driver.findElement(by)
   }
