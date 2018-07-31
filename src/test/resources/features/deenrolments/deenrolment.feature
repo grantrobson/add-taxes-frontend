@@ -62,6 +62,7 @@ Feature: how to stop journeys for enrolments that come in to add taxes
       | HMRC-MOSS-U-ORG | vat       | No     | vat-moss  |
       | HMRC-GTS-PBD    | gambling  | Yes    | pbd       |
       | HMRC-GTS-RGD    | gambling  | Yes    | rgd       |
+      | HMRC-MGD-ORG    | gambling  | Yes    | mgd       |
 
   Scenario Outline: Yes - goes to Gov UK page
     Given I login as an Organisation with <enrolment> enrolled
@@ -77,6 +78,7 @@ Feature: how to stop journeys for enrolments that come in to add taxes
       | HMRC-CHAR-ORG | Yes    | charities | charities | How to close a charity                                                                                        |
       | HMRC-GTS-PBD  | No     | gambling  | pbd       | Gambling Tax Service: online service guide for General Betting Duty, Pool Betting Duty and Remote Gaming Duty |
       | HMRC-GTS-RGD  | No     | gambling  | rgd       | Gambling Tax Service: online service guide for General Betting Duty, Pool Betting Duty and Remote Gaming Duty |
+      | HMRC-MGD-ORG  | No     | gambling  | mgd       | Gambling Tax Service: online service guide for General Betting Duty                                           |
 
   Scenario Outline: Yes, My business stopped employing people
     Given I login as an Organisation with <preset> preset
