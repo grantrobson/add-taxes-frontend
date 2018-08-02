@@ -22,17 +22,19 @@ Feature: how to stop journeys for enrolments that come in to add taxes
     And I click No button and continue
     Then I will be redirected to emac IR-SA Deenrol page
 
+@solo
   Scenario Outline: Enrolment - Yes / No - Goes to page
     Given I login as an Organisation with <enrolment> enrolled
     When I navigate to the <url1>, <url2> how to stop page
-    And I click <yes/no> button and continue
+    And I click Yes button and continue
     Then I should be redirected to the <url3> page
 
   Examples:
-      | enrolment       | url1 | url2     | url3                                              | yes/no |
-      | HMRC-CIS-ORG    | cis  | cis      | /cis/remove                                       | Yes    |
-      | HMCE-VATDEC-ORG | vat  | vat      | /vat/deregister                                   | Yes    |
-      | HMRC-MOSS-U-ORG | vat  | vat-moss | /moss-variations/org//change-reg-details?lang=eng | Yes    |
+      | enrolment       | url1 | url2        | url3                                              |
+      | HMRC-CIS-ORG    | cis  | cis         | /cis/remove                                       |
+      | HMCE-VATDEC-ORG | vat  | vat         | /vat/deregister                                   |
+      | HMRC-MOSS-U-ORG | vat  | vat-moss    | /moss-variations/org//change-reg-details?lang=eng |
+      | HMRC-MOSSNU-ORG | vat  | vat-moss-nu | /moss-variations/org//change-reg-details?lang=eng |
 
   Scenario Outline: No - Goes to EMAC
     Given I login as an Organisation with <preset> preset
@@ -45,6 +47,7 @@ Feature: how to stop journeys for enrolments that come in to add taxes
       | EPAYE  | epaye           | paye | IR-PAYE   |
       | SA     | self-assessment | sa   | IR-SA     |
 
+
   Scenario Outline: Yes / No - Goes to EMAC
     Given I login as an Organisation with <enrolment> enrolled
     When I navigate to the <url1>, <url2> how to stop page
@@ -52,17 +55,18 @@ Feature: how to stop journeys for enrolments that come in to add taxes
     Then I will be redirected to emac <enrolment> Deenrol page
 
   Examples:
-      | enrolment       | url1      | yes/no | url2       |
-      | HMRC-CIS-ORG    | cis       | No     | cis        |
-      | HMRC-PSA-ORG    | psa       | No     | psa        |
-      | HMCE-RO         | ro        | Yes    | ro         |
-      | HMRC-GTS-GBD    | gambling  | Yes    | gbd        |
-      | HMCE-VATDEC-ORG | vat       | No     | vat        |
-      | HMRC-CHAR-ORG   | charities | No     | charities  |
-      | HMRC-MOSS-U-ORG | vat       | No     | vat-moss   |
-      | HMRC-GTS-PBD    | gambling  | Yes    | pbd        |
-      | HMRC-GTS-RGD    | gambling  | Yes    | rgd        |
-      | HMRC-MOSSNU-ORG | vat       | No     | vat-mossnu |
+      | enrolment       | url1      | yes/no | url2        |
+      | HMRC-CIS-ORG    | cis       | No     | cis         |
+      | HMRC-PSA-ORG    | psa       | No     | psa         |
+      | HMCE-RO         | ro        | Yes    | ro          |
+      | HMRC-GTS-GBD    | gambling  | Yes    | gbd         |
+      | HMCE-VATDEC-ORG | vat       | No     | vat         |
+      | HMRC-CHAR-ORG   | charities | No     | charities   |
+      | HMRC-MOSS-U-ORG | vat       | No     | vat-moss    |
+      | HMRC-MOSSNU-ORG | vat       | No     | vat-moss-nu |
+      | HMRC-GTS-PBD    | gambling  | Yes    | pbd         |
+      | HMRC-GTS-RGD    | gambling  | Yes    | rgd         |
+
 
   Scenario Outline: Yes - goes to Gov UK page
     Given I login as an Organisation with <enrolment> enrolled
@@ -78,7 +82,6 @@ Feature: how to stop journeys for enrolments that come in to add taxes
       | HMRC-CHAR-ORG   | Yes    | charities | charities  | How to close a charity                                                                                        |
       | HMRC-GTS-PBD    | No     | gambling  | pbd        | Gambling Tax Service: online service guide for General Betting Duty, Pool Betting Duty and Remote Gaming Duty |
       | HMRC-GTS-RGD    | No     | gambling  | rgd        | Gambling Tax Service: online service guide for General Betting Duty, Pool Betting Duty and Remote Gaming Duty |
-      | HMRC-MOSSNU-ORG | Yes    | vat       | vat-mossnu | ????????                                                                                                      |
 
   Scenario Outline: Yes, My business stopped employing people
     Given I login as an Organisation with <preset> preset
