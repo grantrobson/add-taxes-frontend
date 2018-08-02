@@ -30,11 +30,11 @@ Feature: how to stop journeys for enrolments that come in to add taxes
 
   Examples:
       | enrolment       | url1      | url2        | url3                                              | yes/no |
-      | HMRC-CIS-ORG    | cis       | cis         | /cis/remove                                       | yes    |
-      | HMCE-VATDEC-ORG | vat       | vat         | /vat/deregister                                   | yes    |
-      | HMRC-MOSS-U-ORG | vat       | vat-moss    | /moss-variations/org//change-reg-details?lang=eng | yes    |
-      | HMRC-MOSSNU-ORG | vat       | vat-moss-nu | /moss-variations/org//change-reg-details?lang=eng | yes    |
-      | HMRC-MOSSNU-ORG | gambling  | mgd         | /machine-games-duty-vars/org/?lang=eng            | no     |
+      | HMRC-CIS-ORG    | cis       | cis         | /cis/remove                                       | Yes    |
+      | HMCE-VATDEC-ORG | vat       | vat         | /vat/deregister                                   | Yes    |
+      | HMRC-MOSS-U-ORG | vat       | vat-moss    | /moss-variations/org//change-reg-details?lang=eng | Yes    |
+      | HMRC-MOSSNU-ORG | vat       | vat-moss-nu | /moss-variations/org//change-reg-details?lang=eng | Yes    |
+      | HMRC-MGD-ORG    | gambling  | mgd         | /machine-games-duty-vars/org/?lang=eng            | No     |
 
   Scenario Outline: No - Goes to EMAC
     Given I login as an Organisation with <preset> preset
