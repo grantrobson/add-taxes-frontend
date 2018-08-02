@@ -25,15 +25,16 @@ Feature: how to stop journeys for enrolments that come in to add taxes
   Scenario Outline: Enrolment - Yes / No - Goes to page
     Given I login as an Organisation with <enrolment> enrolled
     When I navigate to the <url1>, <url2> how to stop page
-    And I click Yes button and continue
+    And I click <yes/no> button and continue
     Then I should be redirected to the <url3> page
 
   Examples:
-      | enrolment       | url1 | url2        | url3                                              |
-      | HMRC-CIS-ORG    | cis  | cis         | /cis/remove                                       |
-      | HMCE-VATDEC-ORG | vat  | vat         | /vat/deregister                                   |
-      | HMRC-MOSS-U-ORG | vat  | vat-moss    | /moss-variations/org//change-reg-details?lang=eng |
-      | HMRC-MOSSNU-ORG | vat  | vat-moss-nu | /moss-variations/org//change-reg-details?lang=eng |
+      | enrolment       | url1      | url2        | url3                                              | yes/no |
+      | HMRC-CIS-ORG    | cis       | cis         | /cis/remove                                       | Yes    |
+      | HMCE-VATDEC-ORG | vat       | vat         | /vat/deregister                                   | Yes    |
+      | HMRC-MOSS-U-ORG | vat       | vat-moss    | /moss-variations/org//change-reg-details?lang=eng | Yes    |
+      | HMRC-MOSSNU-ORG | vat       | vat-moss-nu | /moss-variations/org//change-reg-details?lang=eng | Yes    |
+      | HMRC-MGD-ORG    | gambling  | mgd         | /machine-games-duty-vars/org/?lang=eng            | No     |
 
   Scenario Outline: No - Goes to EMAC
     Given I login as an Organisation with <preset> preset
@@ -80,7 +81,6 @@ Feature: how to stop journeys for enrolments that come in to add taxes
       | HMRC-CHAR-ORG   | Yes    | charities | charities  | How to close a charity                                                                                        |
       | HMRC-GTS-PBD    | No     | gambling  | pbd        | Gambling Tax Service: online service guide for General Betting Duty, Pool Betting Duty and Remote Gaming Duty |
       | HMRC-GTS-RGD    | No     | gambling  | rgd        | Gambling Tax Service: online service guide for General Betting Duty, Pool Betting Duty and Remote Gaming Duty |
-      | HMRC-MGD-ORG    | No     | gambling  | mgd        | Gambling Tax Service: online service guide for General Betting Duty                                           |
 
   Scenario Outline: Yes, My business stopped employing people
     Given I login as an Organisation with <preset> preset
