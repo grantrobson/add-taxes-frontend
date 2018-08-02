@@ -22,7 +22,6 @@ Feature: how to stop journeys for enrolments that come in to add taxes
     And I click No button and continue
     Then I will be redirected to emac IR-SA Deenrol page
 
-@solo
   Scenario Outline: Enrolment - Yes / No - Goes to page
     Given I login as an Organisation with <enrolment> enrolled
     When I navigate to the <url1>, <url2> how to stop page
@@ -47,7 +46,6 @@ Feature: how to stop journeys for enrolments that come in to add taxes
       | EPAYE  | epaye           | paye | IR-PAYE   |
       | SA     | self-assessment | sa   | IR-SA     |
 
-
   Scenario Outline: Yes / No - Goes to EMAC
     Given I login as an Organisation with <enrolment> enrolled
     When I navigate to the <url1>, <url2> how to stop page
@@ -66,7 +64,6 @@ Feature: how to stop journeys for enrolments that come in to add taxes
       | HMRC-MOSSNU-ORG | vat       | No     | vat-moss-nu |
       | HMRC-GTS-PBD    | gambling  | Yes    | pbd         |
       | HMRC-GTS-RGD    | gambling  | Yes    | rgd         |
-
 
   Scenario Outline: Yes - goes to Gov UK page
     Given I login as an Organisation with <enrolment> enrolled
