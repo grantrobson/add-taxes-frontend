@@ -13,7 +13,7 @@ Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
     Then I navigate to the VAT page
     Then I select giant and click continue
     And I click No button and continue
-    Then I should be redirected to the /business-account/add-tax/vat/vat-giant/dont-need-service page
+    Then I should be redirected to the /business-account/add-tax/vat/vat-giant/do-not-need-service page
 
   Scenario: Chosen Mini One Stop Shop (MOSS) VAT option - Yes Yes - Register
     Given I login as an Organisation with NO enrolments
