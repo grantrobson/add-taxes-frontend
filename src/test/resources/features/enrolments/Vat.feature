@@ -193,7 +193,7 @@ Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
     Given I login as an <Login> with VAT preset
     Then I navigate to the VAT page
     Then I select moss and click continue
-    Then I should be redirected to the /business-account/add-tax/vat/moss/non-eu page
+    Then I should be redirected to the /business-account/add-tax/vat/moss-uk/vat-registered page
 
     Examples:
       |Login        |
