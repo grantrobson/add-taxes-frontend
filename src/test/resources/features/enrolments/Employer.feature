@@ -271,7 +271,6 @@ Feature: Construction Industry Team
       | cis         | business-account/add-tax/employer/cis     |
       | pension     | business-account/add-tax/employer/pension |
 
-
   Scenario Outline: Yes, Yes, Not Now & Yes, No, Not Now journeys
     Given I login as an Organisation with NO enrolments
     And I navigate to the employer page
@@ -286,3 +285,17 @@ Feature: Construction Industry Team
       | Choice  | Title                               |
       | Yes     | Use your PAYE for employers account |
       | No      | Add PAYE for employers first        |
+
+  Scenario Outline: Remove Pension Scheme for Administrators / Practitioners journey
+    Given I login as an Organisation with NO enrolments
+    And I navigate to the BTA /business-account/add-tax URL
+    Then I select employersOrIntermediaries and click continue
+    And I navigate to the AT /business-account/add-tax/employer URL
+    Then I select pension and click continue
+    Then I select <Choice> and click continue
+    Then I should be redirected to <Page> Portal page
+
+    Examples:
+      | Choice         | Page                                                             |
+      | administrators | service/pensions-administrators?action=enrol&step=hasid&lang=eng |
+      | practitioners  | service/pensions-practitioners?action=enrol&step=hasid&lang=eng  |
