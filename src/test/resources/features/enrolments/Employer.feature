@@ -91,7 +91,7 @@ Feature: Construction Industry Team
     Then I select ers and click continue
     And I click Yes button and continue
     And I click Yes button and continue
-    Then I will be redirected to register Use your PAYE for employers account page
+    Then I will be redirected to register Add employment related securities (ERS) to the account you use for PAYE for employers page
     And I click continue
     Then I should be redirected to the ?continue=/business-account page
 
@@ -101,7 +101,7 @@ Feature: Construction Industry Team
     Then I select ers and click continue
     And I click Yes button and continue
     And I click No button and continue
-    Then I will be redirected to register Add PAYE for employers first page
+    Then I will be redirected to register You need to manage PAYE for employers online before you add this scheme page
     And I click continue
     Then I will be redirected to emac IR-PAYE Enrol page
 
@@ -283,6 +283,6 @@ Feature: Construction Industry Team
     Then I should be redirected to the /business-account page
 
     Examples:
-      | Choice  | Title                               |
-      | Yes     | Use your PAYE for employers account |
-      | No      | Add PAYE for employers first        |
+      | Choice  | Title                                                                                 |
+      | Yes     | Add employment related securities (ERS) to the account you use for PAYE for employers |
+      | No      | You need to manage PAYE for employers online before you add this scheme               |
