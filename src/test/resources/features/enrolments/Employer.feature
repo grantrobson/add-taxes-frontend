@@ -129,7 +129,7 @@ Feature: Construction Industry Team
     Then I select intermediaries and click continue
     And I click Yes button and continue
     And I click Yes button and continue
-    Then I will be redirected to register Use your PAYE for employers account page
+    Then I will be redirected to register Add employment intermediaries to the account you use for PAYE for employers page
     And I click continue
     Then I should be redirected to the ?continue=/business-account page
 
@@ -139,7 +139,7 @@ Feature: Construction Industry Team
     Then I select intermediaries and click continue
     And I click Yes button and continue
     And I click Yes button and continue
-    Then I will be redirected to register Use your PAYE for employers account page
+    Then I will be redirected to register Add employment intermediaries to the account you use for PAYE for employers page
     And I click on sign-in link
     Then I should be redirected to the /employment-intermediary-report/not-enrolled page
 
