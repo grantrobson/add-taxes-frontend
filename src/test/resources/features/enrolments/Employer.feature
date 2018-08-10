@@ -1,6 +1,18 @@
 @beacd
 Feature: Construction Industry Team
 
+  Scenario: New design nav for PAYE for employers PAYE & ERS to CIS
+    Given I login as an Organisation with EPAYE preset
+    And I navigate to the employer page
+    Then I select cis and click continue
+    Then I should be redirected to the business-account/add-tax/employer/cis page
+
+  Scenario: New design nav for PAYE for employers PAYE & ERS to Pension
+    Given I login as an Organisation with EPAYE preset
+    And I navigate to the employer page
+    Then I select pension and click continue
+    Then I should be redirected to service/pensions-practitioners?action=enrol&step=hasid&lang=eng Portal page
+
   Scenario: Users adding CIS not registered
     Given I login as an Organisation with NO enrolments
     And I navigate to the employer page
@@ -167,18 +179,6 @@ Feature: Construction Industry Team
     And I click on not-now link
     Then I should be redirected to the /business-account page
 
-  Scenario Outline: Users who have enrollment numbers
-    Given I login as an Organisation with NO enrolments
-    And I navigate to the employer page
-    Then I select pension and click continue
-    Then I select <enrolment> and click continue
-    Then I should be redirected to <guidance> Portal page
-
-    Examples:
-      | enrolment       | guidance                        |
-      | administrators  | service/pensions-administrators |
-      | practitioners   | service/pensions-practitioners  |
-
   Scenario Outline: Sole Trader or Partnership subcontractor, with SA or CT preset
     Given I login as an Organisation with <Preset> preset
     And I navigate to the employer page
@@ -259,18 +259,6 @@ Feature: Construction Industry Team
       | Preset        | Enrolments | Page                                        |
       | NO enrolments | epaye      | business-registration/introduction?lang=eng |
       | EPAYE preset  | ers        | ers/org///add-scheme?lang=eng               |
-
-  Scenario Outline: New design nav for PAYE for employers PAYE & ERS
-    Given I login as an Organisation with EPAYE preset
-    And I navigate to the employer page
-    Then I select <Enrolments> and click continue
-    Then I should be redirected to the <Page> page
-
-    Examples:
-      | Enrolments  | Page                                      |
-      | cis         | business-account/add-tax/employer/cis     |
-      | pension     | business-account/add-tax/employer/pension |
-
 
   Scenario Outline: Yes, Yes, Not Now & Yes, No, Not Now journeys
     Given I login as an Organisation with NO enrolments
