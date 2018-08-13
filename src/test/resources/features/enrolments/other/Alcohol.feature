@@ -8,7 +8,7 @@
       Then I select atwd and click continue
       And I click Yes button and continue
       Then I will be redirected to emac HMCE-ATWD-ORG Enrol page
-
+@zap
     Scenario: User answers no and goes to single sign on
       Given I login as an Organisation with NO enrolments
       And I navigate to the other page

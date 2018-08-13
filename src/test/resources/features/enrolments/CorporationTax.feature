@@ -1,4 +1,4 @@
-@beacd
+@beacd @zap
 
   Feature: Corporation Tax
 
@@ -11,6 +11,6 @@
       And I select Yes and click continue
       Then I will be redirected to emac IR-CT Enrol page
 
-    Scenario: User doesn not have a UTR
+    Scenario: User doesnt not have a UTR
       And I select No and click continue
       Then I should be redirected to business-registration/select-taxes Portal page
