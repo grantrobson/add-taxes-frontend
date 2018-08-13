@@ -38,15 +38,4 @@ trait BasePage extends Matchers {
   }
 
   def deleteCookies() = driver.manage().deleteAllCookies()
-
-  def pageRefresh() = {
-    driver.navigate().refresh()
-    try {
-      val alert = driver.switchTo().alert()
-      alert.accept()
-    }
-    catch {
-      case noapEx: NoAlertPresentException => {}
-    }
-  }
 }

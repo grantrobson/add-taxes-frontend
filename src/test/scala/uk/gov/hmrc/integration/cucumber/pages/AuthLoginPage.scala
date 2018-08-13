@@ -5,7 +5,7 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.support.ui.Select
 import uk.gov.hmrc.integration.cucumber.utils.driver.Driver
 import uk.gov.hmrc.integration.cucumber.utils.methods.Input.clickById
-import uk.gov.hmrc.integration.cucumber.utils.methods.Nav
+import uk.gov.hmrc.integration.cucumber.utils.methods.{Input, Nav}
 import uk.gov.hmrc.integration.cucumber.utils.methods.Wait._
 
 object AuthLoginPage extends BasePage {

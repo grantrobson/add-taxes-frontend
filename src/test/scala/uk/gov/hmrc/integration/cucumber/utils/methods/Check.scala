@@ -1,13 +1,8 @@
 package uk.gov.hmrc.integration.cucumber.utils.methods
 
-import cucumber.api.DataTable
-import org.junit.Assert
 import org.openqa.selenium.By
-import org.openqa.selenium.support.ui.ExpectedConditions
 import uk.gov.hmrc.integration.cucumber.pages.BasePage
 import uk.gov.hmrc.integration.cucumber.utils.methods.Find._
-import uk.gov.hmrc.integration.cucumber.utils.methods.Input.{driver, include, _}
-import uk.gov.hmrc.integration.cucumber.utils.methods.Wait.fluentWait
 
 object Check extends BasePage {
 
@@ -18,8 +13,8 @@ object Check extends BasePage {
 
   def assertEmacUrl(enrolment: String, status: String) = {
     status match {
-      case "Enrol" => driver.getCurrentUrl should include(emacEnrolUrl.replace("ENROLMENT_TYPE", s"$enrolment"))
-      case "Deenrol" => driver.getCurrentUrl should include(emacDeenrolUrl.replace("ENROLMENT_TYPE", s"$enrolment"))
+      case "Enrol" => urlIncludes(emacEnrolUrl.replace("ENROLMENT_TYPE", s"$enrolment"))
+      case "Deenrol" => urlIncludes(emacDeenrolUrl.replace("ENROLMENT_TYPE", s"$enrolment"))
     }
   }
 
@@ -31,47 +26,28 @@ object Check extends BasePage {
   }
 
   def assertPdfFile(url: String) = {
-    driver.getCurrentUrl should endWith("pdf")
-    driver.getCurrentUrl should include(url)
+    checkUrlEnd("pdf")
+    urlIncludes(url)
   }
 
   def assertPortalPage(enrolment: String) = {
     val envProperty = System.getProperty("environment", "local").toLowerCase
 
     envProperty match {
-      case "local" => driver.getCurrentUrl should include(s"localhost:8080/portal/$enrolment")
-      case "qa" => driver.getCurrentUrl should include(s"www.qa.tax.service.gov.uk/$enrolment?lang=eng")
+      case "local" => urlIncludes(s"localhost:8080/portal/$enrolment")
+      case "qa" => urlIncludes(s"www.qa.tax.service.gov.uk/$enrolment?lang=eng")
     }
   }
   def assertRegisterPage(registerType:String) = findH1().getText should include(registerType)
   def assertSingleSignOn(url: String) = findById("continue").getAttribute("href") should endWith(url)
 
-  def checkErrorMessage(field: String, msg: String) = verifyTextUsingElementId(field + "-error-summary", msg)
   def checkUrlEnd(enrolment: String) = driver.getCurrentUrl should endWith(s"$enrolment")
+  private def urlIncludes(assert: String) = driver.getCurrentUrl should include(assert)
 
   def checkPageHeading(text: String) = {
-    fluentWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("h1")))
+    Wait.waitForElement(By.cssSelector("h1"))
     findH1().getText shouldBe text
   }
 
   def isElementVisible(id: String): Boolean = findById(id).isDisplayed
-  def validateText(id: String, value: String) = getTextById(id) shouldBe value
-  def verifyTextUsingElementId(elementId: String, expectedValue: String)= findById(elementId).getText shouldBe expectedValue
-  def verifyInputUsingElementId(elementId: String, expectedValue: String)= findById(elementId).getAttribute("value") shouldBe expectedValue
-  def verifyHyperlink(linkText: String) = findByCSS("a[title*=\"" + linkText + "\"]")
-  def verifyHyperlinkTarget(id: String, target: String) = Assert.assertEquals(findById(id).getAttribute("href"), basePageUrl+"/"+target)
-
-  val enterDataTable = iterate(sendKeysById) _
-  val checkDataTable = iterate(validateText) _
-
-  private def iterate(f: (String, String) => Any)(data: DataTable) = {
-    val row = data.asMaps(classOf[String], classOf[String]).iterator
-    while (row.hasNext) {
-      val map = row.next
-      val data = map.get("value")
-      val loc = map.get("key")
-      f(loc, data)
-    }
-  }
-
 }

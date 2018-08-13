@@ -2,7 +2,6 @@ package uk.gov.hmrc.integration.cucumber.stepdefs
 
 import cucumber.api.scala.{EN, ScalaDsl}
 import uk.gov.hmrc.integration.cucumber.utils.methods.Nav
-import uk.gov.hmrc.integration.cucumber.pages.AuthLoginPage.btaUrl
 
 
 class NavStepDef extends ScalaDsl with EN {
@@ -21,10 +20,6 @@ class NavStepDef extends ScalaDsl with EN {
 
   When("""^I navigate to the self assessment page$""") { ()  =>
     Nav.navigateToAddTaxesSAUrl
-  }
-
-  When("""^I navigate back to the previous page$""") { () =>
-    Nav.back()
   }
 
   When("""^I navigate to the (BTA|AT) (.*) URL""") { (service: String, navPage: String)  =>
