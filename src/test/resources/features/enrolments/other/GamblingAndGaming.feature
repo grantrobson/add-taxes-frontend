@@ -1,6 +1,6 @@
 @beacd
 Feature: Other Gambling and Gaming
-
+@zap
   Scenario Outline: User answers yes and goes to Emac pages
     Given I login as an Organisation with NO enrolments
     When I navigate to the other page

@@ -1,6 +1,26 @@
 @beacd
 Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
 
+  Scenario: Improve VAT enrolment journey, Yes I have a reg no
+    Given I login as an Organisation with NO enrolments
+    Then I navigate to the VAT page
+    Then I select vat and click continue
+    And I click Yes button and continue
+    Then I will be redirected to emac HMCE-VATDEC-ORG Enrol page
+
+  Scenario: Improve VAT enrolment journey, No I have a reg no
+    Given I login as an Organisation with NO enrolments
+    Then I navigate to the VAT page
+    Then I select vat and click continue
+    And I click No button and continue
+    Then I should be redirected to business-registration/business-allowed?lang=eng Portal page
+
+  Scenario: Choose VAT / Notification of Vehicle Arrivals
+    Given I login as an Organisation with NO enrolments
+    Then I navigate to the VAT page
+    Then I select nova and click continue
+    Then I should be redirected to nova/normal?lang=eng Portal page
+
   Scenario: Enrol for Government Information and National Health Trusts: YES to NHS trust, Gov dept or Royal house
     Given I login as an Organisation with NO enrolments
     Then I navigate to the VAT page
@@ -13,7 +33,7 @@ Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
     Then I navigate to the VAT page
     Then I select giant and click continue
     And I click No button and continue
-    Then I should be redirected to the /business-account/add-tax/vat/vat-giant/dont-need-service page
+    Then I should be redirected to the /business-account/add-tax/vat/vat-giant/do-not-need-service page
 
   Scenario: Chosen Mini One Stop Shop (MOSS) VAT option - Yes Yes - Register
     Given I login as an Organisation with NO enrolments
@@ -74,7 +94,6 @@ Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
     And I click continue
     And I should be redirected to Registering for VAT Gov page
 
-
   Scenario: Redirect enrolment for VAT MOSS outside the EU to EMAC - Yes
     Given I login as an Organisation with NO enrolments
     Then I navigate to the VAT page
@@ -129,17 +148,6 @@ Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
       |Yes       | Yes       | VAT MOSS      |
       |Yes       | No        | VAT first     |
 
-  Scenario Outline: Choose VAT / Notification of Vehicle Arrivals
-    Given I login as an Organisation with NO enrolments
-    Then I navigate to the VAT page
-    Then I select <Enrolment> and click continue
-    Then I should be redirected to <Page> Portal page
-
-    Examples:
-      |Enrolment | Page                                        |
-      |vat       | business-registration/introduction?lang=eng |
-      |nova      | nova/normal?lang=eng                        |
-
   Scenario Outline: Choose EC Sales List / EU Refunds, Yes VAT registered
     Given I login as an Organisation with NO enrolments
     Then I navigate to the VAT page
@@ -193,7 +201,7 @@ Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
     Given I login as an <Login> with VAT preset
     Then I navigate to the VAT page
     Then I select moss and click continue
-    Then I should be redirected to the /business-account/add-tax/vat/moss/non-eu page
+    Then I should be redirected to the /business-account/add-tax/vat/moss-uk/vat-registered page
 
     Examples:
       |Login        |

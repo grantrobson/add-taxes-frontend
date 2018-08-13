@@ -39,7 +39,7 @@ Feature: Other imports exports
     Then I click No button and continue
     And I click on eori-request-form link
     Then I should be redirected to EORI Gov page
-
+@zap
   Scenario: User goes to Gov.uk when they select Intrastat from import-export page
     Given I login as an Organisation with NO enrolments
     And I navigate to the other page
