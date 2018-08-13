@@ -5,7 +5,7 @@ import org.scalatest.WordSpec
 import uk.gov.hmrc.zap.ZapTest
 import uk.gov.hmrc.zap.config.ZapConfiguration
 
-class ZapRunner extends WordSpec with ZapTest{
+class ZapScanRunner extends WordSpec with ZapTest{
 
   val zapConfig: Config = ConfigFactory.load().getConfig("zap-automation-config")
 

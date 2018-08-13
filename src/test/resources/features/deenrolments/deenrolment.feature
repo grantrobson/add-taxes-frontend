@@ -2,25 +2,26 @@
 
 Feature: how to stop journeys for enrolments that come in to add taxes
 
+  Scenario: Stopping CT journey- goes to EMAC
     Given I login as an Organisation with CT preset
     When I navigate to the ct, ct how to stop page
     Then I click on stopCorporationTax.stop link
     And I click continue
     Then I will be redirected to emac IR-CT Deenrol page
-
+@zap
   Scenario: SA journey with CT and SA enrolled - goes to Gov.uk
     Given I login as an Organisation with IR-SA, IR-CT enrolled
     When I navigate to the self-assessment, sa how to stop page
     And I click Yes button and continue
     And I click on need-to-submit-return link
     Then I should be redirected to Check if you need to fill in a Self Assessment tax return Gov page
-
+@zap
   Scenario: SA journey with CT and SA enrolled - goes to EACD
     Given I login as an Organisation with IR-SA, IR-CT enrolled
     When I navigate to the self-assessment, sa how to stop page
     And I click No button and continue
     Then I will be redirected to emac IR-SA Deenrol page
-
+@zap
   Scenario Outline: Enrolment - Yes / No - Goes to page
     Given I login as an Organisation with <enrolment> enrolled
     When I navigate to the <url1>, <url2> how to stop page
@@ -80,7 +81,7 @@ Feature: how to stop journeys for enrolments that come in to add taxes
       | HMRC-CHAR-ORG   | Yes    | charities | charities  | How to close a charity                                                                                        |
       | HMRC-GTS-PBD    | No     | gambling  | pbd        | Gambling Tax Service: online service guide for General Betting Duty, Pool Betting Duty and Remote Gaming Duty |
       | HMRC-GTS-RGD    | No     | gambling  | rgd        | Gambling Tax Service: online service guide for General Betting Duty, Pool Betting Duty and Remote Gaming Duty |
-
+@zap
   Scenario Outline: Yes, My business stopped employing people
     Given I login as an Organisation with <preset> preset
     When I navigate to the <url1>, <url2> how to stop page

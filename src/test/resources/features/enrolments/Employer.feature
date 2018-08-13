@@ -6,7 +6,7 @@ Feature: Construction Industry Team
     And I navigate to the employer page
     Then I select cis and click continue
     Then I should be redirected to the business-account/add-tax/employer/cis page
-
+@zap
   Scenario: New design nav for PAYE for employers PAYE & ERS to Pension
     Given I login as an Organisation with EPAYE preset
     And I navigate to the employer page
@@ -34,7 +34,7 @@ Feature: Construction Industry Team
     Then I will be redirected to register PAYE page
     When I click on not-now link
     Then I should be redirected to the /business-account page
-
+@zap
   Scenario: Users adding CIS registered sign in
     Given I login as an Organisation with NO enrolments
     And I navigate to the employer page
