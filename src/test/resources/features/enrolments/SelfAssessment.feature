@@ -1,6 +1,14 @@
 @beacd
 Feature: Enrol trust through Self Assessment journey
 
+  Scenario: Check if UTR number goes to correct location
+    Given I login as an Organisation with NO enrolments
+    And I navigate to the BTA /business-account/add-tax URL
+    And I select selfAssessment and click continue
+    And I click Yes button and continue
+    And I enter 1126388017 in the enter-sa-utr element and click submit
+    Then I should be redirected to the /business-account/wrong-credentials page
+
   Scenario: Improve journey for users enrolling for an additional SA partnership
     Given I login as an Organisation with IR-SA, IR-SA-TRUST-ORG, IR-SA-PART-ORG enrolled
     And I navigate to the BTA /business-account/add-tax URL
