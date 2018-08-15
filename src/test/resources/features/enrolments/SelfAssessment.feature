@@ -7,7 +7,7 @@ Feature: Enrol trust through Self Assessment journey
     And I select selfAssessment and click continue
     And I change to AT service
     And I click Yes button and continue
-    And I enter 1126388017 in the enter-sa-utr element and click submit
+    And I enter 1126388017 in the value element and click submit
     Then I should be redirected to the /business-account/wrong-credentials page
 
   Scenario: Improve journey for users enrolling for an additional SA partnership
