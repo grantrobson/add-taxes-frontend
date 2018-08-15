@@ -5,6 +5,7 @@ Feature: Enrol trust through Self Assessment journey
     Given I login as an Organisation with NO enrolments
     And I navigate to the BTA /business-account/add-tax URL
     And I select selfAssessment and click continue
+    And I change to AT service
     And I click Yes button and continue
     And I enter 1126388017 in the enter-sa-utr element and click submit
     Then I should be redirected to the /business-account/wrong-credentials page
