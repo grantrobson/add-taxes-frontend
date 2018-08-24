@@ -7,7 +7,7 @@ Feature: Update Stamp Duty Land Tax screens in the new template
     Then I select housingAndLand and click continue
     Then I select SDLT and click continue
     And I click Yes button and continue
-    Then I should be redirected to service/stamp-taxes?action=enrol&step=enterdetails Portal page
+    Then I should be redirected to the /enrol-for-stamp-taxes/enrol page
 
   Scenario: Stamp Duty Land Tax for a property for myself
     Given I login as an Organisation with NO enrolments
