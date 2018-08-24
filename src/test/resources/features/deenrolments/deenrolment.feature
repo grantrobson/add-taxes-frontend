@@ -8,6 +8,13 @@ Feature: how to stop journeys for enrolments that come in to add taxes
     Then I click on stopCorporationTax.stop link
     And I click continue
     Then I will be redirected to emac IR-CT Deenrol page
+
+  Scenario:  Deenrol for Shared work space (individual)
+    Given I login as an Individual with HMRC-ECW-IND enrolled
+    When I navigate to the BTA /business-account/manage-account URL
+    Then I click on taxes-and-duties link
+    Then I click on stop-hmrc-ecw-ind link
+    Then I will be redirected to emac HMRC-ECW-IND Deenrol page
 @zap
   Scenario: SA journey with CT and SA enrolled - goes to Gov.uk
     Given I login as an Organisation with IR-SA, IR-CT enrolled
