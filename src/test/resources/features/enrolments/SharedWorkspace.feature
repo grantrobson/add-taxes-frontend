@@ -1,4 +1,4 @@
-@beacd
+@beacd @zap
 
 Feature: Shared Workspace (Individuals)
 
