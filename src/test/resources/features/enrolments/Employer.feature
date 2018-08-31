@@ -1,5 +1,5 @@
-@beacd
-Feature: Construction Industry Team
+@beacd 
+Feature: Employer (PAYE, CIS, Pensions, ERS, EI)
 
   Scenario: New design nav for PAYE for employers PAYE & ERS to CIS
     Given I login as an Organisation with EPAYE preset
