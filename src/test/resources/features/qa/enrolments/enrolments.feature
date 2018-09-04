@@ -19,21 +19,25 @@ Feature: Enrolment journeys run in QA
     Given I login to QA
     Then I select addEnrolment and click continue
     And I select selfAssessment and click continue
-    Then I click No button and continue
+    And I click Yes button and continue
+    And I enter 1234567890 in the value element and click submit
     And I select Sa and click continue
-    Then I should be redirected to business-registration/introduction Portal page
+    Then I will be redirected to emac IR-SA Enrol page
 
-  Scenario Outline: User goes to Portal when they enrol for two of big four taxes (VAT, PAYE)
+  Scenario: User adds SA and is directed to portal (One of big four taxes)
     Given I login to QA
     Then I select addEnrolment and click continue
-    And I select <Tax> and click continue
-    Then I select <Enrolment> and click continue
-    Then I should be redirected to business-registration/introduction Portal page
+    And I select vat and click continue
+    And I select vat and click continue
+    And I click Yes button and continue
+    Then I will be redirected to emac HMCE-VATDEC-ORG Enrol page
 
-  Examples:
-  | Tax                       | Enrolment |
-  | vat                       | vat       |
-  | employersOrIntermediaries | epaye     |
+  Scenario: User goes to Portal when they enrol for PAYE
+    Given I login to QA
+    Then I select addEnrolment and click continue
+    And I select employersOrIntermediaries and click continue
+    Then I select epaye and click continue
+    Then I should be redirected to business-registration/introduction Portal page
 
   Scenario Outline: import-export
     Given I login to QA
