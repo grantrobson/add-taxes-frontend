@@ -7,7 +7,6 @@ Feature: Enrolment of Child Trust Fund Provider
     And I navigate to the other page
     Then I select childTrustFund and click continue
 
-
   Scenario: is an approved Child Trust Fund Provider
     And I click Yes button and continue
     Then I will be redirected to emac IR-CTF Enrol page
