@@ -10,6 +10,15 @@ Feature: Enrol trust through Self Assessment journey
     And I enter 1234567890 in the value element and click submit
     Then I should be redirected to the business-account/add-tax/self-assessment/partnership page
 
+  Scenario: Improve SA journey so an individual/soletrader without a SA UTR go to OTRS
+    Given I login as an Organisation with NO enrolments
+    And I navigate to the BTA /business-account/add-tax URL
+    And I select selfAssessment and click continue
+    And I change to AT service
+    And I click No button and continue
+    Then I select Sa and click continue
+    And I should be redirected to business-registration/select-taxes Portal page
+
   Scenario: Improve journey for users enrolling for an additional SA partnership
     Given I login as an Organisation with IR-SA, IR-SA-TRUST-ORG, IR-SA-PART-ORG enrolled
     When I navigate to the self assessment page
