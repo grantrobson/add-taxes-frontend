@@ -1,6 +1,22 @@
 @beacd
 Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
 
+  Scenario: Redirect INDIVIDUAL users with no VRN to Set up a new account page, clicks on Continue
+    Given I login as an Individual with NO enrolments
+    Then I navigate to the VAT page
+    Then I select vat and click continue
+    And I click No button and continue
+    And I click continue
+    Then I should be redirected to the government-gateway-registration-frontend?accountType=organisation&continue=%2Fbusiness-account%2Fadd-tax page
+
+  Scenario: Redirect INDIVIDUAL users with no VRN to Set up a new account page, clicks on Not Now
+    Given I login as an Individual with NO enrolments
+    Then I navigate to the VAT page
+    Then I select vat and click continue
+    And I click No button and continue
+    And I click on not-now link
+    Then I should be redirected to the /business-account page
+
   Scenario: New set up a new account page for VAT GIANT clicks on create account
     Given I login as an Individual with NO enrolments
     Then I navigate to the VAT page

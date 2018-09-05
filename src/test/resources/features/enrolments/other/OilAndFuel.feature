@@ -1,10 +1,12 @@
 @beacd
 Feature: Other oil and fuel
 
-  Scenario Outline: User goes to rebated oils emac page if the are already registered
+  Background:
     Given I login as an Organisation with NO enrolments
     When I navigate to the other page
     Then I select oilAndFuel and click continue
+
+  Scenario Outline: User goes to rebated oils emac page if the are already registered
     Then I select <enrolment> and click continue
     And I click Yes button and continue
     Then I will be redirected to emac <guidance> Enrol page
@@ -15,9 +17,6 @@ Feature: Other oil and fuel
     | tiedOilsEnquiryService    | HMCE-TO |
 
   Scenario Outline: User goes to fuel duty gov.uk page if they are not already registered (Rebated Oils)
-    Given I login as an Organisation with NO enrolments
-    When I navigate to the other page
-    Then I select oilAndFuel and click continue
     Then I select <enrolment> and click continue
     And I click No button and continue
     Then I will be redirected to register <type> page
