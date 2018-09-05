@@ -249,7 +249,7 @@ Feature: Employer (PAYE, CIS, Pensions, ERS, EI)
     And I navigate to the employer page
     Then I select cis and click continue
     And I click No button and continue
-    Then I should be redirected to Construction Industry Scheme: businesses based outside UK Gov page
+    Then I should be redirected to Construction Industry Scheme for businesses based outside the UK Gov page
     Examples:
       | Preset        |
       | NO enrolments |
