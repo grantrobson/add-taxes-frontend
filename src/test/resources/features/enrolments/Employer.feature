@@ -123,7 +123,7 @@ Feature: Employer (PAYE, CIS, Pensions, ERS, EI)
     When I click on not-now link
     Then I should be redirected to the /business-account page
 
-  Scenario: New design nav for PAYE for employers PAYE & ERS
+  Scenario: New design nav for PAYE for employers ERS
     Given I login as an Organisation with EPAYE preset
     And I navigate to the employer page
     Then I select ers and click continue
@@ -256,7 +256,7 @@ Feature: Employer (PAYE, CIS, Pensions, ERS, EI)
       | NO enrolments |
       | EPAYE preset  |
 
-  Scenario Outline: Improve PAYE enrolment journey
+  Scenario Outline: Improved PAYE enrolment journey, added Partners & Directors options
     Given I login as an Organisation with NO enrolments
     And I navigate to the employer page
     Then I select epaye and click continue
@@ -270,7 +270,7 @@ Feature: Employer (PAYE, CIS, Pensions, ERS, EI)
       | Yes    | /business-account/add-tax/employer/directors-register-by-phone |
       | No     | /business-account/add-tax/employer/partners-register-by-phone  |
 
-  Scenario Outline: Improve PAYE enrolment journey
+  Scenario Outline: Improved PAYE enrolment journey, added Partners & Directors options
     Given I login as an Organisation with NO enrolments
     And I navigate to the employer page
     Then I select epaye and click continue
