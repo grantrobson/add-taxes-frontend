@@ -79,12 +79,6 @@ Feature: Employer (PAYE, CIS, Pensions, ERS, EI)
     Then I select Contractor and click continue
     Then I will be redirected to emac HMRC-CIS-ORG Enrol page
 
-  Scenario: New design nav for PAYE for employers with no enrolments
-    Given I login as an Organisation with NO enrolments
-    And I navigate to the employer page
-    Then I select epaye and click continue
-    Then I should be redirected to business-registration/introduction?lang=eng Portal page
-
   Scenario: Employment intermediaries Agent goes to not-enrolled
     Given I login as an Agent with EPAYE preset
     And I navigate to the employer page
@@ -128,6 +122,12 @@ Feature: Employer (PAYE, CIS, Pensions, ERS, EI)
     Then I will be redirected to register Register for PAYE page
     When I click on not-now link
     Then I should be redirected to the /business-account page
+
+  Scenario: New design nav for PAYE for employers PAYE & ERS
+    Given I login as an Organisation with EPAYE preset
+    And I navigate to the employer page
+    Then I select ers and click continue
+    Then I should be redirected to ers/org///add-scheme?lang=eng Portal page
 
   Scenario: Yes, Yes, Sign in
     Given I login as an Organisation with NO enrolments
@@ -250,10 +250,39 @@ Feature: Employer (PAYE, CIS, Pensions, ERS, EI)
     Then I select cis and click continue
     And I click No button and continue
     Then I should be redirected to Construction Industry Scheme for businesses based outside the UK Gov page
+
     Examples:
       | Preset        |
       | NO enrolments |
       | EPAYE preset  |
+
+  Scenario Outline: Improve PAYE enrolment journey
+    Given I login as an Organisation with NO enrolments
+    And I navigate to the employer page
+    Then I select epaye and click continue
+    And I click No button and continue
+    And I click <Choice> button and continue
+    And I click No button and continue
+    Then I should be redirected to the <URL> page
+
+    Examples:
+      | Choice | URL                                                            |
+      | Yes    | /business-account/add-tax/employer/directors-register-by-phone |
+      | No     | /business-account/add-tax/employer/partners-register-by-phone  |
+
+  Scenario Outline: Improve PAYE enrolment journey
+    Given I login as an Organisation with NO enrolments
+    And I navigate to the employer page
+    Then I select epaye and click continue
+    And I click No button and continue
+    And I click <Choice> button and continue
+    And I click Yes button and continue
+    Then I should be redirected to business-registration/select-taxes?lang=eng Portal page
+
+    Examples:
+      | Choice |
+      | Yes    |
+      | No     |
 
   Scenario Outline: New design and navigation for contractor or subcontractor page NO enrolments, based in the UK, Contractor or Subcontractor
     Given I login as an Organisation with NO enrolments
@@ -267,17 +296,6 @@ Feature: Employer (PAYE, CIS, Pensions, ERS, EI)
       | Choice        | Page                                                    |
       | Contractor    | /business-account/add-tax/employer/cis/uk/contractor    |
       | Subcontractor | /business-account/add-tax/employer/cis/uk/subcontractor |
-
-  Scenario Outline: New design nav for PAYE for employers PAYE & ERS
-    Given I login as an Organisation with <Preset>
-    And I navigate to the employer page
-    Then I select <Enrolments> and click continue
-    Then I should be redirected to <Page> Portal page
-
-    Examples:
-      | Preset        | Enrolments | Page                                        |
-      | NO enrolments | epaye      | business-registration/introduction?lang=eng |
-      | EPAYE preset  | ers        | ers/org///add-scheme?lang=eng               |
 
   Scenario Outline: Yes, Yes, Not Now & Yes, No, Not Now journeys
     Given I login as an Organisation with NO enrolments
