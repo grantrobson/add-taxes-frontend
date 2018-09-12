@@ -1,6 +1,30 @@
 @beacd
 Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
 
+  Scenario: New journey for users with no VRN
+    Given I login as an Organisation with NO enrolments
+    Then I navigate to the VAT page
+    Then I select vat and click continue
+    And I click Yes button and continue
+    Then I will be redirected to emac HMCE-VATDEC-ORG Enrol page
+
+  Scenario: New journey for users with VRN and want to register online
+    Given I login as an Organisation with NO enrolments
+    Then I navigate to the VAT page
+    Then I select vat and click continue
+    And I click No button and continue
+    And I click Yes button and continue
+    Then I should be redirected to business-registration/select-taxes?lang=eng Portal page
+
+  Scenario: New journey for users with VRN but don't want to register online
+    Given I login as an Organisation with NO enrolments
+    Then I navigate to the VAT page
+    Then I select vat and click continue
+    And I click No button and continue
+    And I click No button and continue
+    And I click continue
+    Then I should be redirected to VAT registration Gov page
+
   Scenario: Redirect INDIVIDUAL users with no VRN to Set up a new account page, clicks on Continue
     Given I login as an Individual with NO enrolments
     Then I navigate to the VAT page
@@ -37,13 +61,6 @@ Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
     Then I select vat and click continue
     And I click Yes button and continue
     Then I will be redirected to emac HMCE-VATDEC-ORG Enrol page
-
-  Scenario: Improve VAT enrolment journey, No I have a reg no
-    Given I login as an Organisation with NO enrolments
-    Then I navigate to the VAT page
-    Then I select vat and click continue
-    And I click No button and continue
-    Then I should be redirected to business-registration/business-allowed?lang=eng Portal page
 
   Scenario: Choose VAT / Notification of Vehicle Arrivals
     Given I login as an Organisation with NO enrolments
