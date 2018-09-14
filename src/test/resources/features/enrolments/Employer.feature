@@ -1,4 +1,4 @@
-@beacd 
+@beacd
 Feature: Employer (PAYE, CIS, Pensions, ERS, EI)
 
   Scenario: New design nav for PAYE for employers PAYE & ERS to CIS
@@ -283,6 +283,13 @@ Feature: Employer (PAYE, CIS, Pensions, ERS, EI)
       | Choice |
       | Yes    |
       | No     |
+
+    Scenario: PAYE, if a user has a PAYE ref go to EMAC
+    Given I login as an Organisation with NO enrolments
+    And I navigate to the employer page
+    Then I select epaye and click continue
+    And I click Yes button and continue
+    Then I will be redirected to emac IR-PAYE Enrol page
 
   Scenario Outline: New design and navigation for contractor or subcontractor page NO enrolments, based in the UK, Contractor or Subcontractor
     Given I login as an Organisation with NO enrolments
