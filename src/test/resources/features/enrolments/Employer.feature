@@ -198,6 +198,13 @@ Feature: Employer (PAYE, CIS, Pensions, ERS, EI)
     And I click continue
     Then I will be redirected to emac HMRC-PP-ORG Enrol page
 
+  Scenario: PAYE, if a user has a PAYE ref go to EMAC
+    Given I login as an Organisation with NO enrolments
+    And I navigate to the employer page
+    Then I select epaye and click continue
+    And I click Yes button and continue
+    Then I will be redirected to emac IR-PAYE Enrol page
+    
   Scenario Outline: Sole Trader or Partnership subcontractor, with SA or CT preset
     Given I login as an Organisation with <Preset> preset
     And I navigate to the employer page
@@ -207,7 +214,7 @@ Feature: Employer (PAYE, CIS, Pensions, ERS, EI)
     Then I select <Type> and click continue
     Then I should be redirected to the <Form> page
 
-    Examples:
+  Examples:
       | Preset | Type        | Form                                                                   |
       | SA     | soleTrader  | /forms/form/CIS301302/start#1                                          |
       | CT     | soleTrader  | /forms/form/CIS301302/start#1                                          |
@@ -225,7 +232,7 @@ Feature: Employer (PAYE, CIS, Pensions, ERS, EI)
     Then I select <Type> and click continue
     Then I should be redirected to <Form> Gov page
 
-    Examples:
+  Examples:
       | Type      | Form                                 |
       | paidNet   | Register for payment under deduction |
       | paidGross | Register for gross payment           |
@@ -239,7 +246,7 @@ Feature: Employer (PAYE, CIS, Pensions, ERS, EI)
     Then I select <Type> and click continue
     Then I should be redirected to <Form> Gov page
 
-    Examples:
+  Examples:
       | Type           | Form                                         |
       | partnership    | Register your partnership as a subcontractor |
       | limitedCompany | Register your company                        |
@@ -251,7 +258,7 @@ Feature: Employer (PAYE, CIS, Pensions, ERS, EI)
     And I click No button and continue
     Then I should be redirected to Construction Industry Scheme for businesses based outside the UK Gov page
 
-    Examples:
+  Examples:
       | Preset        |
       | NO enrolments |
       | EPAYE preset  |
@@ -265,7 +272,7 @@ Feature: Employer (PAYE, CIS, Pensions, ERS, EI)
     And I click No button and continue
     Then I should be redirected to the <URL> page
 
-    Examples:
+  Examples:
       | Choice | URL                                                            |
       | Yes    | /business-account/add-tax/employer/directors-register-by-phone |
       | No     | /business-account/add-tax/employer/partners-register-by-phone  |
@@ -279,17 +286,11 @@ Feature: Employer (PAYE, CIS, Pensions, ERS, EI)
     And I click Yes button and continue
     Then I should be redirected to business-registration/select-taxes?lang=eng Portal page
 
-    Examples:
+  Examples:
       | Choice |
       | Yes    |
       | No     |
 
-    Scenario: PAYE, if a user has a PAYE ref go to EMAC
-    Given I login as an Organisation with NO enrolments
-    And I navigate to the employer page
-    Then I select epaye and click continue
-    And I click Yes button and continue
-    Then I will be redirected to emac IR-PAYE Enrol page
 
   Scenario Outline: New design and navigation for contractor or subcontractor page NO enrolments, based in the UK, Contractor or Subcontractor
     Given I login as an Organisation with NO enrolments
