@@ -86,6 +86,21 @@ Feature: Enrol trust through Self Assessment journey
     And I select Trust and click continue
     Then I should be redirected to the trust/new-account page
 
+  Scenario Outline: Improve SA enrolment journey, ask for UTR
+    Given I login as an Individual with NO enrolments enrolled
+    And I navigate to the BTA /business-account/add-tax URL
+    Then I select selfAssessment and click continue
+    And I change to AT service
+    And I click No button and continue
+    Then I select Sa and click continue
+    And I click <Choice> button and continue
+    Then I should be redirected to <URL> Portal page
+
+    Examples:
+      | Choice | URL                                         |
+      | Yes    | business-registration/select-taxes?lang=eng |
+      | No     | shortforms/form/SA1?lang=eng                |
+
   Scenario Outline: User that is not an organisation goes to set up new partnership page
     Given I login as an <Login> with NO enrolments
     When I navigate to the self assessment page
