@@ -5,16 +5,24 @@ Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
     Given I login as an Organisation with NO enrolments
     Then I navigate to the VAT page
     Then I select vat and click continue
-    And I click Yes button and continue
-    Then I will be redirected to emac HMCE-VATDEC-ORG Enrol page
+    And I click No button and continue
+    Then I should be redirected to the /business-account/add-tax/vat/register-online page
 
-  Scenario: New journey for users with VRN and want to register online
+  Scenario: New journey for users with VRN and want to register online without a mandation status
     Given I login as an Organisation with NO enrolments
     Then I navigate to the VAT page
     Then I select vat and click continue
-    And I click No button and continue
     And I click Yes button and continue
-    Then I should be redirected to business-registration/select-taxes?lang=eng Portal page
+    And I enter 999902737 in the value element and click submit
+    Then I will be redirected to emac HMCE-VATDEC-ORG Enrol page
+
+  Scenario: New journey for users with VRN and want to register online with a mandation status
+    Given I login as an Organisation with NO enrolments
+    Then I navigate to the VAT page
+    Then I select vat and click continue
+    Then I click Yes button and continue
+    And I enter 999902541 in the value element and click submit
+    Then I should be redirected to the /vat-through-software/sign-up/claim-subscription/999902541 page
 
   Scenario: New journey for users with VRN but don't want to register online
     Given I login as an Organisation with NO enrolments
@@ -54,13 +62,6 @@ Feature: Redirect enrolment for VAT MOSS UK if not registered for VAT
     Then I select giant and click continue
     And I click on not-now link
     Then I should be redirected to the /business-account page
-
-  Scenario: Improve VAT enrolment journey, Yes I have a reg no
-    Given I login as an Organisation with NO enrolments
-    Then I navigate to the VAT page
-    Then I select vat and click continue
-    And I click Yes button and continue
-    Then I will be redirected to emac HMCE-VATDEC-ORG Enrol page
 
   Scenario: Choose VAT / Notification of Vehicle Arrivals
     Given I login as an Organisation with NO enrolments
