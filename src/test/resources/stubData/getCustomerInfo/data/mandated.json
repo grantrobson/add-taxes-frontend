@@ -1,0 +1,55 @@
+{
+  "_id": "/vat/customer/vrn/999902541/information",
+  "schemaId": "getDesCustomerInfo",
+  "method": "GET",
+  "status": 200,
+  "response": {
+    "approvedInformation":{
+      "customerDetails":{
+        "organisationName":"Ancient Antiques Org",
+        "tradingName":"Ancient Antiques",
+        "mandationStatus":"1",
+        "registrationReason":"0001",
+        "effectiveRegistrationDate" : "2017-01-02",
+        "businessStartDate" : "2017-01-01",
+        "isPartialMigration" : false
+      },
+      "PPOB":{
+        "address":{
+          "line1":"VAT PPOB Line1",
+          "line2":"VAT PPOB Line2",
+          "line3":"VAT PPOB Line3",
+          "line4":"VAT PPOB Line5",
+          "postCode":"TF3 4ER",
+          "countryCode":"GB"
+        },
+        "contactDetails":{
+          "primaryPhoneNumber":"012345678901",
+          "mobileNumber":"012345678902",
+          "faxNumber":"012345678903",
+          "emailAddress":"testsi1222@gmail.com"
+        },
+        "websiteAddress":"www.tumbleweed.com"
+      },
+      "bankDetails":{
+        "accountHolderName":"***********************",
+        "bankAccountNumber":"****1234",
+        "sortCode":"69****"
+      },
+      "businessActivities":{
+        "primaryMainCode":"10410",
+        "mainCode2":"10611",
+        "mainCode3":"10710",
+        "mainCode4":"10720"
+      },
+      "flatRateScheme":{
+        "FRSCategory":"003",
+        "FRSPercentage":59.99,
+        "limitedCostTrader":true
+      },
+      "returnPeriod":{
+        "stdReturnPeriod":"MA"
+      }
+    }
+  }
+}
