@@ -1,8 +1,13 @@
 package uk.gov.hmrc.integration.cucumber.utils.driver
 
+import java.net.URL
+
 import com.typesafe.scalalogging.LazyLogging
 import org.openqa.selenium.WebDriver
+import org.openqa.selenium.chrome.ChromeOptions
+import org.openqa.selenium.remote.RemoteWebDriver
 import uk.gov.hmrc.integration.cucumber.utils.driver.browsers._
+
 import scala.util.Try
 
 object Driver extends LazyLogging with WindowControls {
@@ -10,6 +15,7 @@ object Driver extends LazyLogging with WindowControls {
   val instance: WebDriver = {
     sys.props.get("browser").map(_.toLowerCase) match {
       case Some("chrome") => ChromeBrowser.initialise(javascriptEnabled, sys.props.contains("headless"))
+      case Some("remote-chrome")  => createRemoteChrome
       case Some("chrome-headless") => ChromeBrowser.initialise(javascriptEnabled, headlessMode = true)
       case Some("firefox") => FirefoxBrowser.initialise(javascriptEnabled)
       case Some("browserstack") => BrowserStack.initialise()
@@ -20,6 +26,10 @@ object Driver extends LazyLogging with WindowControls {
         ChromeBrowser.initialise(javascriptEnabled, headlessMode = false)
       }
     }
+  }
+
+  def createRemoteChrome: WebDriver = {
+    new RemoteWebDriver(new URL(s"http://localhost:4444/wd/hub"), new ChromeOptions())
   }
 
   lazy val javascriptEnabled: Boolean = {
