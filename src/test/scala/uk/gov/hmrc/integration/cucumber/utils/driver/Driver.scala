@@ -6,7 +6,7 @@ import com.typesafe.scalalogging.LazyLogging
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeOptions
 import org.openqa.selenium.remote.RemoteWebDriver
-import uk.gov.hmrc.integration.cucumber.utils.driver.browsers.{BrowserStack, ChromeBrowser, FirefoxBrowser, ZapChromeBrowser}
+import uk.gov.hmrc.integration.cucumber.utils.driver.browsers._
 
 import scala.util.Try
 

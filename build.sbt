@@ -20,6 +20,7 @@ resolvers ++= Seq(
 
 libraryDependencies ++= Seq(
   "uk.gov.hmrc"                %% "zap-automation"           % "1.1.0",
+  "org.seleniumhq.selenium"     %  "selenium-chrome-driver"  % "3.9.1",
   "org.seleniumhq.selenium"     %  "selenium-support"        % "3.9.1",
   "org.seleniumhq.selenium"     %  "selenium-firefox-driver" % "3.9.1",
   "com.typesafe.play"          %%  "play-json"               % "2.5.12",
@@ -31,9 +32,6 @@ libraryDependencies ++= Seq(
   "junit"                       % "junit"                    % "4.12"    % "test",
   "com.novocode"                % "junit-interface"          % "0.11"    % "test",
   "ch.qos.logback"              % "logback-classic"          % "1.2.3",
-  "com.typesafe.scala-logging" %% "scala-logging"            % "3.8.0",
-  "uk.gov.hmrc" %% "scala-webdriver" % "5.4.0",
-  "org.seleniumhq.selenium" % "selenium-java" % "3.6.0",
-  "org.seleniumhq.selenium" % "selenium-firefox-driver" % "3.6.0"
+  "com.typesafe.scala-logging" %% "scala-logging"            % "3.8.0"
   )
 
