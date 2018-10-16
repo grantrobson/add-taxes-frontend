@@ -1,0 +1,10 @@
+{
+  "_id": "/vat/customer/vrn/999906137/information",
+  "schemaId": "getDesCustomerError",
+  "method": "GET",
+  "status": 404,
+  "response": {
+    "code": "NOT_FOUND",
+    "reason": "No subscription found."
+  }
+}
