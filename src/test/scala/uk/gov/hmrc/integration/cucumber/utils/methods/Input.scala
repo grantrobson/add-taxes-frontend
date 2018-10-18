@@ -2,6 +2,7 @@ package uk.gov.hmrc.integration.cucumber.utils.methods
 
 import org.openqa.selenium.By
 import org.openqa.selenium.chrome.ChromeDriver
+import org.openqa.selenium.remote.RemoteWebDriver
 import uk.gov.hmrc.integration.cucumber.pages.BasePage
 import uk.gov.hmrc.integration.cucumber.utils.driver.Driver
 import uk.gov.hmrc.integration.cucumber.utils.methods.Find._
@@ -26,6 +27,7 @@ object Input extends BasePage {
     waitForElement("continue-button").submit()
     Driver.webDriver match {
       case _: ChromeDriver =>
+      case _: RemoteWebDriver =>
       case _ =>
         waitForPageToChange
     }

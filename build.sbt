@@ -20,9 +20,8 @@ resolvers ++= Seq(
 
 libraryDependencies ++= Seq(
   "uk.gov.hmrc"                %% "zap-automation"           % "1.1.0",
-  "org.seleniumhq.selenium"     %  "selenium-chrome-driver"  % "3.9.1",
   "org.seleniumhq.selenium"     %  "selenium-support"        % "3.9.1",
-  "org.seleniumhq.selenium"     %  "selenium-firefox-driver" % "3.9.1",
+  "org.seleniumhq.selenium"     % "selenium-java"            % "3.6.0",
   "com.typesafe.play"          %%  "play-json"               % "2.5.12",
   "org.scalatest"              %%  "scalatest"               % "3.0.5"   % "test",
   "org.pegdown"                 % "pegdown"                  % "1.6.0"   % "test",
